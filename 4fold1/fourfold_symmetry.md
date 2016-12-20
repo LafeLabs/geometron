@@ -102,6 +102,12 @@ Finally this version of the standalone app, which again is compiled for both the
 
 This concludes the introduction to fourfold symmetry in the Geometron language.  You now have glyphs which describe relative motion of a cursor and a glyph describing the concept of fourfold symmetry.  The next step will be to add some actual art actions, drawing lines and circles and arcs, as well as creating compound glyphs, which is where the real power of this language becomes evident.  That will go in the next section.  
 
+For completeness, I will include links to the code for the two apps used here:
+
+[cursorMove1.pde](cursorMove1/cursorMove1.pde)
+
+[cursorMoveRotate1.pde](cursorMove1/cursorMoveRotate1.pde)
+
 
 
 
