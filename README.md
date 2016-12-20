@@ -12,9 +12,9 @@ This is part of the larger system of knowledge I am building, which includes the
 
 ### [2. Glyph of Glyphs](glyph_of_glyphs/glyph_of_glyphs.md)
 
-### 3. Recursion: A. Square
+### [3. Recursion: A. Square](recursionSquare/recursionSquare.md)
 
-### 4. Scaling by 2: Halving and Doubling
+### [4. Scaling by 2: Halving and Doubling](scaling_by_two/scaling_by_two.md)
 
 ### 5. Angle Bisection and Scaling by Square Root of 2
 
