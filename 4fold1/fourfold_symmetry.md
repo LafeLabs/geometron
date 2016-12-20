@@ -106,7 +106,7 @@ For completeness, I will include links to the code for the two apps used here:
 
 [cursorMove1.pde](cursorMove1/cursorMove1.pde)
 
-[cursorMoveRotate1.pde](cursorMove1/cursorMoveRotate1.pde)
+[cursorMoveRotate1.pde](cursorMoveRotate1/cursorMoveRotate1.pde)
 
 
 
