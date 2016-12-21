@@ -83,7 +83,9 @@ The octal address for the scaleFactor = 2  command is 0313:
 	}
 	
 
+Here is the actual code:
 
+[scaling_by_two.pde](scaling_by_two/scaling_by_two.pde)
 
 
 

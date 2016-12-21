@@ -1,0 +1,3 @@
+# Square Root of Two, and Divided Angles
+
+It's time to add more flexibility to the system of angles.  To that end, we're going to add two more angle manipulation commands, one which divides the current thetaStep by two and one which multiplies by 2.  Note that since we're starting with thetaStep being always 90 degrees, the first application of this is to divide by 2 to get a 45 degree angle.  That is very useful!  If we also add a divide by 3 and multiply by 3, we can get most of the angles we care about, such as 30 degrees and 60 degrees as well.  In addition to these we will add one more drawing command, which will draw an arc across the span of the cursor.  

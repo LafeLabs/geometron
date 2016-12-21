@@ -16,7 +16,7 @@ This is part of the larger system of knowledge I am building, which includes the
 
 ### [4. Scaling by 2: Halving and Doubling](scaling_by_two/scaling_by_two.md)
 
-### 5. Angle Bisection and Scaling by Square Root of 2
+### [5. Angle Bisection and Scaling by Square Root of 2](square_root_2/square_root_2.md)
 
 ### 6. Glyph to Text, Text to Glyph
 
