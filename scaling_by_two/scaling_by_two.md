@@ -76,5 +76,15 @@ So simple and yet so powerful!  And let's not forget the square.
 ![](2xscreenshot6.png)
 ![](2xscreenshot7.png)
 
+The octal address for the scaleFactor = 2  command is 0313:
+
+	if(localByte == 0313){
+		scaleFactor = 2;  //2x
+	}
+	
+
+
+
+
 
 

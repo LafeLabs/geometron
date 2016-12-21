@@ -116,6 +116,9 @@ void doTheThing(int localCommand){
     if(localCommand == 0304){
       thetaStep = PI/2;
     }
+    if(localCommand == 0313){
+      scaleFactor = 2;  //2x
+    }
     if(localCommand == 0330){
       x += side*cos(theta);   
       y += side*sin(theta); 
