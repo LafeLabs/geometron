@@ -25,15 +25,15 @@ In its most generic sense the core program of Geometron is simply a glyph editor
 
 To summarize:
 
-- 0000s glyphs(only used in physical implementations)    0000s actions(English descriptions encoded in ASCII)
+- 0000s ROOT MAGIC: glyphs(only used in physical implementations)    0000s actions(English descriptions encoded in ASCII)
 
- - 0040-0177  font, action = glyph, but make them redundant and have both for completeness
+ - 0040-0177  ASCII: font, action = glyph, but make them redundant and have both for completeness
 
- - 0200-0277  shape action glyph table, shape symbol glyph table
+ - 0200-0277  SHAPE TABLE: shape action glyph table, shape symbol glyph table
 
- - 0300-0377  command action glyph table in ASCII, command symbol glyph table(in geometron code arrays)
+ - 0300-0377  COMMAND TABLE: command action glyph table in ASCII, command symbol glyph table(in geometron code arrays)
 
- - 0400-0477  manuscript action glyph table, manuscript symbol glyph table
+ - 0400-0477  MANUSCRIPT TABLE: manuscript action glyph table, manuscript symbol glyph table
 
 Note that to get up to 0400 and above we need a 9th bit, making the standard Roctal byte code problematic if we are going to keep both of the calibration bits in the physical implementation.  Thus by the time we get to the 0400s we need to either drop the second calibration bit(the 0) or have a different physical encoding system.  The latter is probably preferable since it means we never drop the concept of a local calibration bit which is important for extremely long term data storage and because it allows for more complex data formats to be defined as needed for each application, including fractal implementations, which are key to the power of the System here. The symmetry group might even be different for the physical manuscript bytes, and there can be a multitude of physical data, including various chemical components which are used as feedstock for physical operations.  
 
