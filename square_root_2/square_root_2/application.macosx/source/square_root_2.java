@@ -150,6 +150,7 @@ public void doTheThing(int localCommand){
       theta = theta0;
       side = unit;
       thetaStep = PI/2;
+      scaleFactor = 2;
     }
     if(localCommand == 0304){
       thetaStep = PI/2;

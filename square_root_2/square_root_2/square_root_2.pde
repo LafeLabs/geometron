@@ -85,7 +85,7 @@ void keyPressed(){
      currentGlyph = append(currentGlyph,0300);   
   }
   if(key == 'v'){
-     currentGlyph = append(currentGlyph,0360);         
+     currentGlyph = append(currentGlyph,0200);         
   }
    if(key == '-'){
      currentGlyph = append(currentGlyph,0336);               
@@ -114,6 +114,19 @@ void keyPressed(){
   if(key == 'b'){
      currentGlyph = append(currentGlyph,0343);                   
   }
+  if(key == 'n'){
+     currentGlyph = append(currentGlyph,0201); 
+  }
+  
+  if(key == '!'){
+    currentGlyph = append(currentGlyph,0200);
+  }
+  if(key == '@'){
+     currentGlyph = append(currentGlyph,0201); 
+  }
+  if(key == '#'){
+     currentGlyph = append(currentGlyph,0202); 
+  }
   if(key == 8){ //delete key
     if(currentGlyph.length != 0){
       currentGlyph = shorten(currentGlyph);
@@ -134,6 +147,7 @@ void doTheThing(int localCommand){
       theta = theta0;
       side = unit;
       thetaStep = PI/2;
+      scaleFactor = 2;
     }
     if(localCommand == 0304){
       thetaStep = PI/2;
@@ -198,8 +212,16 @@ void doTheThing(int localCommand){
     if(localCommand == 0353){
       thetaStep *= 3; //3angle
     }
-    if(localCommand == 0360){
+    if(localCommand == 0200){
        int[] localGlyph = {0304,0342,0330,0334,0342,0330,0334,0342,0330,0334,0342,0330,0334}; 
+       drawGlyph(localGlyph);
+    }
+    if(localCommand == 0201){
+       int[] localGlyph = {0313,0336,0330,0350,0334,0310,0337,0200}; 
+       drawGlyph(localGlyph);
+    }
+    if(localCommand == 0202){
+       int[] localGlyph = {0350,0335,0336,0200};
        drawGlyph(localGlyph);
     }
     if(x > width){

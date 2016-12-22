@@ -75,7 +75,7 @@ void keyPressed(){
      currentGlyph = append(currentGlyph,0300);   
   }
   if(key == 'v'){
-     currentGlyph = append(currentGlyph,0360);         
+     currentGlyph = append(currentGlyph,0200);         
   }
   if(key == 8){ //delete key
     if(currentGlyph.length != 0){
@@ -132,7 +132,7 @@ void doTheThing(int localCommand){
     if(localCommand == 0342){
       line(x,y,x + side*cos(theta),y + side*sin(theta));//line
     }
-    if(localCommand == 0360){
+    if(localCommand == 0200){
        int[] localGlyph = {0304,0342,0330,0334,0342,0330,0334,0342,0330,0334,0342,0330,0334}; 
        drawGlyph(localGlyph);
     }

@@ -13,6 +13,25 @@ float scaleFactor, unit;
 float theta,theta0,thetaStep;
 int[] currentGlyph = {};
 
+String currentGlyphString = "";
+String rightArrow = "f!--ddda-a=chcdcagcsscjhqcacaggcacahkr-ffffsssssss-a====";
+
+String[] commandGlyphs = {"0330:f!--ddda-a=chcdcagcsscjhqcacaggcacahkr-ffffsssssss-a===="};
+String[] font = {"a:f--dadxfcadvfsscf==","b:f--dadd==c--faxffss=="};
+String[] shapeActions = {};
+String[] shapeGlyphs = {};
+
+char[] keyRow0 = {'0','-','='};
+int[] keyAddressRow0 = {0300,0336,0337};
+char[] keyRow1 = {'q','r'};
+int[] keyAddressRow1 = {0310,0313};
+char[] keyRow2 = {'a','s','d','f','g','h','j','k','l',';'};
+int[] keyAddressRow2 = {0330,0331,0332,0333,0334,0335,0350,0351,0352,0353};
+char[] keyRow3 = {'z','x','c','v'};
+int[] keyAddressRow3 = {0340,0341,0342,0343};
+char[] keyRow4 = {'!','@','#'};
+int[] keyAddressRow4 = {0200,0201,0202};
+
 void setup(){
   ellipseMode(CENTER);
   noFill();
@@ -32,10 +51,12 @@ void setup(){
 
 void draw(){
  background(255);
- image(loadImage("root2fullkey.png"),0,0,500,170);
+// image(loadImage("root2fullkey.png"),0,0,500,170);
  doTheThing(0300);
  drawGlyph(currentGlyph);
  drawCursor();
+// doString(rightArrow);
+
 }
 
 void drawCursor(){
@@ -53,72 +74,69 @@ void drawCursor(){
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
 }
 
+void doString(String localString){
+  for(int index = 0;index < localString.length();index++){
+    doTheThing(key2command(localString.charAt(index)));
+  }
+}
+
+int key2command(char localChar){
+    int localInt = -1;
+    
+    for(int index = 0;index < keyRow0.length; index++){
+     if(localChar == keyRow0[index]){
+         localInt = keyAddressRow0[index];
+     }
+  }
+  for(int index = 0;index < keyRow1.length; index++){
+     if(localChar == keyRow1[index]){
+         localInt = keyAddressRow1[index];
+     }
+  }
+  for(int index = 0;index < keyRow2.length; index++){
+     if(localChar == keyRow2[index]){
+         localInt = keyAddressRow2[index];
+     }
+  }
+  for(int index = 0;index < keyRow3.length; index++){
+     if(localChar == keyRow3[index]){
+         localInt = keyAddressRow3[index];
+     }
+  }
+  for(int index = 0;index < keyRow4.length; index++){
+     if(localChar == keyRow4[index]){
+         localInt = keyAddressRow4[index];
+     }
+  }
+  return localInt;
+}
+
+void rootMagic(int localCommand){
+  //edit letter, save, next letter, previous letter, switch keyboard mode, delete, move through glyph,
+  //push and pop state stack, push and pop glyph stack, push and pop image stack
+  
+  if(localCommand == 0000){
+    
+    
+  }
+  
+}
+
 void keyPressed(){
-   if(key == 'a'){
-     currentGlyph = append(currentGlyph,0330);
+  if(int(key) > 0040 && int(key) < 0177){
+     currentGlyphString += key; 
   }
-  if(key == 's'){
-     currentGlyph = append(currentGlyph,0331);
-  }
-  if(key == 'd'){
-     currentGlyph = append(currentGlyph,0332);
-  }
-  if(key == 'f'){
-     currentGlyph = append(currentGlyph,0333);
-  }
-  if(key == 'g'){
-     currentGlyph = append(currentGlyph,0334);
-  }
-  if(key == 'h'){
-     currentGlyph = append(currentGlyph,0335);
-  }
-  if(key == 'z'){
-     currentGlyph = append(currentGlyph,0340);
-  }
-  if(key == 'x'){
-     currentGlyph = append(currentGlyph,0341);
-  }
-  if(key == 'c'){
-     currentGlyph = append(currentGlyph,0342);
-  }
-  if(key == '0'){
-     currentGlyph = append(currentGlyph,0300);   
-  }
-  if(key == 'v'){
-     currentGlyph = append(currentGlyph,0360);         
-  }
-   if(key == '-'){
-     currentGlyph = append(currentGlyph,0336);               
-  }
-  if(key == '='){
-     currentGlyph = append(currentGlyph,0337);               
-  }
-  if(key == 'j'){
-     currentGlyph = append(currentGlyph,0350);                   
-  }
-  if(key == 'k'){
-     currentGlyph = append(currentGlyph,0351);                   
-  }
-  if(key == 'l'){
-     currentGlyph = append(currentGlyph,0352);                   
-  }
-  if(key == ';'){
-     currentGlyph = append(currentGlyph,0353);                   
-  }
-  if(key == 'r'){
-     currentGlyph = append(currentGlyph,0313);                   
-  }
-  if(key == 'q'){
-     currentGlyph = append(currentGlyph,0310);                   
-  }
-  if(key == 'b'){
-     currentGlyph = append(currentGlyph,0343);                   
+  int currentCommand = key2command(key);
+  if(currentCommand != -1){
+     currentGlyph = append(currentGlyph,currentCommand); 
   }
   if(key == 8){ //delete key
     if(currentGlyph.length != 0){
       currentGlyph = shorten(currentGlyph);
+      currentGlyphString = currentGlyphString.substring(0,currentGlyphString.length() - 1);
     }
   }
+  println(currentGlyphString);
 }
 
 void drawGlyph(int[] localGlyph){
@@ -199,8 +217,16 @@ void doTheThing(int localCommand){
     if(localCommand == 0353){
       thetaStep *= 3; //3angle
     }
-    if(localCommand == 0360){
+    if(localCommand == 0200){
        int[] localGlyph = {0304,0342,0330,0334,0342,0330,0334,0342,0330,0334,0342,0330,0334}; 
+       drawGlyph(localGlyph);
+    }
+    if(localCommand == 0201){
+       int[] localGlyph = {0313,0336,0330,0350,0334,0310,0337,0200}; 
+       drawGlyph(localGlyph);
+    }
+    if(localCommand == 0202){
+       int[] localGlyph = {0350,0335,0336,0200};
        drawGlyph(localGlyph);
     }
     if(x > width){

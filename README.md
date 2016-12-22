@@ -18,7 +18,7 @@ This is part of the larger system of knowledge I am building, which includes the
 
 ### [5. Angle Bisection and Scaling by Square Root of 2](square_root_2/square_root_2.md)
 
-### 6. Glyph to Text, Text to Glyph
+### [6. Glyph to Text, Text to Glyph](keyboardMapping/keyboardmapping.md)
 
 ### 7. Spelling: Glyph and Glyph Table Creation
 
@@ -30,9 +30,13 @@ This is part of the larger system of knowledge I am building, which includes the
 
 ### 11. Font Creation and Use
 
+### State Stack
+
 ### 12. Adding the Third Dimension
 
 ### 13. Image Interaction for Art and Communication
+
+### image stack
 
 ### 14. Building Systems and Implementation
 
