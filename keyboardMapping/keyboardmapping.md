@@ -39,6 +39,20 @@ Note that to get up to 0400 and above we need a 9th bit, making the standard Roc
 
 At this point what I need to do to get to the next level is to create a Root Magic action table capable of editing the whole space defined above.  This Root Magic must include self documentation routines that create the tables that enable a human user to always see a reference table of whatever kind they need displayed as a background in the glyph editing workspace.  This will finally eliminate the need to always have a .png file ride along with the executable, since the image will self-generate, making the .app and .exe's be self contained as they should be.  
 
+#### Root Magic:
+
+move cursor forward in current glyph
+move cursor backward in current glyph
+move to next glyph
+move to previous glyph
+add glyph in table in front of cursor
+edit glyph address
+move to different glyph table: 0action, 0glyph, 1action, 1glyph, 2action, 2glyph, 3action, 3glyph, 4action, 4glyph
+delete glyph inside current glyph
+delete current glyph
+
+
+
 
 
 

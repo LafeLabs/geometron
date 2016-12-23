@@ -12,19 +12,22 @@ float side;
 float scaleFactor, unit;
 float theta,theta0,thetaStep;
 int[] currentGlyph = {};
+int currentGlyphIndex = 0;
+int currentTableIndex = 0;
+String[] currentGlyphTable = {};
+int currentGlyphAddress = 0;
 
 String currentGlyphString = "";
-String rightArrow = "f!--ddda-a=chcdcagcsscjhqcacaggcacahkr-ffffsssssss-a====";
 
-String[] commandGlyphs = {"0330:f!--ddda-a=chcdcagcsscjhqcacaggcacahkr-ffffsssssss-a===="};
-String[] font = {"a:f--dadxfcadvfsscf==","b:f--dadd==c--faxffss=="};
+String[] commandSymbolGlyphTable = {};
+String[] font = {};
 String[] shapeActions = {};
 String[] shapeGlyphs = {};
 
 char[] keyRow0 = {'0','-','='};
 int[] keyAddressRow0 = {0300,0336,0337};
-char[] keyRow1 = {'q','r'};
-int[] keyAddressRow1 = {0310,0313};
+char[] keyRow1 = {'q','r',']','[','p'};
+int[] keyAddressRow1 = {0310,0313,0010,0011,0014};
 char[] keyRow2 = {'a','s','d','f','g','h','j','k','l',';'};
 int[] keyAddressRow2 = {0330,0331,0332,0333,0334,0335,0350,0351,0352,0353};
 char[] keyRow3 = {'z','x','c','v'};
@@ -47,16 +50,16 @@ void setup(){
   y0 = 250;
   x = x0;
   y = y0;
+  commandSymbolGlyphTable = loadStrings("commandSymbolGlyphTable.txt");
+  font = loadStrings("font.txt");
+  doTheThing(0);
 }
 
 void draw(){
  background(255);
-// image(loadImage("root2fullkey.png"),0,0,500,170);
  doTheThing(0300);
  drawGlyph(currentGlyph);
  drawCursor();
-// doString(rightArrow);
-
 }
 
 void drawCursor(){
@@ -111,32 +114,25 @@ int key2command(char localChar){
   return localInt;
 }
 
-void rootMagic(int localCommand){
-  //edit letter, save, next letter, previous letter, switch keyboard mode, delete, move through glyph,
-  //push and pop state stack, push and pop glyph stack, push and pop image stack
-  
-  if(localCommand == 0000){
-    
-    
-  }
-  
-}
-
 void keyPressed(){
-  if(int(key) > 0040 && int(key) < 0177){
-     currentGlyphString += key; 
-  }
   int currentCommand = key2command(key);
-  if(currentCommand != -1){
+  if(currentCommand != -1 && currentCommand >= 0040){
      currentGlyph = append(currentGlyph,currentCommand); 
+       currentGlyphString += key; 
   }
+  if(currentCommand < 0040){
+     doTheThing(currentCommand); 
+  }
+    
   if(key == 8){ //delete key
     if(currentGlyph.length != 0){
       currentGlyph = shorten(currentGlyph);
       currentGlyphString = currentGlyphString.substring(0,currentGlyphString.length() - 1);
     }
   }
-  println(currentGlyphString);
+  //println(currentGlyphString);
+  println(currentGlyphTable[currentTableIndex]);
+  
 }
 
 void drawGlyph(int[] localGlyph){
@@ -146,6 +142,100 @@ void drawGlyph(int[] localGlyph){
 }
 
 void doTheThing(int localCommand){
+
+  
+  /*
+move to different glyph table: 
+
+commandSymbolGlyph,font,shapeActionGlyph,shapeSymbolGlyph,manuscriptSymbolGlyph,manuscriptActionGlyph
+0000,0001,0002,0003,0004,0005
+
+
+move cursor forward in current glyph
+move cursor backward in current glyph
+move to next glyph
+move to previous glyph
+0010,0011,0012,0013
+
+0014: archive glyphtable 
+
+save and load glyph to from text file
+add glyph in table in front of cursor
+edit glyph address
+delete glyph inside current glyph
+delete current glyph
+*/
+    if(localCommand == 0000){//edit current glyph table
+        currentGlyphTable = loadStrings("currentGlyphTable.txt");
+        currentTableIndex = 0;
+        String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
+        String localString = localStringArray[1];  
+        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
+        currentGlyphString = "";
+        for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
+          currentGlyphString += localString.charAt(index);
+        }   
+    }
+
+    if(localCommand == 0010){//cursor forward through current glyph
+      String localOctalAddress = "0";
+      localOctalAddress += str(currentGlyphAddress >> 6);
+      localOctalAddress += str((currentGlyphAddress >> 3)&7);
+      localOctalAddress += str((currentGlyphAddress)&7);
+      currentGlyphTable[currentTableIndex] = localOctalAddress + ":" + currentGlyphString;
+      currentTableIndex++;
+      if(currentTableIndex == currentGlyphTable.length){
+        currentTableIndex = 0;
+      }
+        String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
+        String localString = localStringArray[1];  
+        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
+        currentGlyphString = "";
+        for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
+          currentGlyphString += localString.charAt(index);
+        }         
+    }
+    if(localCommand == 0011){//cursor back through current glyph 
+      String localOctalAddress = "0";
+      localOctalAddress += str(currentGlyphAddress >> 6);
+      localOctalAddress += str((currentGlyphAddress >> 3)&7);
+      localOctalAddress += str((currentGlyphAddress)&7);
+      currentGlyphTable[currentTableIndex] = localOctalAddress + ":" + currentGlyphString;
+      currentTableIndex--;
+      if(currentTableIndex < 0){
+        currentTableIndex = currentGlyphTable.length - 1;
+      }
+        String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
+        String localString = localStringArray[1];  
+        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
+        currentGlyphString = "";
+        for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
+          currentGlyphString += localString.charAt(index);
+        }         
+      
+    }
+    if(localCommand == 0012){//move to next glyph in table, cursor to end
+      
+    }
+    if(localCommand == 0013){//move to previous glyph in table, cursor to end
+      
+    }
+    if(localCommand == 0014){//archive current glyph table
+      saveStrings("currentGlyphTable.txt",currentGlyphTable);
+    }
+
     if(localCommand == 0300){
       x = x0;
       y = y0;
