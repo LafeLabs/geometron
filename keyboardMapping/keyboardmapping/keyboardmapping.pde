@@ -1,13 +1,14 @@
 //EVERYTHING IS PHYSICAL
-//EVERYTHING IS GLOBAL
 //EVERYTHING IS ALWAYS RECURSIVE
-//NO LAWS NO PROPERTY NO MINING NO NUMBERS NO MINERALS
-//THE SOLE PURPOSE OF THE EXISTING SOFTWARE INDUSTRY IS TO CREATE AND MAINTAIN STRUCTURAL VIOLENCE, \
-//ALL COMPUTER "SCIENCE" IS EVIL
+//NO LAWS NO PROPERTY NO MINING NO NUMBERS
+//THE SOLE PURPOSE OF THE EXISTING SOFTWARE INDUSTRY IS TO CREATE AND MAINTAIN STRUCTURAL VIOLENCE
+//ALL COMPUTER "SCIENCE" IS AN EVIL RELIGION
 //ALL "TECH" COMPANIES ARE BASED ON FRAUD AND LIES
 //SMASH THE TECHNOCRATIC PRIESTHOOD
 
 float x,y,x0,y0;
+float spellX,spellY;
+float spellSide;
 float side;
 float scaleFactor, unit;
 float theta,theta0,thetaStep;
@@ -30,8 +31,8 @@ char[] keyRow1 = {'q','r',']','[','p'};
 int[] keyAddressRow1 = {0310,0313,0010,0011,0014};
 char[] keyRow2 = {'a','s','d','f','g','h','j','k','l',';'};
 int[] keyAddressRow2 = {0330,0331,0332,0333,0334,0335,0350,0351,0352,0353};
-char[] keyRow3 = {'z','x','c','v'};
-int[] keyAddressRow3 = {0340,0341,0342,0343};
+char[] keyRow3 = {'z','x','c','v','.',','};
+int[] keyAddressRow3 = {0340,0341,0342,0343,0012,0013};
 char[] keyRow4 = {'!','@','#'};
 int[] keyAddressRow4 = {0200,0201,0202};
 
@@ -50,6 +51,9 @@ void setup(){
   y0 = 250;
   x = x0;
   y = y0;
+  spellX = 10;
+  spellY = height - 10;
+  spellSide = 20;
   commandSymbolGlyphTable = loadStrings("commandSymbolGlyphTable.txt");
   font = loadStrings("font.txt");
   doTheThing(0);
@@ -59,7 +63,13 @@ void draw(){
  background(255);
  doTheThing(0300);
  drawGlyph(currentGlyph);
- drawCursor();
+ if(currentGlyphIndex == 0){
+   drawCursor();
+ }
+ doTheThing(0300);
+ spellGlyph(currentGlyph);
+ 
+ ellipse(spellX + currentGlyphIndex*spellSide,spellY - spellSide,spellSide/2,spellSide/2);
 }
 
 void drawCursor(){
@@ -117,28 +127,83 @@ int key2command(char localChar){
 void keyPressed(){
   int currentCommand = key2command(key);
   if(currentCommand != -1 && currentCommand >= 0040){
-     currentGlyph = append(currentGlyph,currentCommand); 
+     if(currentGlyphIndex == 0){
+       currentGlyph = append(currentGlyph,currentCommand); 
        currentGlyphString += key; 
+     }
+     else{
+         int[] tempArray = {};
+         String tempString = "";
+         for(int index = 0;index < currentGlyphIndex;index++){
+            tempArray = append(tempArray,currentGlyph[index]); 
+            tempString += currentGlyphString.charAt(index);
+         }
+         tempArray = append(tempArray,currentCommand); 
+         tempString += key;
+         for(int index = currentGlyphIndex;index < currentGlyph.length;index++){
+            tempArray = append(tempArray,currentGlyph[index]); 
+            tempString += currentGlyphString.charAt(index);           
+         }
+         currentGlyph = tempArray;
+         currentGlyphString = tempString;
+     }
   }
+  
   if(currentCommand < 0040){
      doTheThing(currentCommand); 
   }
     
   if(key == 8){ //delete key
     if(currentGlyph.length != 0){
-      currentGlyph = shorten(currentGlyph);
-      currentGlyphString = currentGlyphString.substring(0,currentGlyphString.length() - 1);
+      if(currentGlyphIndex == 0){
+        currentGlyph = shorten(currentGlyph);
+        currentGlyphString = currentGlyphString.substring(0,currentGlyphString.length() - 1);
+      }
+      else{
+         int[] tempArray = {};
+         String tempString = "";
+         for(int index = 0;index < currentGlyph.length;index++){
+           if(index != currentGlyphIndex){
+             tempArray = append(tempArray,currentGlyph[index]);
+             tempString += currentGlyphString.charAt(index);
+           }
+         }
+         currentGlyph = tempArray;
+         currentGlyphString = tempString;
+      }
     }
   }
-  //println(currentGlyphString);
-  println(currentGlyphTable[currentTableIndex]);
+  println(currentGlyphString);
+  println(currentGlyphIndex);
+//  println(currentGlyphTable[currentTableIndex]);
   
 }
 
 void drawGlyph(int[] localGlyph){
   for(int index = 0;index < localGlyph.length;index++){
     doTheThing(localGlyph[index]);  
+    if(currentGlyphIndex == index && currentGlyphIndex !=0){
+       drawCursor();
+    }
   }  
+}
+
+void spellGlyph(int[] localGlyph){
+  x = spellX;
+  y = spellY;
+  float tempInt = side;
+  side = spellSide;
+  for(int index = 0;index < localGlyph.length;index++){
+     for(int searchIndex = 0;searchIndex <  commandSymbolGlyphTable.length; searchIndex++){
+        String[] localStringArray = split(commandSymbolGlyphTable[searchIndex],':');
+        String localString = localStringArray[1];  
+        int tempAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        if(tempAddress == localGlyph[index]){
+           doString(localString); 
+        }
+     }
+  }
+  side = tempInt;
 }
 
 void doTheThing(int localCommand){
@@ -181,7 +246,7 @@ delete current glyph
         }   
     }
 
-    if(localCommand == 0010){//cursor forward through current glyph
+    if(localCommand == 0010){//move to next glyph in glyph table
       String localOctalAddress = "0";
       localOctalAddress += str(currentGlyphAddress >> 6);
       localOctalAddress += str((currentGlyphAddress >> 3)&7);
@@ -203,7 +268,7 @@ delete current glyph
           currentGlyphString += localString.charAt(index);
         }         
     }
-    if(localCommand == 0011){//cursor back through current glyph 
+    if(localCommand == 0011){//move to previous glyph in glyph table
       String localOctalAddress = "0";
       localOctalAddress += str(currentGlyphAddress >> 6);
       localOctalAddress += str((currentGlyphAddress >> 3)&7);
@@ -226,11 +291,17 @@ delete current glyph
         }         
       
     }
-    if(localCommand == 0012){//move to next glyph in table, cursor to end
-      
+    if(localCommand == 0012){//cursor forward through current glyph
+      currentGlyphIndex++;
+      if(currentGlyphIndex >= currentGlyph.length){
+        currentGlyphIndex = 0;
+      }
     }
-    if(localCommand == 0013){//move to previous glyph in table, cursor to end
-      
+    if(localCommand == 0013){//cursor backward through current glyph
+      currentGlyphIndex--;
+      if(currentGlyphIndex < 0){
+        currentGlyphIndex = currentGlyph.length - 1;
+      }
     }
     if(localCommand == 0014){//archive current glyph table
       saveStrings("currentGlyphTable.txt",currentGlyphTable);
@@ -309,15 +380,24 @@ delete current glyph
     }
     if(localCommand == 0200){
        int[] localGlyph = {0304,0342,0330,0334,0342,0330,0334,0342,0330,0334,0342,0330,0334}; 
+       int tempIndex = currentGlyphIndex;
+       currentGlyphIndex  = 0;
        drawGlyph(localGlyph);
+       currentGlyphIndex = tempIndex;
     }
     if(localCommand == 0201){
        int[] localGlyph = {0313,0336,0330,0350,0334,0310,0337,0200}; 
+       int tempIndex = currentGlyphIndex;
+       currentGlyphIndex  = 0;
        drawGlyph(localGlyph);
+       currentGlyphIndex = tempIndex;
     }
     if(localCommand == 0202){
        int[] localGlyph = {0350,0335,0336,0200};
+       int tempIndex = currentGlyphIndex;
+       currentGlyphIndex  = 0;
        drawGlyph(localGlyph);
+       currentGlyphIndex = tempIndex;
     }
     if(x > width){
       x=0;
