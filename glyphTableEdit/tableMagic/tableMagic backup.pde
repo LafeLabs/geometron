@@ -28,7 +28,7 @@ String[] font = {};
 String[] shapeActions = {};
 String[] shapeGlyphs = {};
 
-//~ is 0176 in octal and switches between ASCIImode true and false, should not go here
+//~ is 0176 in octal and switches between ASCIImode true and false
 char[] keyRow0 = {'1','2','3','0','-','='};
 int[] keyAddressRow0 = {0304,0305,0306,0300,0336,0337};
 char[] keyRow1 = {'q','w','e','r','t',']','[','p'};
@@ -125,10 +125,6 @@ int[] string2glyph(String localString){
   return localGlyph;
 }
 
-String glyph2String(int[] localGlyph){
-return "";
-}
-
 int key2command(char localChar){
     int localInt = -1;
     
@@ -157,10 +153,7 @@ int key2command(char localChar){
          localInt = keyAddressRow4[index];
      }
   }
-  if(localChar == '~'){ 
-     return  int(localChar);  //0176
-  }
-  if(!ASCIImode){//command mode
+  if(!ASCIImode){
     return localInt;
   }
   else{
@@ -172,17 +165,23 @@ void keyPressed(){
   int currentCommand = key2command(key);
   if(currentCommand != -1 && currentCommand >= 0040){
      if(currentGlyphIndex == 0){
+       currentGlyph = append(currentGlyph,currentCommand); 
        currentGlyphString += key; 
      }
      else{
+         int[] tempArray = {};
          String tempString = "";
          for(int index = 0;index < currentGlyphIndex;index++){
+            tempArray = append(tempArray,currentGlyph[index]); 
             tempString += currentGlyphString.charAt(index);
          }
+         tempArray = append(tempArray,currentCommand); 
          tempString += key;
-         for(int index = currentGlyphIndex;index < currentGlyphString.length();index++){
+         for(int index = currentGlyphIndex;index < currentGlyph.length;index++){
+            tempArray = append(tempArray,currentGlyph[index]); 
             tempString += currentGlyphString.charAt(index);           
          }
+         currentGlyph = tempArray;
          currentGlyphString = tempString;
      }
   }
@@ -194,17 +193,21 @@ void keyPressed(){
   }
     
   if(key == 8){ //delete key
-    if(currentGlyphString.length() != 0){
+    if(currentGlyph.length != 0){
       if(currentGlyphIndex == 0){
+        currentGlyph = shorten(currentGlyph);
         currentGlyphString = currentGlyphString.substring(0,currentGlyphString.length() - 1);
       }
       else{
+         int[] tempArray = {};
          String tempString = "";
-         for(int index = 0;index < currentGlyphString.length();index++){
+         for(int index = 0;index < currentGlyph.length;index++){
            if(index != currentGlyphIndex){
+             tempArray = append(tempArray,currentGlyph[index]);
              tempString += currentGlyphString.charAt(index);
            }
          }
+         currentGlyph = tempArray;
          currentGlyphString = tempString;
       }
     }
@@ -272,8 +275,12 @@ delete current glyph
         String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
         String localString = localStringArray[1];  
         currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
         currentGlyphString = "";
         for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
           currentGlyphString += localString.charAt(index);
         }   
     }
@@ -291,8 +298,12 @@ delete current glyph
         String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
         String localString = localStringArray[1];  
         currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
         currentGlyphString = "";
         for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
           currentGlyphString += localString.charAt(index);
         }         
     }
@@ -309,15 +320,19 @@ delete current glyph
         String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
         String localString = localStringArray[1];  
         currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        for(int index = currentGlyph.length - 1;index >= 0;index--){
+            currentGlyph = shorten(currentGlyph);
+        }
         currentGlyphString = "";
         for(int index = 0;index < localString.length();index++){
+          currentGlyph = append(currentGlyph,key2command(localString.charAt(index)));
           currentGlyphString += localString.charAt(index);
         }         
       
     }
     if(localCommand == 0012){//cursor forward through current glyph
       currentGlyphIndex++;
-      if(currentGlyphIndex >= currentGlyphString.length()){
+      if(currentGlyphIndex >= currentGlyph.length){
         currentGlyphIndex = 0;
       }
     }
@@ -330,6 +345,7 @@ delete current glyph
     if(localCommand == 0014){//archive current glyph table
       saveStrings("currentGlyphTable.txt",currentGlyphTable);
     }
+
     if(localCommand >= 0040 && localCommand < 0176){
       for(int searchIndex = 0;searchIndex <  font.length; searchIndex++){
         String[] localStringArray = split(font[searchIndex],':');
@@ -340,7 +356,11 @@ delete current glyph
         }
      }
     }
-    
+    if(localCommand == 0020){
+        ASCIImode = !ASCIImode; 
+    }
+
+
     if(localCommand == 0300){
       x = x0;
       y = y0;
