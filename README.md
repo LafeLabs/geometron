@@ -20,7 +20,7 @@ This is part of the larger system of knowledge I am building, which includes the
 
 ### [6. Glyph to Text, Text to Glyph](keyboardMapping/keyboardmapping.md)
 
-### 7. Spelling: Glyph and Glyph Table Creation
+### [7. Spelling: Glyph and Glyph Table Creation](glyphTableEdit/glyphTableEdit.md)
 
 ### 8. Threefold and Sixfold Symmetries
 
