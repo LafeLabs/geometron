@@ -1,3 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.pdf.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class scroll1 extends PApplet {
+
 //EVERYTHING IS PHYSICAL
 //EVERYTHING IS ALWAYS RECURSIVE
 //NO LAWS NO PROPERTY NO MINING NO NUMBERS
@@ -6,7 +24,7 @@
 //ALL "TECH" COMPANIES ARE BASED ON FRAUD AND LIES
 //SMASH THE TECHNOCRATIC PRIESTHOOD
 
-import processing.pdf.*;
+
 
 boolean ASCIImode = false;
 float x,y,x0,y0;
@@ -28,7 +46,7 @@ int tableMode = 4;
 //4: manuscript actions 
 //5: manuscript symbols
 
-float phi = 0.5*(sqrt(5) + 1);
+float phi = 0.5f*(sqrt(5) + 1);
 
 String currentGlyphString = "";
 
@@ -56,7 +74,7 @@ String testGlyphString = "-ddaa==zxc--aa~r~fff~cmn";
 
 PImage baseImage;
 
-void setup(){
+public void setup(){
   ellipseMode(CENTER);
   noFill();
   strokeWeight(1);
@@ -66,7 +84,7 @@ void setup(){
   thetaStep = PI/2;
   theta0 = -PI/2; 
   theta = theta0;
-  size(500,500);
+  
  // size(500, 500, PDF, "filename.pdf");
   x0 = 250;
   y0 = 250;
@@ -87,7 +105,7 @@ void setup(){
   baseImage = loadImage("masterKeyboard.png");
 }
 
-void draw(){
+public void draw(){
  background(255);
  image(baseImage,0,0,400,160);
  doTheThing(0300);
@@ -111,7 +129,7 @@ void draw(){
 
 }
 
-void drawCursor(){
+public void drawCursor(){
   stroke(color(255,0,0));
   line(x,y,x + scaleFactor*side*cos(theta),y+scaleFactor*side*sin(theta));
   strokeWeight(3);
@@ -126,13 +144,13 @@ void drawCursor(){
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
 }
 
-void doString(String localString){
+public void doString(String localString){
   for(int index = 0;index < localString.length();index++){
     doTheThing(key2command(localString.charAt(index)));
   }
 }
 
-int[] string2glyph(String localString){
+public int[] string2glyph(String localString){
   int[] localGlyph = {};
   boolean localASCII = false;
   for(int index = 0;index < localString.length();index++){
@@ -141,7 +159,7 @@ int[] string2glyph(String localString){
           localGlyph = append(localGlyph,key2command(localString.charAt(index)));
       }
       else{    //literal ascii mode
-          localGlyph = append(localGlyph,int(localString.charAt(index)));
+          localGlyph = append(localGlyph,PApplet.parseInt(localString.charAt(index)));
       }
     }
     else{   //if tilde switch local key mode to other mode, whatever that is
@@ -151,11 +169,11 @@ int[] string2glyph(String localString){
   return localGlyph;
 }
 
-String glyph2String(int[] localGlyph){
+public String glyph2String(int[] localGlyph){
 return "";
 }
 
-int key2command(char localChar){
+public int key2command(char localChar){
     int localInt = -1;
     
     for(int index = 0;index < keyRow0.length; index++){
@@ -186,39 +204,39 @@ int key2command(char localChar){
   return localInt;
 }
 
-void keyPressed(){
+public void keyPressed(){
   if(key == '~'){
     ASCIImode = !ASCIImode;
   }
-  if(int(key) == 0001){
+  if(PApplet.parseInt(key) == 0001){
     doTheThing(0001);
   }
-  if(int(key) == 0002){
+  if(PApplet.parseInt(key) == 0002){
     doTheThing(0002);
   }
-  if(int(key) == 0003){
+  if(PApplet.parseInt(key) == 0003){
     doTheThing(0003);
   }
-  if(int(key) == 0004){
+  if(PApplet.parseInt(key) == 0004){
     doTheThing(0004);
   }
-  if(int(key) == 0005){
+  if(PApplet.parseInt(key) == 0005){
     doTheThing(0005);
   }
   
-  if(int(key) == 0020){
+  if(PApplet.parseInt(key) == 0020){
     doTheThing(0020);
   }
   
-  if(int(key) == 0023){  //control s to save
+  if(PApplet.parseInt(key) == 0023){  //control s to save
     doTheThing(0023);
     println("save");
   }
   
-  if(int(key) == 0011){  //control-I previous glyph in table
+  if(PApplet.parseInt(key) == 0011){  //control-I previous glyph in table
       doTheThing(0011);
   }
-  if(int(key) == 0015){ //control-M, next glyph in table
+  if(PApplet.parseInt(key) == 0015){ //control-M, next glyph in table
     doTheThing(0015);
   }
   
@@ -260,7 +278,7 @@ void keyPressed(){
       currentGlyphTable[currentTableIndex] = localOctalAddress + ":" + currentGlyphString;
 }
 
-void drawGlyph(int[] localGlyph){
+public void drawGlyph(int[] localGlyph){
   for(int index = 0;index < localGlyph.length;index++){
     doTheThing(localGlyph[index]);  
     if(currentGlyphIndex == index && currentGlyphIndex !=0){
@@ -269,7 +287,7 @@ void drawGlyph(int[] localGlyph){
   }  
 }
 
-void spellGlyph(int[] localGlyph){
+public void spellGlyph(int[] localGlyph){
   x = spellX;
   y = spellY;
   float tempInt = side;
@@ -278,14 +296,14 @@ void spellGlyph(int[] localGlyph){
      for(int searchIndex = 0;searchIndex <  commandSymbolGlyphTable.length; searchIndex++){
         String[] localStringArray = split(commandSymbolGlyphTable[searchIndex],':');
         String localString = localStringArray[1];  
-        int tempAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        int tempAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         if(tempAddress == localGlyph[index]){
            doString(localString); 
         } 
      }
        textSize(12);
   fill(0);
-  text(currentGlyphString.charAt(index),x - 0.7*spellSide,y + 0.6*spellSide);
+  text(currentGlyphString.charAt(index),x - 0.7f*spellSide,y + 0.6f*spellSide);
   noFill();
 
     if(x > width - 20){
@@ -296,13 +314,13 @@ void spellGlyph(int[] localGlyph){
   side = tempInt;
 }
 
-void doTheThing(int localCommand){
+public void doTheThing(int localCommand){
 
  if(localCommand == 0001){
         currentTableIndex = 0;
         String[] localStringArray = split(font[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -314,7 +332,7 @@ void doTheThing(int localCommand){
         currentTableIndex = 0;
         String[] localStringArray = split(shapeSymbols[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -326,7 +344,7 @@ void doTheThing(int localCommand){
         currentTableIndex = 0;
         String[] localStringArray = split(shapeActions[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -339,7 +357,7 @@ void doTheThing(int localCommand){
         currentTableIndex = 0;
         String[] localStringArray = split(commandSymbolGlyphTable[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -351,7 +369,7 @@ void doTheThing(int localCommand){
         currentTableIndex = 0;
         String[] localStringArray = split(manuscriptActions[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -363,7 +381,7 @@ void doTheThing(int localCommand){
         currentTableIndex = 0;
         String[] localStringArray = split(manuscriptSymbols[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
        for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -408,7 +426,7 @@ void doTheThing(int localCommand){
       }
         String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
         String localString = localStringArray[1];  
-        currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         currentGlyphString = "";
         for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -428,7 +446,7 @@ void doTheThing(int localCommand){
       }
       String[] localStringArray = split(currentGlyphTable[currentTableIndex],':');
       String localString = localStringArray[1];  
-      currentGlyphAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+      currentGlyphAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
       currentGlyphString = "";
       for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
@@ -439,7 +457,7 @@ void doTheThing(int localCommand){
       for(int searchIndex = 0;searchIndex <  font.length; searchIndex++){
         String[] localStringArray = split(font[searchIndex],':');
         String localString = localStringArray[1];  
-        int tempAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        int tempAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         if(tempAddress == localCommand){
            doString(localString);
         }
@@ -450,7 +468,7 @@ void doTheThing(int localCommand){
       for(int searchIndex = 0;searchIndex <  shapeActions.length; searchIndex++){
         String[] localStringArray = split(shapeActions[searchIndex],':');
         String localString = localStringArray[1];  
-        int tempAddress = (int(localStringArray[0].charAt(1))- 060)*64 + (int(localStringArray[0].charAt(2))  - 060)*8 + int(localStringArray[0].charAt(3)) - 060;        
+        int tempAddress = (PApplet.parseInt(localStringArray[0].charAt(1))- 060)*64 + (PApplet.parseInt(localStringArray[0].charAt(2))  - 060)*8 + PApplet.parseInt(localStringArray[0].charAt(3)) - 060;        
         if(tempAddress == localCommand){
            doString(localString);
         }
@@ -556,4 +574,14 @@ void doTheThing(int localCommand){
     if(y<0){
       y = height;
     }
+}
+  public void settings() {  size(500,500); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "scroll1" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
