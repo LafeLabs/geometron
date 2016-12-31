@@ -59,14 +59,14 @@ PImage baseImage;
 void setup(){
   ellipseMode(CENTER);
   noFill();
-  strokeWeight(1);
+  strokeWeight(3);
   unit = 75;
   scaleFactor = 2;
   side = 50;
   thetaStep = PI/2;
   theta0 = -PI/2; 
   theta = theta0;
-  size(500,500);
+  size(1149,575);
  // size(500, 500, PDF, "filename.pdf");
   x0 = 250;
   y0 = 250;
@@ -84,34 +84,22 @@ void setup(){
   manuscriptSymbols = loadStrings("manuscriptSymbols.txt"); //mode 5
  
   doTheThing(4);
-  baseImage = loadImage("masterKeyboard.png");
+  baseImage = loadImage("mall1.png");
 }
 
 void draw(){
  background(255);
- image(baseImage,0,0,400,160);
+ image(baseImage,0,0);
  doTheThing(0300);
  drawGlyph(string2glyph(currentGlyphString));
  if(currentGlyphIndex == 0){
    drawCursor();
  }
- doTheThing(0300);
- spellGlyph(string2glyph(currentGlyphString));
- /*
-  PGraphicsPDF pdf = (PGraphicsPDF) g;  // Get the renderer
-  //When finished drawing, quit and save the file
-  if (frameCount == 11) {
-    exit();
-  } else {
-    pdf.nextPage();  // Tell it to go to the next page 
-  }
-  doTheThing(0015);
-*/
-
-
 }
 
 void drawCursor(){
+  
+  strokeWeight(1);
   stroke(color(255,0,0));
   line(x,y,x + scaleFactor*side*cos(theta),y+scaleFactor*side*sin(theta));
   strokeWeight(3);
@@ -124,6 +112,8 @@ void drawCursor(){
   stroke(0);
   line(x,y,x + side*cos(theta + thetaStep),y+side*sin(theta + thetaStep));
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
+  strokeWeight(3);
+
 }
 
 void doString(String localString){

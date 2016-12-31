@@ -233,10 +233,10 @@ public void keyPressed(){
     println("save");
   }
   
-  if(PApplet.parseInt(key) == 0011){  //control-I previous glyph in table
+  if(key == 'i'){  //control-I previous glyph in table
       doTheThing(0011);
   }
-  if(PApplet.parseInt(key) == 0015){ //control-M, next glyph in table
+  if(key == 'm'){ //control-M, next glyph in table
     doTheThing(0015);
   }
   
