@@ -9,8 +9,9 @@
 import processing.pdf.*;
 
 boolean ASCIImode = false;
-boolean backgroundOn = true;
+boolean backgroundOn = false;
 boolean glyphSpellingOn = false;
+boolean pdfAndExitTime = true;
 float x,y,x0,y0;
 float spellX,spellY;
 float spellSide;
@@ -44,15 +45,17 @@ String[] manuscriptSymbols = {}; //mode 5
 String[] backgroundFileTable = {};
 int backgroundIndex = 0;
 
+int pdfFrameCount;
+
 //"~" is 0176 in octal and switches between ASCIImode true and false, should not go here
-char[] keyRow0 = {'1','2','3','0','-','='};
-int[] keyAddressRow0 = {0304,0305,0306,0300,0336,0337};
+char[] keyRow0 = {'1','2','3','7','0','-','='};
+int[] keyAddressRow0 = {0304,0305,0306,0317,0300,0336,0337};
 char[] keyRow1 = {'q','w','e','r','t','u','i','o','p'};
 int[] keyAddressRow1 = {0310,0311,0312,0313,0314,0370,0371,0360,0361};
 char[] keyRow2 = {'a','s','d','f','g','h','j','k','l',';'};
 int[] keyAddressRow2 = {0330,0331,0332,0333,0334,0335,0350,0351,0352,0353};
-char[] keyRow3 = {'z','x','c','v','/'};
-int[] keyAddressRow3 = {0340,0341,0342,0343,0020};
+char[] keyRow3 = {'z','x','c','v'};
+int[] keyAddressRow3 = {0340,0341,0342,0343};
 char[] keyRow4 = {'!','@','#','$','%','^','&'};
 int[] keyAddressRow4 = {0200,0201,0202,0203,0204,0205,0206};
 
@@ -67,6 +70,7 @@ int imageStackIndex = 0;
 float[] xStack = {};
 float[] yStack = {};
 
+float triangleX,triangleY,squareX,squareY,pentagonX,pentagonY,hexagonX,hexagonY;
 
 void setup(){
   ellipseMode(CENTER);
@@ -78,12 +82,21 @@ void setup(){
   thetaStep = PI/2;
   theta0 = -PI/2; 
   theta = theta0;
+  //size(500, 500, PDF, "filename.pdf");
   size(500,500);
- // size(500, 500, PDF, "filename.pdf");
   x0 = 250;
   y0 = 250;
   x = x0;
   y = y0;
+  triangleX = x0;
+  triangleY = y0;
+  squareX = x0;
+  squareY = y0;
+  pentagonX = x0;
+  pentagonY = y0;
+  hexagonX = x0;
+  hexagonY = y0;
+  
   spellX = 10;
   spellY = height - 100;
   spellSide = 20;
@@ -103,10 +116,13 @@ void setup(){
   rootMagic(4);//Root Magic: invoke Manuscript Action Table
   baseImage = loadImage(fileName);
   baseImage.resize(width,height);
+  
+  println(commandSymbolGlyphTable.length);
 }
 
 void draw(){
- background(255);
+
+  background(255);
  if(backgroundOn){
    image(baseImage,0,0);
  }
@@ -119,18 +135,6 @@ void draw(){
     doTheThing(0300);
     spellGlyph(string2glyph(currentGlyphString));
  }
- /*
-  PGraphicsPDF pdf = (PGraphicsPDF) g;  // Get the renderer
-  //When finished drawing, quit and save the file
-  if (frameCount == 11) {
-    exit();
-  } else {
-    pdf.nextPage();  // Tell it to go to the next page 
-  }
-  doTheThing(0015);
-*/
-
-
 }
 
 void drawCursor(){
@@ -172,14 +176,6 @@ int[] string2glyph(String localString){
   }
   return localGlyph;
 }
-
-void grabImage(){
-  myImage = get(int(x),int(y),int(side),int(side));
-}
-void dropImage(){
-  image(myImage,x,y,int(side),int(side));
-}
-
 
 int key2command(char localChar){
     int localInt = -1;
@@ -427,6 +423,7 @@ void rootMagic(int localCommand){
       for(int index = 0;index < localString.length();index++){
           currentGlyphString += localString.charAt(index);
       }         
+      println(localStringArray[0]);
   }
   if(localCommand == 012){//control-j back arrow in a glyph
        
@@ -435,7 +432,7 @@ void rootMagic(int localCommand){
        
   }
   
-  if(localCommand == 025){//024 = 20 = control-t: move to next background image file
+  if(localCommand == 025){//025 = 21 = control-u: move to next background image file
    backgroundIndex++; 
    if(backgroundIndex >= backgroundFileTable.length){
      backgroundIndex = 0;
@@ -447,7 +444,7 @@ void rootMagic(int localCommand){
   baseImage = loadImage(fileName);
   baseImage.resize(width,height);  
   }
-  if(localCommand == 024){//025 = 21 = control-U move to previous background image file
+  if(localCommand == 024){//024 = 20 = control-t move to previous background image file
    backgroundIndex--; 
    if(backgroundIndex < 0){
      backgroundIndex = backgroundFileTable.length - 1;
@@ -458,6 +455,20 @@ void rootMagic(int localCommand){
   rootMagic(4);//Root Magic: invoke Manuscript Action Table
   baseImage = loadImage(fileName);
   baseImage.resize(width,height);  
+  }
+  if(localCommand == 022){//022 = 18 = control-r image file = first image
+   backgroundIndex = 0; 
+   String currentBackground = backgroundFileTable[backgroundIndex];
+   String[] tempStringArray = split(currentBackground,':');
+   String fileName = "geometronfiles/images/" + tempStringArray[1];
+   rootMagic(4);//Root Magic: invoke Manuscript Action Table
+   baseImage = loadImage(fileName);
+   baseImage.resize(width,height);  
+  }
+  if(localCommand == 0020){//control-p = screenshot of window
+    PImage localImage;
+    localImage = get(0,0,width,height);
+    localImage.save("snapshot.png");
   }
   if(localCommand == 031){ ////031 = 25 = control-y:toggle background image on/off
     backgroundOn = !backgroundOn;
@@ -519,6 +530,9 @@ void doTheThing(int localCommand){
     if(localCommand == 0314){
       scaleFactor = 3;  //3x
     }
+    if(localCommand == 0317){
+       side = unit; 
+    }
     
     if(localCommand == 0330){
       x += side*cos(theta);   
@@ -574,37 +588,43 @@ void doTheThing(int localCommand){
     if(localCommand == 0353){
       thetaStep *= 3; //3angle
     }
-    if(localCommand == 00360){
-      grabImage(); 
+    if(localCommand == 0360){//grab image
+      myImage = get(int(x),int(y),int(side),int(side));
     }
-    if(localCommand == 00361){
-       dropImage(); 
+    if(localCommand == 0361){//drop image
+       image(myImage,x,y,int(side),int(side));
     }
-    if(localCommand == 0370){ //push position
-        xStack = append(xStack,x);
-        yStack = append(yStack,y);
+    if(localCommand == 0370){ //drop triangle marker
+        triangleX = x;
+        triangleY =y;
     }
-    if(localCommand == 0371){//pop position
-      if(xStack.length != 0){
-        x = xStack[xStack.length - 1];        
-        y = yStack[yStack.length - 1];        
-        xStack = shorten(xStack);
-        yStack = shorten(yStack);
-      }
-      else{
-        xStack = append(xStack,x); 
-        yStack = append(yStack,y); 
-      }
+    if(localCommand == 0371){//go to triangle marker
+        x = triangleX;
+        y = triangleY;
     }
-    if(localCommand == 0372){//flip position stack upsidedown
-      float[] tempArrayX = {};
-      float[] tempArrayY = {};
-      for(int index = tempArrayX.length - 1;index>=0;index--){
-        tempArrayX = append(tempArrayX,xStack[index]); 
-        tempArrayY = append(tempArrayY,yStack[index]); 
-      }
-      xStack = tempArrayX;
-      yStack = tempArrayY;
+    if(localCommand == 0372){//drop square marker
+        squareX = x;
+        squareY = y;
+    }
+    if(localCommand == 0373){//go to square marker
+        x = squareX;
+        y = squareY;
+    }
+    if(localCommand == 0374){//drop pentagon marker
+        pentagonX = x;
+        pentagonY = y;
+    }
+    if(localCommand == 0375){//go to pentagon marker
+        x = pentagonX;
+        y = pentagonY;
+    }
+    if(localCommand == 0376){//drop hexagon marker
+        hexagonX = x;
+        hexagonY = y;
+    }
+    if(localCommand == 0377){//go to hexagon marker
+        x = hexagonX;
+        y = hexagonY;
     }
     
     if(x > width){
