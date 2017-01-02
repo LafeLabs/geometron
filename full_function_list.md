@@ -11,7 +11,7 @@
 	void keyPressed()
 	void rootMagic(int localCommand)
 	void doTheThing(int localCommand)
-	q
+	
 	
 ## Global Variable Declarations:
 
