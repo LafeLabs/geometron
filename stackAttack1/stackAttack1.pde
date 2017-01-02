@@ -66,10 +66,6 @@ PImage baseImage;//always the background, gets cycled thru image table, always
                   //use resize method of PImage to fit to width, height of window
 PImage myImage;
 
-int imageStackIndex = 0;
-float[] xStack = {};
-float[] yStack = {};
-
 float triangleX,triangleY,squareX,squareY,pentagonX,pentagonY,hexagonX,hexagonY;
 
 void setup(){
@@ -468,7 +464,21 @@ void rootMagic(int localCommand){
   if(localCommand == 0020){//control-p = screenshot of window
     PImage localImage;
     localImage = get(0,0,width,height);
-    localImage.save("snapshot.png");
+    
+    String timestamp = "";
+    timestamp += nf(year());//using non-US date ordering to make alphanuneric ordering = chronological in directory
+    timestamp += '_';
+    timestamp += nf(month());
+    timestamp += '_';
+    timestamp += nf(day());
+    timestamp += '_';
+    timestamp += nf(hour());
+    timestamp += '_';
+    timestamp += nf(minute());
+    timestamp += '_';
+    timestamp += nf(second());
+    
+    localImage.save(timestamp + "_snapshot.png");
   }
   if(localCommand == 031){ ////031 = 25 = control-y:toggle background image on/off
     backgroundOn = !backgroundOn;
