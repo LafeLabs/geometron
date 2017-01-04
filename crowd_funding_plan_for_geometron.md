@@ -3,13 +3,12 @@
 
 ##### core message:
 
-Unlike numbers and specific languages, geometry appears to be innate in the human mind.  Geometron is a purely geometric way of communicating both between the human mind and machines and with other human minds. 
-
+Unlike numbers and specific languages, geometry appears to be innate in the human mind.  Geometron is a purely geometry-based way of communicating both between the human mind and machines and between human minds and each other. 
 
 ##### Comparison to existing things:
 
 
- Unlike computer languages, geometron does not rely on characters, words or syntax based on an existing human language, although it can be used to encode human languages with easy creation of custom fonds.  By using recursion to its fullest extent, Geometron enables creation not just of fonts for human languages but graphical language content such as schematic symbols, mathematical symbols, various kinds of geometric art from different human cultures, and layout of metal layers for circuit fabrication.  Geometron information involves mapping to various spaces which can also be geometrically mapped, including especially the keyboard of a typical computer and a sequence of 8X8 grids which I use to create an address space for all the "words".   Words in Geometron all have a symbol glyph which describes that word to a human reader in graphical form(this glyph is also composed of glyphs, using recursion), an address in the aforementioned space, an "action", which can be a sequence of glyphs, an action carried out by a person or robot, or a sequence of commands in some computer language, and if it's being actively used, a key which corresponds to one of the usable keys on a keyboard that is part of the ASCII characters from "space" to "~", with "~" reserved for a special use.  
+ Unlike computer languages, geometron does not rely on characters, words or syntax based on an existing human language, although it can be used to graphically encode human languages with easy creation of custom fonts.  By using recursion to its fullest extent, Geometron enables creation not just of fonts for human languages but graphical language content such as schematic symbols, mathematical symbols, geographic directions and mapping data(GIS), various kinds of geometric art from different human cultures, and layout of metal layers for circuit fabrication.  Geometron information involves mapping to various spaces which can also be geometrically mapped, including especially the keyboard of a typical computer and a sequence of 8X8 grids which I use to create an address space for all the "words".   Words in Geometron all have a symbol glyph which describes that word to a human reader in graphical form(this glyph is also composed of glyphs, using recursion), an address in the aforementioned space, an "action", which can be a sequence of glyphs, an action carried out by a person or robot, or a sequence of commands in some computer language, and if it's being actively used, a key which corresponds to one of the usable keys on a keyboard that is part of the ASCII characters from "space" to "~", with "~" reserved for a special use.  
  
  compare to:
  
@@ -25,9 +24,14 @@ Unlike numbers and specific languages, geometry appears to be innate in the huma
 
 all text files, custom shape tables, custom fonts, custom command symbol glyphs, language independent(human and computer)
 
-### Demonstrations:
+### Hype concept
+
+I base this on the woks of Galois in group theory but more importantly invoke the Romantic ideals represented by the *myth* of Galois in the collective imagination of todays thinkers.  This is an attempt to reboot the Enlightenment that privileges Geometry over other forms of math and philosophy.  Math and philosophy must be put on a more heroic and Romantic footing, and all based on geometry and art.  Lead with geometry, build art, then build philosophy from that and science on that and technology on that.  But it starts with the groups of Galois: groups built from a generator.    
 
  
+Change description to "Geometry metalanguage" not "geometric", which can have other meanings.
+
+colors are not just colors, that stack is conceptually a layer or color or texture or material or floor for mapping buildings.  For directions in a multi-story building the operation 0320 might set the bottom floor, and 0321 might be to go to the first floor above bottom.  In materials handling, these might switch from HDPE of one color to another, or different layers in a microcircuit layout or switching from bike to walk in a park. 
  
  
 ## Applications:
@@ -73,6 +77,22 @@ all text files, custom shape tables, custom fonts, custom command symbol glyphs,
  - participation! This is yours.  Not mine.  You get your own piece of software, written by you and controlled by you which you can use for your stuff.  Or your friends stuff.  How much all this is worth is totally determined by *participation*.  There are no customers and I am not a supplier.  I'm a teacher and you and I are all participants.  If you also become a teacher this language can spread with exponential power.
  - when you put money in you are getting my time, and that is all, but that can be extremely powerful.  I'm going to be talking with others using these ideas and will be doing my best to connect people with other people in such a way as to maximize the value for all. I will not be your employee, contractor, project manager, investor, or partner.  I will simply be a person with ideas you can talk with to move your projects forward.  
  - you don't have to give *me* the money.  spend money directly in your organization to build this system out if you want to.  I don't care.  As long as you don't try to patent the core idea, go nuts with it, use it for your industry, your art, your beliefs, your culture.
+ 
+### Types of participation
+
+glyph creation
+glyph consumption
+glyph criticism
+glyph improvements
+sorting of glyphs
+payment of federal reserve debt so I can personally continue research in public domain
+payment of federal reserve debt for my class teaching time
+helping to teach more people the system
+teaching classes
+writing new software
+building maps in the environment for directions
+build businesses on Geometron
+
 ### What I will do with the money
 
 Live and work: teach, write, and build.  That's it.  I will not hire employees or contractors, buy inventory, buy new machines, or expensive parts or materials.  I will not ship anything to anyone.  My expenses are rent in an expensive city(DC), food, coffee, travel, and some miscellaneous consumables I use for my more physical projects such as duct tape.  My living expenses are between 2500 and 3000 per month, and right now I consult on low temperature quantum physics but my goal with this project is to be able to quit that and work full time to further this project.  If I had no other obligations I could tour to YOUR institution and spread this language for free so that it can be absorbed into many technological ecosystems.  The less I have to spend time consulting for military industrial complex projects, the faster this work can get done and the more wholly I can concentrate on it.  
@@ -134,6 +154,12 @@ deploy to many platforms including:
 - show a quick sequence of amusing memes, talk about replacing commercial software(powerpoint)
 - On mention of religious geometry, show quick sequence of images from all the major religions of their geometry: christian, jewish, muslim, hindu, buddhist, pagan at least
 - begin with my face as talking head, sitting on my floor with iPad from air elemental, then end with that as well, introduce myself, my background, why I care about this, long term implications, destruction of "tech" companies, use air quotes here
+- actual treasure mapping, show action, use of glyphs to make directions, comparison to satellite photo on computer
+- show use of physical planting of flags, drawing square, pentagon, triangle and hexagon as waypoints in a path in physical world to be walked by a person, show use of colors for levels in a building, show directions to get around a park or mall
+- show a map with a logo on it of fictional business, how it would be used for that
+- show how with something like "1agg~E~agg" can be used to make the "there exists" symbol very fast and easily, lead from there to a quick hebrew word and arabic word, making glyphs that move the other way (https://en.wikipedia.org/wiki/Š-L-M)
+
+
 
 ### Other videos:
 
@@ -186,10 +212,46 @@ Number worship and how to break out of it.  capitalism has failed as a means of 
 - all family and friends, especially anyone connected with math, geometry, teaching, computers
 - MIT media lab 
 - free software foundation
-
+- linguists
+- people who study the structure of knowledge
 
 
 ### FAQ
+
+### Implementations
+
+- processing, my core code
+- AG laminated triangles, pen, paper, compass and straight edge
+- walking around, using chalk and rope and sticks and shapes
+- religious code for studying buddhism, islam, judaism, christianity, paganism, kaballah, hinduism:sacred geometry, geometric tiles, fonts of languages of scripture
+- textile fabrication description code
+- building mapper
+- park mapper
+- metro builder
+- mathematical e-book reader/writer
+- social interaction online and physical
+- dance
+- hopscotch
+- TKD or wushu forms
+- meme constructors
+- javascript, in a browser
+- iPhone app
+- android app
+- raspberry pi based playstation controller game implementation
+- trash printer with sharpie, bang booms, air elementals, rocks 
+- CNC router for circuit board design
+- analog scope display control, POV in 2d on old scope from RPI
+- rotation groups on surface of Earth, from equator and date line with appropriate fractions, ALL ANGULAR
+- all triangular projections based on Dymaxion map
+
+### Theory
+
+0303,0304,0305,0306 are equivalent to selecting complex roots of unity, with 0334,0335 being multiplying or dividing by the next root of unity
+0310,0311,0312,0313,0314,0315,0316 are all geometric sequences which get selected and which one moves between the elements of using 0336 and 0337. theta and theta_step represent a discrete vector space which 0330,0331,0332,0333 move around in by adding or subtracting one of the basis vectors.
+The layers 032xx are simply a finite set with no operations, not a group or a ring or sequence. 
+034x are actions of art and technology and not part of math per se
+035x are 
+
 
 
 

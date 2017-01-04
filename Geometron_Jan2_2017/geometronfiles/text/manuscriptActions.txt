@@ -1,6 +1,6 @@
-0400:asdf
-0401:xaxfxsx
-0402:cahcahcahch
+0400:asdf=w2chchchchchxjh-a--x==shha--x==shha--x==shha--x==shha--x==shk=1sfr=!-aadd---adddd~fifth roots of unity~
+0401:asdf=w3chchchchchchxjh-a--x==shha--x==shha--x==shha--x==shha--x==shha--x==shk=1sfr=!-aadd---adddd~sixth roots of unity~
+0402:asdf=w1chchchchxjh-a--x==shha--x==shha--x==shha--x==shk=1sfr=!-aadd---adddd~fourth roots of unity~
 0405:jhchcagchhhcahhcahhcaghhahcgshaggshcagc0
 0406:x-x-x-x-x0
 0407:cagcagcagcag-cagcagcagcag-cagcagcagcag-cagcagcagcag0ff
@@ -9,10 +9,10 @@
 0412:ssff=caj-gcag-cag-cag-cagcag-cag-c0
 0413:chcgfjgq=cah-sh-cahhh-caggg-cahhh-caggg-cahhh-caggg-c0
 0414:-aaaddddd~ASCII text~ssssdddddddddd~
-0415:
-0416:
-0417:
-0420:
+0415:c=q=QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+0416:==q-WWWWWWWWWWWWWW
+0417:=w2ch-caggjh=chhh-shh-caggg=chhh-hhhhcahhh-cgcahhh-cgc0
+0420:=2w=cjh-caggcgggg-cahhcg-cahhcg-cahhcg-cahhcg-cahhcg-cahhcg-c-ca
 0421:
 0422:
 0423:
