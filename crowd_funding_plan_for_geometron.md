@@ -29,10 +29,11 @@ all text files, custom shape tables, custom fonts, custom command symbol glyphs,
 I base this on the woks of Galois in group theory but more importantly invoke the Romantic ideals represented by the *myth* of Galois in the collective imagination of todays thinkers.  This is an attempt to reboot the Enlightenment that privileges Geometry over other forms of math and philosophy.  Math and philosophy must be put on a more heroic and Romantic footing, and all based on geometry and art.  Lead with geometry, build art, then build philosophy from that and science on that and technology on that.  But it starts with the groups of Galois: groups built from a generator.    
 
  
-Change description to "Geometry metalanguage" not "geometric", which can have other meanings.
+Change description to "Geometry metalanguage" not "geometric", which can have other meanings. Or maybe "Geometry-based"
 
 colors are not just colors, that stack is conceptually a layer or color or texture or material or floor for mapping buildings.  For directions in a multi-story building the operation 0320 might set the bottom floor, and 0321 might be to go to the first floor above bottom.  In materials handling, these might switch from HDPE of one color to another, or different layers in a microcircuit layout or switching from bike to walk in a park. 
  
+ systems of systems languages of languages codes of codes maps of maps shapes of shapes glyphs of glyphs
  
 ## Applications:
 
@@ -92,6 +93,8 @@ teaching classes
 writing new software
 building maps in the environment for directions
 build businesses on Geometron
+LIST THESE WHILE SHOUTING!
+
 
 ### What I will do with the money
 
@@ -100,9 +103,38 @@ Live and work: teach, write, and build.  That's it.  I will not hire employees o
 ### milestones prior to launch:
 
 - standalone application that works(first version done now)
-- ebook that teaches use of software by example without language
+- ebook that teaches use of software by example with minimal English
 - videos of use of software with voiceover explaining how it works, doing several typical things
 - workflow must end with usable PDF document--this means I need a cleaner font, state stack, image stack and glyph editing with all four arrow keys
+
+
+3 implementations: 
+
+1. sticks and rope and chalk in the park
+2. AG first construction shapes with pen on paper
+3. processing implementation
+
+
+Sections of book:
+
+1. introduction, basis of concept, recursion, languages of languages, comparison to previous work. freedom manifesto statements, liberation from technocratic priesthood(video, printable pages, tablets, glyph manuscript, pdf, html)perhaps have a quick start guide here as one of the parallel tracks, html because that is minimum commitment, show a series of fast one-off examples, marking location on a dry erase board, in a park, on a screen, on paper, all very fast, all based on one of the simple lattices of 120 degrees, 60 degrees, or 90 degrees
+2. tool intro construction: paper and tape, sticks and bolts and rope, processing language
+3. roots of unity(video, printable pages, tablets, glyph manuscript with images, usable shapes and sticks, test program, standalone) also study angle halving, dividing by 3 and 60, discuss how it works with Earth, degrees vs radians vs complex numbers
+4. natural scaling and metrology(constructions, tablet, stick, printable pages, manuscript glyph, video), all the spirals and log scales, rail against the evils of the French Revolution and the Metric System as a system of social control, paces, fathoms, anatomical cubit, biblical cubit, hands, feet, shots, cords, 
+5. motion on a lattice(video, test program, glyph manuscript, do it with sticks we already have)
+6. layers, colors, materials, floors, concepts associated with 032x
+7. dropping markers, going to markers, teleporting, geography, this is huge for park deployment, make practical directions with triangle, square, pentagon, hexagon
+8. moving things around, moving images, using it to build stuff
+9. recursion 1: shapes, shapes of shapes, fractals, scales etc
+10. recursion 2: font creation, going between text and shape
+11. Language structure, from physical layer through various functions and address spaces, ways spaces can be expanded, implemented, show the tablets, discuss paths for learning and teaching
+12. project example: treasure map
+13. project example: custom schematic drawer
+14. project example: biblical numerology
+15. project example: sacred geometry
+16. project example: 
+ 
+
  
  
 ### Milestones for *future* work:
@@ -159,6 +191,20 @@ deploy to many platforms including:
 - show a map with a logo on it of fictional business, how it would be used for that
 - show how with something like "1agg~E~agg" can be used to make the "there exists" symbol very fast and easily, lead from there to a quick hebrew word and arabic word, making glyphs that move the other way (https://en.wikipedia.org/wiki/Š-L-M)
 
+
+### audio for video
+
+- the purpose of science is to create links between the human mind and the physical world
+- We already have infinite knowledge relative to human cognition.  Therefore the greatest frontier in science is the *organization* of knowledge
+- GEEEEOOOOOMMMMMMEEEEETRRRRROOOONNNNNNNN!!!!!!!!
+- We will smash the technocratic priesthood!!
+- We will go back and reboot the math of the French Revolution.  Some bad ideology was frozen like a bug in amber, we need freedom metrology ANATOMICAL CUBITS! FATHOMS! flags and markers!
+- what is the problem with our society? Above all it is the primacy of number over shape.  The supposed alternatives to capitalism. we need a language that expresses stories and shapes, not NUMBER vs. SHAP, beliefs 
+- shape is built into mind, we all know fractions of the circle, roots of unity
+- I have created a new language to be used to write languages, based on the ideas about shapes innate in the human mind, and designed to make it easier for humans to interact with machines and to communicate with each other about shapes, places and physical things
+- This system has a physical layer, conceptual layers, addresses, and all of it is for non technical people, 
+- NO ENGLISH! NO C! NO NUMBERS!  
+- VIDEOS! HTML DOCS! TABLETS! PROCESSING CODE! TREASURE MAPS!
 
 
 ### Other videos:

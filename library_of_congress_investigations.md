@@ -15,3 +15,8 @@
 Communicating and Mobile Systems: the Pi-Calculus, Robin Milner. Cambridge University Press, 1999. ISBN 0-521-65869-1
  - The Space and Motion of Communicating Agents, Robin Milner, Cambridge University Press, 2009. ISBN 978-0-521-73833-0
 Publications by Robin Milner in DBLP
+
+
+##### search subject discrete groups:
+
+http://www.worldcat.org/search?q=su%3AGroup+theory+Generators.&qt=hot_subject
