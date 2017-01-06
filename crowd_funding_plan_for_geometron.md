@@ -125,9 +125,11 @@ Sections of book:
 6. layers, colors, materials, floors, concepts associated with 032x
 7. dropping markers, going to markers, teleporting, geography, this is huge for park deployment, make practical directions with triangle, square, pentagon, hexagon
 8. moving things around, moving images, using it to build stuff
+9. image based font creation
 9. recursion 1: shapes, shapes of shapes, fractals, scales etc
 10. recursion 2: font creation, going between text and shape
 11. Language structure, from physical layer through various functions and address spaces, ways spaces can be expanded, implemented, show the tablets, discuss paths for learning and teaching
+12. specific treatment of physical layer with examples
 12. project example: treasure map
 13. project example: custom schematic drawer
 14. project example: biblical numerology
