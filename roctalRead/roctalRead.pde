@@ -59,6 +59,8 @@ void mouseClicked(){
      }
   }
  println(localString);
+ String[] localStringArray = {localString};
+ saveStrings("currentlink.txt",localStringArray);
 
 }
 

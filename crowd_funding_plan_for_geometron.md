@@ -1,9 +1,17 @@
 ## Crowd Funding Plan for Geometron
 
 
+Self replicating meta-book.  You replicate it yourself.
+
+lore tablets, shapes, videos, programs, text files, image files, html files, physical markings, roctal codes tablets.  All these are in a curriculum which self replicates the whole thing.  For different amounts of money you get different levels of help on customization, more hours, more tracks, and more help.  
+
+
 ##### core message:
 
 Unlike numbers and specific languages, geometry appears to be innate in the human mind.  Geometron is a purely geometry-based way of communicating both between the human mind and machines and between human minds and each other. 
+
+When we can't talk to machines, and machines can't understand us, all the power of our machines is handed over to the priest class who bridges this gap.  The only path to freedom is to remove all barriers between us and our machines.
+
 
 ##### Comparison to existing things:
 
@@ -12,13 +20,16 @@ Unlike numbers and specific languages, geometry appears to be innate in the huma
  
  compare to:
  
-- logo
-- processing
-- java
-- scratch
-- metafont
-- human language
+- logo(memorization and numbers)
+- processing(memorization and numbers)
+- java(memorization and numbers)
+- scratch(useless)
+- metafont(memorization and numbers)
+- human language(pictographic and phonetic both)(does not interact well with machines and artifacts)
+- "icons" used by web marketing people, graphic designers and their ilk(imprecise, owned by companies so not in Commons)
+- art:painting, drawing, print making, sculpture(imprecise, not directly useful for machine fabrication now)
 - 
+ 
  
 #### features
 
@@ -35,6 +46,17 @@ colors are not just colors, that stack is conceptually a layer or color or textu
  
  systems of systems languages of languages codes of codes maps of maps shapes of shapes glyphs of glyphs
  
+ 
+Geometron is simply the Language of freedom.  To write a book describing Geometron is to build a path to regaining control over our machines, wresting it loose from the technocrats.  
+
+"code as literacy" is a vicious lie by evil people.  It is a path to total enslavement of all of humanity to a bureaucracy with absolute power and zero intelligence.  Taking a summer class in java will not give you power over your own car or phone.  On the contrary, we're building a society where the only people who make enough money to live in a city are those who help build the systems of enslavement.  And yet these people still have no real control over their own objects, often by laws written by still more mindless bureaucrat drones. Those who do not learn to "code" are relegated to an ever-larger underclass for whom the tech priests have no real use, and who are pushed around at random by those who control the new totalitarian society.  
+
+The "tech" industry is a path to totalitarianism, nothing more and nothing less.  Only instead of a Mao or Stalin in charge(who will eventually die as humans do) we will have a vast collection of identical white men with beards furiously working to build the next illegal cab hailing program to "disrupt" an increasingly meaningless economy while everyone else is enslaved to this unthinking brute of a machine.  Already anyone who does not work on computers is being forced out of the cities by insane rents that can only be paid by the "tech" bandits with their equally insane incomes.   
+
+
+This is an ART language.  It is connecting art and math to create a more universally understandable system for communication between people and machines.  All machines should be art.
+
+
 ## Applications:
 
  - education
@@ -100,6 +122,8 @@ LIST THESE WHILE SHOUTING!
 
 Live and work: teach, write, and build.  That's it.  I will not hire employees or contractors, buy inventory, buy new machines, or expensive parts or materials.  I will not ship anything to anyone.  My expenses are rent in an expensive city(DC), food, coffee, travel, and some miscellaneous consumables I use for my more physical projects such as duct tape.  My living expenses are between 2500 and 3000 per month, and right now I consult on low temperature quantum physics but my goal with this project is to be able to quit that and work full time to further this project.  If I had no other obligations I could tour to YOUR institution and spread this language for free so that it can be absorbed into many technological ecosystems.  The less I have to spend time consulting for military industrial complex projects, the faster this work can get done and the more wholly I can concentrate on it.  
 
+I am writing a book.  It will exist in several spaces: tablets, html, manuscript glyphs, shapes, videos
+
 ### milestones prior to launch:
 
 - standalone application that works(first version done now)
@@ -137,7 +161,7 @@ Sections of book:
 16. project example: 
  
 
- 
+ layers: processing code and manuscript files, HTML,videos, tablets, physical shapes from compass and straightedge, physical paths on Capitol Mall(walking tours of major monuments)
  
 ### Milestones for *future* work:
 
@@ -262,6 +286,7 @@ Number worship and how to break out of it.  capitalism has failed as a means of 
 - free software foundation
 - linguists
 - people who study the structure of knowledge
+- fliers in physical world in hacker spaces, all the local universities math, linguistics, cs, philosophy, physics, art, DC museums, weird bookstores, libraries,
 
 
 ### FAQ
@@ -299,6 +324,8 @@ Number worship and how to break out of it.  capitalism has failed as a means of 
 The layers 032xx are simply a finite set with no operations, not a group or a ring or sequence. 
 034x are actions of art and technology and not part of math per se
 035x are 
+
+
 
 
 
