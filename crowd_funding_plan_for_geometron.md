@@ -326,6 +326,10 @@ The layers 032xx are simply a finite set with no operations, not a group or a ri
 035x are 
 
 
+### Note:
+
+Great demo is Babylonian numbers from this reference: http://www.math.ubc.ca/~cass/Euclid/ybc/analysis.html which describes calculating the square root of 2 in base 60 about 4000 years ago on a clay tablet.  There are photographic images which can be used to type in the Babylonian system using image grabbing. A whole system can be created and demonstrated and emailed to the creator of that work(the analysis not the dead Babylonians)
+
 
 
 
