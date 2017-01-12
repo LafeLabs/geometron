@@ -8,6 +8,12 @@ lore tablets, shapes, videos, programs, text files, image files, html files, phy
 
 ##### core message:
 
+
+The main use of "computers" is not computation it is communication.  Most of that communication is a combination of writing, symbols, and images.  Computers have totally changed the nature of the human experience, but as far as their social effect they have made inequality much worse, rather than better.  Why?  Because the "tech" industry has locked away the power to actually control what we read and write in this incredible language behind pay walls and patents and badly built technology.  
+
+At the root of all of this is language.  If we recognize the real role of most modern technology for what it is: a communication tool, it changes the approach we use for both hardware and software.  What we need is a language that can be used to communicate with all humans and most machines, can be used to specify the building of new machines, spread existing machines, and connect all people in a way we have control over(unlike "tech").  What is the most innate type of language that relates both construction of technology, manipulation of technology and human culture and language? Geometry.
+
+
 Unlike numbers and specific languages, geometry appears to be innate in the human mind.  Geometron is a purely geometry-based way of communicating both between the human mind and machines and between human minds and each other. 
 
 When we can't talk to machines, and machines can't understand us, all the power of our machines is handed over to the priest class who bridges this gap.  The only path to freedom is to remove all barriers between us and our machines.
@@ -78,7 +84,8 @@ This is an ART language.  It is connecting art and math to create a more univers
  - Find a new medium for your artistic expression
  - get a tool to use for free in your homeschool or private school curriculum
  - base a new mathematics textbook on it
- - 
+ - custom software that runs from Processing
+ 
  
  
 
@@ -101,6 +108,33 @@ This is an ART language.  It is connecting art and math to create a more univers
  - when you put money in you are getting my time, and that is all, but that can be extremely powerful.  I'm going to be talking with others using these ideas and will be doing my best to connect people with other people in such a way as to maximize the value for all. I will not be your employee, contractor, project manager, investor, or partner.  I will simply be a person with ideas you can talk with to move your projects forward.  
  - you don't have to give *me* the money.  spend money directly in your organization to build this system out if you want to.  I don't care.  As long as you don't try to patent the core idea, go nuts with it, use it for your industry, your art, your beliefs, your culture.
  
+ 
+ YOU WILL MAKE THE BOOK	
+ 
+ the awards will be various video conferences and emails to help you make the book.  Maximum of 300 paid users first round
+ 
+ write software, run it, use it
+ 
+  - treasure map finder for kids
+  - maps for tourism
+  - maps for military applications
+  - maps for art
+  - custom subway maps
+  - core art book, no computer stuff, no English, no printers, no math
+  - book with computer software links, printouts, key functions, documentation
+  - book with no computer stuff but extensive math
+  - "sacred geometry" in geometron
+  - custom book for your religion(they all have this stuff)
+  - custom font creation help
+  - custom art book for business
+  - build an iPhone app, hours of my help
+  - built an android app, hours of my help  
+ 
+ encourage collaboration: an art person teams up with a tech person, write code and make art.  Ask Drew if he wants to do it. 
+ 
+ 
+ 
+ 
 ### Types of participation
 
 glyph creation
@@ -116,6 +150,7 @@ writing new software
 building maps in the environment for directions
 build businesses on Geometron
 LIST THESE WHILE SHOUTING!
+consumption is participation
 
 
 ### What I will do with the money
