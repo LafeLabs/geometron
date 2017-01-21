@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+viewBox="0 0 600 600" width="600" height="600" id="starter_svg">
+  <line x1="250.0" y1="250.0" x2="250.0" y2="150.0" style="stroke:black;stroke-width:2" />
+  <line x1="250.0" y1="150.0" x2="163.39748" y2="200.00002" style="stroke:black;stroke-width:2" />
+  <line x1="163.39748" y1="200.00002" x2="250.00003" y2="250.0" style="stroke:black;stroke-width:2" />
+  <line x1="250.0" y1="250.0" x2="250.0" y2="200.0" style="stroke:black;stroke-width:2" />
+  <line x1="250.0" y1="250.0" x2="326.94208" y2="225.0" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="225.0" x2="249.99997" y2="200.00002" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="225.0" x2="279.38925" y2="209.54916" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="225.0" x2="326.94208" y2="144.0983" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="144.0983" x2="279.38925" y2="209.54916" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="144.0983" x2="297.55283" y2="184.54915" style="stroke:black;stroke-width:2" />
+  <line x1="326.94208" y1="144.0983" x2="249.99997" y2="119.09831" style="stroke:black;stroke-width:2" />
+  <line x1="249.99997" y1="119.09831" x2="297.55283" y2="184.54915" style="stroke:black;stroke-width:2" />
+  <line x1="249.99997" y1="119.09831" x2="279.38925" y2="159.54915" style="stroke:black;stroke-width:2" />
+  <line x1="249.99997" y1="119.09831" x2="202.44716" y2="184.54916" style="stroke:black;stroke-width:2" />
+  <line x1="202.44716" y1="184.54916" x2="279.38925" y2="159.54913" style="stroke:black;stroke-width:2" />
+  <line x1="202.44716" y1="184.54916" x2="249.99998" y2="169.0983" style="stroke:black;stroke-width:2" />
+  <line x1="202.44716" y1="184.54916" x2="250.0" y2="250.0" style="stroke:black;stroke-width:2" />
+  <line x1="250.0" y1="250.0" x2="249.99997" y2="169.0983" style="stroke:black;stroke-width:2" />
+</svg>
