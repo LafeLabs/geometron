@@ -1,0 +1,32 @@
+<glyphTable>
+	<type>commandActions</type>
+	<glyph>
+		<address>0300</address>
+		<description>Reset global variables to start points</description>
+		<action>
+			<language>javascript</language>
+			<encoding>string</encoding>
+			<code>
+				x = x0;
+      			y = y0;
+      			theta = theta0;
+      			side = unit;
+      			thetaStep = Math.PI/2;
+      			scaleFactor = 2;
+			</code>
+		</action>
+		<action>
+			<language>processing</language>
+			<encoding>string</encoding>
+			<code>
+		    	x = x0;
+      			y = y0;
+      			theta = theta0;
+      			side = unit;
+      			thetaStep = PI/2;
+      			scaleFactor = 2;
+			</code>
+		</action>
+	</glyph>
+	
+</glyphTable>

@@ -1,0 +1,196 @@
+<glyphTable>
+		<type>rootMagic</type>
+		<glyph>
+			<address>0000</address>
+			<description>Genesis code: thus spake the Code: let there by Code.  I am the root of all things, code of code.</description>
+			<action>
+				<language>javascript</language>
+				<encoding>string</encoding>		
+				<code>			
+					//put code here that turns xml into .js code using js
+				</code>
+			</action>
+			<action>			
+				<language>processing</language>
+				<encoding>string</encoding>		
+				<code>			
+					//put code here that turns xml into processing code using processing
+				</code>			
+			</action>
+		</glyph>		
+</glyphTable>
+
+<glyphTable><!--0037 is the "unit separator" in the original ASCII, use this!-->
+		<type>font</type>
+		<glyph>
+			<address>0040</address>
+			<description>space</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>
+					0333
+				</code>
+			</action>
+		</glyph>
+		<glyph>
+			<address>0041</address>
+			<description>!</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>					0333,0336,0336,0332,0332,0332,0330,0336,0331,0336,0341,0330,0330,0330,0337,0337,0337,0342,0336,0336,0336,0331,0331,0331,0331,0331,0337,0337,0333,0337,0337
+				</code>			
+			</action>		
+		</glyph>
+		<glyph>
+			<address>0042</address>
+			<description>"</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>
+				0333,0330,0336,0332,0336,0332,0331,0342,0333,0342,0333,0330,0337,0337,0331
+				</code>
+			</action>
+		</glyph>	
+</glyphTable>
+
+
+<glyphTable>	
+	<type>shapeActions</type>
+	<glyph>
+		<address>0200</address>
+		<description>square</description>
+		<action>
+			<language>geometron</language>
+			<encoding>string</encoding>
+			<code>	
+			 	1cagcagcagcag
+			</code>
+		</action>
+	</glyph>
+</glyphTable>
+
+<glyphTable>	
+	<type>shapeSymbols</type>
+	<glyph>
+		<address>0200</address>
+		<description>square shape symbol glyph</description>
+		<action>
+			<language>geometron</language>
+			<encoding>string</encoding>
+			<code>	
+			 	f!--ad=!-sf==
+			</code>
+		</action>
+	</glyph>
+</glyphTable>
+
+
+<glyphTable>
+	<type>commandActions</type>
+	<glyph>
+		<address>0330</address>
+		<description>Move by "side" in direction "theta"</description>
+		<action>
+			<language>javascript</language>
+			<encoding>string</encoding>
+		  	<code>
+		  		x += side*Math.cos(theta);   
+	      		y += side*Math.sin(theta); 
+			</code>
+		</action>
+	</glyph>
+	<glyph>
+		<address>0331</address>
+		<description>Move by "side" in direction "theta + PI"</description>
+		<action>
+			<language>javascript</language>
+			<encoding>string</encoding>
+		  	<code>
+		    	x -= side*Math.cos(theta);   
+      			y -= side*Math.sin(theta); 
+			</code>
+		</action>
+	</glyph>
+</glyphTable>
+
+<glyphTable>
+	<type>commandSymbols</type>
+	<glyph>
+			<address>0330</address>
+			<description>0330 command symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					f!r--ad-d=cgcahcag-cahjh=q=cahhcahhh-r-cakhssssfff===
+				</code>
+			</action>
+	</glyph>
+	<glyph>
+			<address>0340</address>
+			<description>0340 command symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					f!-adzfs=
+				</code>
+			</action>
+	</glyph>
+</glyphTable>
+
+
+<glyphTable>
+	<type>manuscriptActions</type>
+	<glyph>
+			<address>0400</address>
+			<description>point and circle</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					0zx
+				</code>
+			</action>
+	</glyph>
+	<glyph>
+			<address>0401</address>
+			<description>vesica pisces</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					0zxfzx
+				</code>
+			</action>
+	</glyph>
+</glyphTable>
+<glyphTable>
+	<type>manuscriptSymbols</type>
+	<glyph>
+			<address>0400</address>
+			<description>0400 manuscript symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					f!r--ad-d=cgcahcag-cahjh=q=cahhcahhh-r-cakhssssfff===
+				</code>
+			</action>
+	</glyph>
+	<glyph>
+			<address>0401</address>
+			<description>0401 manuscript symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+					f!-adzfs=
+				</code>
+			</action>
+	</glyph>
+</glyphTable>
+

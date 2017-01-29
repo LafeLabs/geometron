@@ -1,0 +1,25 @@
+<glyphTable>
+	<type>commandSymbols</type>
+	<glyph>
+			<address>0330</address>
+			<description>0330 symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+				f!r--ad-d=cgcahcag-cahjh=q=cahhcahhh-r-cakhssssfff===
+				</code>
+			</action>
+	</glyph>
+	<glyph>
+			<address>0340</address>
+			<description>0340 symbol glyph</description>
+			<action> 
+				<language>geometron</language> 
+				<encoding>string</encoding>
+				<code>
+				f!-adzfs=
+				</code>
+			</action>
+	</glyph>
+</glyphTable>

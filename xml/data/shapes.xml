@@ -1,0 +1,13 @@
+<shapes>	
+	<shapesActions>
+		<shape address = "0200">
+			<description>square</description>
+			<action language  = "geometron" encoding = "string">
+				1cagcagcagcag
+			</action>
+		</shape>
+	</shapesActions>
+	<shapeSymbols>
+	
+	</shapeSymbols>
+</shapes>

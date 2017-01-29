@@ -1,0 +1,20 @@
+<glyphTable>
+		<type>rootMagic</type>
+		<glyph>
+			<description>Genesis code: thus spake the Code: let there by Code.  I am the root of all things, code of code.</description>
+			<action>
+				<language>javascript</language>
+				<encoding>string</encoding>		
+				<code>			
+					//put code here that turns xml into .js code using js
+				</code>
+			</action>
+			<action>			
+				<language>processing</language>
+				<encoding>string</encoding>		
+				<code>			
+					//put code here that turns xml into processing code using processing
+				</code>			
+			</action>
+		</glyph>		
+</glyphTable>

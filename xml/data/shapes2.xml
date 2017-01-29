@@ -1,0 +1,29 @@
+<glyphTable>	
+	<type>shapeActions</type>
+	<glyph>
+		<address>0200</address>
+		<description>square</description>
+		<action>
+			<language>geometron</language>
+			<encoding>string</encoding>
+			<code>	
+			 	1cagcagcagcag
+			</code>
+		</action>
+	</glyph>
+</glyphTable>
+
+<glyphTable>	
+	<type>shapeSymbols</type>
+	<glyph>
+		<address>0200</address>
+		<description>square symbol glyph</description>
+		<action>
+			<language>geometron</language>
+			<encoding>string</encoding>
+			<code>	
+			 	f!--ad=!-sf==
+			</code>
+		</action>
+	</glyph>
+</glyphTable>
