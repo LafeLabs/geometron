@@ -1,0 +1,34 @@
+<font><!--0037 is the "unit separator" in the original ASCII, use this!-->
+		<letter>
+			<address>0040</address>
+			<description>space</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>
+					0333
+				</code>
+			</action>
+		</letter>
+		<letter>
+			<address>0041</address>
+			<description>!</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>					0333,0336,0336,0332,0332,0332,0330,0336,0331,0336,0341,0330,0330,0330,0337,0337,0337,0342,0336,0336,0336,0331,0331,0331,0331,0331,0337,0337,0333,0337,0337
+				</code>			
+			</action>		
+		</letter>
+		<letter>
+			<address>0042</address>
+			<description>"</description>
+			<action>
+				<language>geometron</language>
+				<encoding>octal</encoding>
+				<code>
+				0333,0330,0336,0332,0336,0332,0331,0342,0333,0342,0333,0330,0337,0337,0331
+				</code>
+			</action>
+		</letter>	
+</font>

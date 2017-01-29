@@ -6,6 +6,4 @@ function loadFont(){
 }
 function loadCommandSymbols(){
   commandSymbols = [];
-    commandSymbols.push("0330:f!r--ad-d=cgcahcag-cahjh=q=cahhcahhh-r-cakhssssfff===");
-    commandSymbols.push("0340:0333,0200,0336,0330,0332,0340,0333,0331");
 }

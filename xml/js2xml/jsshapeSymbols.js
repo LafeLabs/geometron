@@ -6,7 +6,6 @@
     shapeSymbols.push("0205:f!");
     shapeSymbols.push("0206:f!");
     shapeSymbols.push("0207:f!");
-
     shapeSymbols.push("0210:f!-ahss=Qg-s=");//Q  resistor
     shapeSymbols.push("0211:f!-ahss=Wg-s=");//W  capacitor
     shapeSymbols.push("0212:f!-adhhscahq-caggjh=caggcaggg-chhkd=rfs=");//E triangle ground

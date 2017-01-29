@@ -1,4 +1,3 @@
-commandSymbolGlyphTable = [];
     commandSymbolGlyphTable.push("0300:f!-adzjh-acssscaahhsscaaacsgggkssff==");
     commandSymbolGlyphTable.push("0304:f!-adxchchchcjhk--aaxsshaaxsshaaxsshaaxssjgk==ahhf=");
     commandSymbolGlyphTable.push("0305:f!-ad2chchchchchxjhk-a--x==sha--x==sha--x==sha--x==sha--x==sjh1=sf=");

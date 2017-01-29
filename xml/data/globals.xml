@@ -2,15 +2,9 @@
 	<type>globals</type>
 	<glyph>
 		<address>0700</address>
-		<description>x position of cursor in absolute units</description>
-		<name>x</name>
-		<default>0</default>
-	</glyph>
-	<glyph>
-		<address>0701</address>
-		<description>y position of cursor in absolute units</description>
-		<name>y</name>
-		<default>0</default>
+		<description>x,y position of cursor in absolute units</description>
+		<name>x,y</name>
+		<default>0,0</default>
 	</glyph>
 	<glyph>
 		<address>0702</address>
