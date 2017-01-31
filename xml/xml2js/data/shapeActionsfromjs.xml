@@ -89,6 +89,17 @@
         </action>
      </glyph>
     <glyph>
+        <address>0210</address>
+        <description>shape action</description>
+        <action>
+            <language>geometron</language>
+            <encoding>string</encoding>
+            <code>
+              1--as-asca3jhhcggahhhhcggggggchhhgaggggchhhhhhcggahhhhcggggggchhahgggggchhhhhhcggahhhhcggggggchhaggggchhhhca21===0
+            </code>
+        </action>
+     </glyph>
+    <glyph>
         <address>0211</address>
         <description>shape action</description>
         <action>
