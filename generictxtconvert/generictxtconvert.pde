@@ -13,7 +13,7 @@ int[] keyAddressRow4 = {0200,0201,0202,0203,0204,0205,0206,0207,0210,0211,0212,0
 
 void setup(){
   
-  println(string2octal("1t--nf-f=b-ddggbnhhff==="));
+  println(string2octal("1--m,ggm,hca---axs===s-scahaaaah===cfca"));
   exit();
 }
 
