@@ -48,21 +48,3 @@ Money: the use of integer numbers to describe value.  This has been very useful 
 Again, property has had its place in history, largely to help stimulate humans to dig vast amounts of stuff out of the ground with great vigor for a few thousand years.  But it's not working.  Property may have its place in society at large for now but I would say that in building new and better technology we must totally renounce it as a philosophical idea.  That means that the work produced here is not just "open source" or "GPL" or something, it is *public domain* with no restrictions whatsoever.  And we will seek to always use as input materials media and machines that are totally public domain as well, even if it means using stuff over 100 years old by default.  
 
 
-ext: explain what these all mean
-after that: explain the idea of the geometron cube, how to think about it, build graphics of the actual cube into html
-
-Hypercube concept, action vs. symbol, vs. Roctal encoding.  Describe how Roctal works, show it.  
-
-Then go through the one by one, show how they build up.  Start with just a few examples and illustrations in each one
-
-1. Geometry Actions
-2. Shapes
-3. Font
-4. Root Magic
-5. Scroll
-6. Images
-7. Words
-8. Math
-
-These are conceptual demos, and what follows them is going back through and leading the user to re-create the whole cube themselves using html+CSS+JS.
-

@@ -1,4 +1,4 @@
-# Keyboard Mapping
+ # Keyboard Mapping
 
 We now introduce a dramatic simplification of the relationship between the physical keyboard and the command space. This relationship needs to be infinitely flexible both in shape and _size_, meaning it can be easily pruned down to a minimal instruction set for specific applications, then very quickly re-extended to a more complete instruction set.  
 
