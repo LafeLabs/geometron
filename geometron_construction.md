@@ -37,17 +37,20 @@
 - always forgive, forgiveness above all else, humans have lost control of our lives/actions and we are all Evil and Good and it's time to move on
 - always show compassion and empathy, try to help your fellow geometroners get through their day, feel good about themselves and their work
 - when in doubt, don't argue, split--rather than seeking ONE right way to do a thing, if there is a choice between paths that both have supporters, split the project and do both paths. These paths might have the same participants or totally different ones.
-- 
+- no backend ever, meaning no python, ruby, java, c++, perl etc. 
+- minimal external libraries and frameworks in javascript, with goal to reduce to one self-contained library
+- no patents, no copyrights, no licenses, no contracts, no employees, no equity, no debt,  no inventory, no bosses no employees, no paying customers, no shipping, no wages, no salaries, no jobs no prices no money no mining no property no ego
 
 ### Phase 1 participants:
 
-Everyone I know from physics
+Everyone I know from physics, reach out to quantum information people at IBM, google, chad, etc
 Target these people with posters, Facebook ads, 
 random mathematicians
 random linguists
 random computer scientists
 random "tech" workers
 random artists
+
 
 
  
