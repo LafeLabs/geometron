@@ -122,3 +122,21 @@ I'm anti-computer.  I think they have overwhelmingly harmed us as people, and I 
  -  
  
 letter to random connections without money or direct connection to the work: please forward this to whoever you know who is into (list things).
+
+
+## Video Script
+
+The computer is the most powerful machine in our society today, but why?  It's not the math it does, it's the art: we mostly use computers to communicate, with a few words and a lot of graphics.  Most models of how computers work ignores the fundamental nature of this "art stack": that without a powerpoint slide with some cartoons and a couple words, no modern computer would ever get built.  The use of graphical communication is fundamental to the very existence of not only the modern computer but all things built in our society.  Building a more free and universal language for that task can help a lot of people!
+
+I have built a universal language to control machines and describe physical things based on geometry.  Geometron, or the Art Engine, is based on symbols[show symbols here] which describe actions[show actions here].  I have been implementing it in computer code to run inside any web browser[show it in web browser, then show graphic of javascript, html and css], as well as physically to be expressed with pen and paper[show an action and symbol on paper] and in simple robotic machines[show pen action in robot].
+
+With your help, I will compile my large quantity of art, writing, and code into a single published book which documents this language.  At its core, this is a tool to build tools.  If it's going to work, it needs *you* to start using it to build *your* tools to make *your* art.  
+
+I've done this before: I've written books, and had them published through the LuLu press print on demand service, so I know I can do it and that everything will actually work[show existing books].  And I've already written the software that should be able to launch a user base for Geometron and written a bunch of the documentation.  I need your help getting the time to focus 100% on finishing this book, editing it, and getting it out in a form that all can use. The ebook will be free for all the world, as will the language.  
+
+I'm not going to build the real software.  You all are, and people inside existing organizations.  The government will build things for themselves, Facebook, microsoft, etc.  I'm just a person who has ideas and writes about them.  
+
+Let's build this language and make some new art!
+
+
+
