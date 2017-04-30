@@ -62,6 +62,14 @@ donation amounts:
 
 ## The Pitch
 
+The Geometron Art Engine is an alternative way to use machines to process art.  Rather than leading with numbers and using them to build art(the only thing "computers are really good for in most cases") we lead with art and use that to build up the whole system.  This virtual machine exists in your mind, your body, your computer, your browser, the tools you use to build your art, and the industrial machines of the future that I hope will replace the numbers based machines of today.  
+
+What is an art engine?  [use visual aid of a page from a free newspaper with a picture, draw a mustache on it, write a funny word balloon]  This is an art engine, it's a picture with some words and graphics on it.  It's the main type of machine that drives the "information economy".  This is NOT powerful because it's a computer.  We're using computers to build our art engines, but we can also use an art engine to do math: [do long multiplication on paper].  It's slow and painful, but still very powerful compared to doing math in our heads.  The computer industry has tricked us into believing that adding up of numbers is the basis of their power, but this contradicts what we see around us: the world-changing power of technology is in how we all share images, words, and simple graphics like arrows, icons, emoticons, etc.  This is true at every level: most of the highest level decisions about allocating funds which drive this whole economy are made based on simple graphics and a few words on powerpoint slides.  The addictive nature of things like Facebook that keep the whole machine running is largely memes, again images with a little text and simple cartoons.  
+
+I claim that in all computer systems there is something called an "art stack" which needs to be added in order to understand *any* computer.  Consider any computer form Turing's Bombe to the iPhone or Arduino.  What was the first thing that happened before the first experimental prototype got built?  Someone made a pitch to someone else, communicating the idea that this computer should be built.  That pitch was probably at its core a very simple set of a few words and graphics.  And in todays world that is always made on yet another computer.  This is how a computer self replicates: it has software that lets humans communicate the idea of how to build another computer.  
+
+I'm anti-computer.  I think they have overwhelmingly harmed us as people, and I hate the world they have built.  I believe that if we want to hack the underlying system of what makes computers awful we have to address their core reproductive function, which is the art stack.  
+
  - Computers are not what they seem
  - This is an art engine
  - Free information 
@@ -91,6 +99,26 @@ donation amounts:
  - videos
  - instructibles 
   
+## Marketing Plan
+
+ - Start an email list and sign people up, add it to Facebook
+ - Facebook boosted posts with multiple times daily geometron updates
+ - email everyone I know
+ - post links on linked-in
+ - fliers at local universities
+ - email anyone i have any connection with in academic computer science, math, linguistics, philosophy, or art
+ - fliers at LoC
  
-  
  
+## Social media 
+
+
+ - indiegogo is destination, all traffic points there
+ - facebook
+ - twitter
+ - instagram
+ - linkedin
+ - instructables
+ -  
+ 
+letter to random connections without money or direct connection to the work: please forward this to whoever you know who is into (list things).
