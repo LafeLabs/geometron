@@ -4,8 +4,8 @@ int mainGlyph[64];
 int index = 0;
 int readIndex = 0;
 float scaleFactor = 2.0;
-float side = 170;
-float unit = 170;
+float side = 400;
+float unit = 100;
 
 int pin1A = 8;
 int pin1B = 9;
@@ -25,38 +25,39 @@ void setup() {
   digitalWrite(pin2B,LOW);
     
     
-  for(int i= 0;i < 512;i++){
-    shapeTable[index] = -1;
-  }
-  for(int i= 0;i < 64;i++){
-    mainGlyph[index] = -1;
-  }
-mainGlyph[0] = 0;
-mainGlyph[1] = 2;
-mainGlyph[2] = 1;
-mainGlyph[3] = 3;
-mainGlyph[4] = 4;
-mainGlyph[5] = 0;
-mainGlyph[6] = 2;
-mainGlyph[7] = 1;
-mainGlyph[8] = 3;
-mainGlyph[9] = 4;
-mainGlyph[10] = 0;
-mainGlyph[11] = 2;
-mainGlyph[12] = 1;
-mainGlyph[13] = 3;
-mainGlyph[14] = 4;
-mainGlyph[15] = 0;
-mainGlyph[16] = 2;
-mainGlyph[17] = 1;
-mainGlyph[18] = 3;
-drawGlyph(mainGlyph);
+  digitalWrite(pin1A,HIGH);
+  digitalWrite(pin1B,LOW);
+  delay(side);
+  digitalWrite(pin1A,LOW);
+  digitalWrite(pin1B,LOW);
+  delay(100);    
 
+  digitalWrite(pin2A,HIGH);
+  digitalWrite(pin2B,LOW);
+  delay(side/2);
+  digitalWrite(pin2A,LOW);
+  digitalWrite(pin2B,LOW);
+  delay(100);    
+  
+  digitalWrite(pin1A,LOW);
+  digitalWrite(pin1B,HIGH);
+  delay(side);
+  digitalWrite(pin1A,LOW);
+  digitalWrite(pin1B,LOW);
+  delay(100);    
+
+  digitalWrite(pin2A,LOW);
+  digitalWrite(pin2B,HIGH);
+  delay(side/2);
+  digitalWrite(pin2A,LOW);
+  digitalWrite(pin2B,LOW);
+  delay(100);    
 }
 
 void loop() {
 
-  
+
+
 }
 
 void drawGlyph(int currentGlyph[]){
