@@ -3,6 +3,8 @@ import math
 
 jsBytes = "0330,0200,0331,0340,,0332,0400,,,"
 
+
+
 def jsb2pb(inbytes):#convert JavaScript bytecode to Python 3(not 2) bytecode
     jsByteArray = inbytes.split(',')
     outbytes = ""
@@ -47,7 +49,8 @@ def byteCode2string(inputcode):
 
 
 class geometronstate:
-    def __init__(self,x,y,x0,y0,unit):
+    def __init__(self,hyperCube,x,y,x0,y0,unit):
+        self.hyperCube = hyperCube
         self.x = x
         self.y = y
         self.x0 = x0
@@ -62,7 +65,18 @@ class geometronstate:
         self.stroke = "black"
         self.fill = "none"
         self.lineWidth = "2"
-        self.currentWord = "word"
+
+        self.currentWord = "word" #actions in the 0600s manipulate these with tags and constants
+        self.textContainer = ""
+        self.currentString = ""
+        self.currentAtom = ""
+        self.currentDocument = ""
+        self.currentSVG = ""
+        self.wordStack = []
+
+        self.width = 400 #these globals can get manipulated by 05xx actions
+        self.height = 400
+
 
     def drawGlyph(self,localGlyph):
         glyphArray =  localGlyph.split(",")
@@ -72,9 +86,27 @@ class geometronstate:
     def printSVG(self):
         print self.svg + "</svg>"
 
+    def printString(self):
+        print self.currentString
+
     def doTheThing(self,localCommand):
+        if localCommand == 03:
+            self.currentString = ""
         if localCommand >= 040 and localCommand <= 0277:
-            #drawGlyph(self.hyperCube[localCommand])
+            if localCommand >= 040 and localCommand <= 0176:
+                self.currentString += chr(localCommand)
+            self.drawGlyph(self.hyperCube[localCommand])
+        if localCommand == 011 or localCommand == 012:
+            self.currentString += chr(localCommand)
+        if localCommand >= 0600 and localCommand <= 0677:
+            if len(self.hyperCube[localCommand]) > 0:
+                self.drawGlyph(self.hyperCube[localCommand]) 
+        if localCommand >= 01000 and localCommand <= 01777:
+            if len(self.hyperCube[localCommand]) > 0:
+                self.drawGlyph(self.hyperCube[localCommand]) 
+        if localCommand >= 0400 and localCommand <= 0477:
+            if len(self.hyperCube[localCommand]) > 0:
+                self.drawGlyph(self.hyperCube[localCommand]) 
         if localCommand == 0300:
             self.x=self.x0
             self.y=self.y0
@@ -107,11 +139,26 @@ class geometronstate:
             self.fill = "black"
             self.stroke = "black"
         if localCommand == 0321:
-            self.fill = "grey"
-            self.stroke = "grey"
+            self.fill = "yellow"
+            self.stroke = "yellow"
         if localCommand == 0322:
+            self.fill = "orange"
+            self.stroke = "orange"
+        if localCommand == 0323:
+            self.fill = "white"
+            self.stroke = "white"
+        if localCommand == 0324:
             self.fill = "red"
             self.stroke = "red"
+        if localCommand == 0325:
+            self.fill = "green"
+            self.stroke = "green"
+        if localCommand == 0326:
+            self.fill = "purple"
+            self.stroke = "purple"
+        if localCommand == 0327:
+            self.fill = "blue"
+            self.stroke = "blue"
         if localCommand == 0330:
             self.x += self.side*math.cos(self.theta)
             self.y += self.side*math.sin(self.theta)
@@ -214,22 +261,44 @@ class geometronstate:
             self.svg += str(cpx2) + "," + str(cpy2) + " "
             self.svg += str(x2) + "," + str(y2)           
             self.svg += "\" fill = \"none\" stroke-width = \"2\" stroke = \"" + self.stroke + "\" />"
+        
+
+
+f = open('hypercube.txt', 'r')
+hypercubestring = f.read()
+f.close()
+
+hyperCube = []
+for index in range(1024):
+    hyperCube.append("")
+
+inputarray = hypercubestring.split("\n")
+
+for index in range(len(inputarray)):
+    if len(inputarray[index]) > 0:
+        foo = inputarray[index].split(":")
+        address = int(foo[0],8)
+        bytecode = foo[1]
+        hyperCube[address] = foo[1]
+
 
 unit = 50
 x0 = 200
 y0 = 200
 x = x0
 y = y0
+g = geometronstate(hyperCube,x,y,x0,y0,unit)
 
-g = geometronstate(x,y,x0,y0,unit)
-#g.drawGlyph("0336,0332,0335,0337,0306,0341,0340,0342,0330,0334,0334,0340,0341,0342,0330,0340,0341,0334,0334,0342")
-#g.drawGlyph("0335,0306,0343,0330,0335,0335,0335,0343,0336,0330,0336,0331,0337,0343,0330,0335,0335,0335,0343,0350")
-g.drawGlyph("0336,0332,0332,0366,0330,0333,0333,0335,0335,0367,0366,0332,0332,0330,0335,0335,0367,")
-#g.drawGlyph("0313,0336,0336,0330,0332,0336,0332,0337,0342,0334,0342,0330,0335,0342,0330,0334,0336,0342,0330,0335,0350,0335,0337,0310,0337,0342,0330,0335,0335,0342,0330,0335,0335,0335,0336,0313,0336,0342,0330,0351,0335,0331,0331,0331,0331,0333,0333,0333,0337,0337,0337,")
-#g.drawGlyph("0300,0322,0347")
-g.printSVG()
+#g.drawGlyph("0330,0330,0332,0332,0332,0336,0336,0310,0337,0313,0147,0145,0157,0155,0145,0164,0162,0157,0156,0350,0350,0335,0304,040,0151,0156,040,0331,0331,0350,0350,0350,0334,0334,0334,0334,0304,0160,0171,0164,0150,0157,0156,041,0300,0337,0337,0337,0336,0332,0337,0341,0340,0333,0340,0341,0334,0306,0334,0330,0340,0341,")
+#g.printSVG()
+#g.drawGlyph("0600,0101,0102,0103,0601,0602,0105,075,0155,0143,0136,062,0603")
+#g.drawGlyph("0337,0337,0401")
+#g.drawGlyph("0332,0336,01600,01601")
+#g.printSVG()
+g.drawGlyph("040,0601")
+g.printString()
 
-#print byteCode2string("044,0101,0102,0103,040,0141,0142,0143,")
+"""inkscape -D -z --file=/Users/lafespietz/Desktop/geometron/python/foo.svg --export-pdf=/Users
+/lafespietz/Desktop/geometron/python/foo2.pdf --export-latex
 
-#string2byteCode("$ABC abc")
-#print pb2jsb(jsb2pb(jsBytes))       
+"""

@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="400"
+   viewbox="0 0 400 400"
+   style="border:solid;"
+   id="svg4318"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="foo.svg">
+  <metadata
+     id="metadata4460">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4458" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="744"
+     inkscape:window-height="480"
+     id="namedview4456"
+     showgrid="false"
+     inkscape:zoom="0.61819421"
+     inkscape:cx="200"
+     inkscape:cy="200"
+     inkscape:window-x="12"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4318" />
+  <circle
+     cx="54.0"
+     cy="96.0"
+     r="4.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4320" />
+  <line
+     x1="58.0"
+     y1="96.0"
+     x2="58.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4322" />
+  <line
+     x1="58.0"
+     y1="100.0"
+     x2="58.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4324" />
+  <line
+     x1="58.0"
+     y1="104.0"
+     x2="58.0"
+     y2="100.0"
+     style="stroke:black;stroke-width:2"
+     id="line4326" />
+  <line
+     x1="58.0"
+     y1="108.0"
+     x2="58.0"
+     y2="104.0"
+     style="stroke:black;stroke-width:2"
+     id="line4328" />
+  <path
+     d="M58.4852813742 108.485281374       A4.24264068712 4.24264068712 0 0 1 50.0 108.485281374 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4330" />
+  <path
+     d="M60.6066017178 95.7573593129       A4.24264068712 4.24264068712 0 0 1 69.091883092 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4332" />
+  <path
+     d="M64.8492424049 100.0       A4.24264068712 4.24264068712 0 0 1 60.6066017178 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4334" />
+  <path
+     d="M67.8492424049 98.7573593129       A4.24264068712 4.24264068712 0 0 1 61.8492424049 98.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4336" />
+  <line
+     x1="65.0"
+     y1="96.0"
+     x2="61.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4338" />
+  <line
+     x1="65.0"
+     y1="96.0"
+     x2="69.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4340" />
+  <circle
+     cx="75.0"
+     cy="96.0"
+     r="4.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4342" />
+  <line
+     x1="84.0"
+     y1="100.0"
+     x2="84.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4344" />
+  <path
+     d="M83.941125497 95.7573593129       A2.12132034356 2.12132034356 0 0 1 88.1837661841 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4346" />
+  <path
+     d="M88.1837661841 95.7573593129       A2.12132034356 2.12132034356 0 0 1 92.4264068712 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4348" />
+  <line
+     x1="88.0"
+     y1="98.0"
+     x2="88.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4350" />
+  <line
+     x1="88.0"
+     y1="100.0"
+     x2="88.0"
+     y2="98.0"
+     style="stroke:black;stroke-width:2"
+     id="line4352" />
+  <line
+     x1="92.0"
+     y1="100.0"
+     x2="92.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4354" />
+  <path
+     d="M96.6690475583 95.7573593129       A4.24264068712 4.24264068712 0 0 1 105.154328933 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4356" />
+  <path
+     d="M100.911688245 100.0       A4.24264068712 4.24264068712 0 0 1 96.6690475583 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4358" />
+  <path
+     d="M103.911688245 98.7573593129       A4.24264068712 4.24264068712 0 0 1 97.9116882454 98.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4360" />
+  <line
+     x1="101.0"
+     y1="96.0"
+     x2="97.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4362" />
+  <line
+     x1="101.0"
+     y1="96.0"
+     x2="105.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4364" />
+  <line
+     x1="116.0"
+     y1="100.0"
+     x2="116.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4366" />
+  <line
+     x1="116.0"
+     y1="92.0"
+     x2="116.0"
+     y2="87.0"
+     style="stroke:black;stroke-width:2"
+     id="line4368" />
+  <line
+     x1="116.0"
+     y1="92.0"
+     x2="112.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4370" />
+  <line
+     x1="116.0"
+     y1="92.0"
+     x2="120.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4372" />
+  <path
+     d="M120.003571337 100.0       A2.12132034356 2.12132034356 0 0 1 115.76093065 100.0 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4374" />
+  <line
+     x1="128.0"
+     y1="100.0"
+     x2="128.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4376" />
+  <line
+     x1="128.0"
+     y1="92.0"
+     x2="128.0"
+     y2="89.0"
+     style="stroke:black;stroke-width:2"
+     id="line4378" />
+  <line
+     x1="128.0"
+     y1="92.0"
+     x2="136.0"
+     y2="88.0"
+     style="stroke:black;stroke-width:2"
+     id="line4380" />
+  <circle
+     cx="143.0"
+     cy="96.0"
+     r="4.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4382" />
+  <line
+     x1="152.0"
+     y1="100.0"
+     x2="152.0"
+     y2="92.0"
+     style="stroke:black;stroke-width:2"
+     id="line4384" />
+  <path
+     d="M151.823376491 95.7573593129       A2.12132034356 2.12132034356 0 0 1 156.066017178 95.7573593129 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4386" />
+  <line
+     x1="156.0"
+     y1="100.0"
+     x2="156.0"
+     y2="96.0"
+     style="stroke:black;stroke-width:2"
+     id="line4388" />
+  <line
+     x1="180.0"
+     y1="108.0"
+     x2="182.0"
+     y2="104.0"
+     style="stroke:black;stroke-width:2"
+     id="line4390" />
+  <line
+     x1="182.0"
+     y1="104.0"
+     x2="182.0"
+     y2="102.0"
+     style="stroke:black;stroke-width:2"
+     id="line4392" />
+  <circle
+     cx="184.0"
+     cy="98.0"
+     r="1.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4394" />
+  <line
+     x1="184.0"
+     y1="110.0"
+     x2="187.0"
+     y2="102.0"
+     style="stroke:black;stroke-width:2"
+     id="line4396" />
+  <path
+     d="M185.450379533 105.821840908       A2.12132034356 2.12132034356 0 0 1 189.370068428 107.445429208 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4398" />
+  <line
+     x1="188.0"
+     y1="111.0"
+     x2="189.0"
+     y2="107.0"
+     style="stroke:black;stroke-width:2"
+     id="line4400" />
+  <line
+     x1="194.0"
+     y1="151.0"
+     x2="193.0"
+     y2="147.0"
+     style="stroke:black;stroke-width:2"
+     id="line4402" />
+  <line
+     x1="194.0"
+     y1="151.0"
+     x2="198.0"
+     y2="159.0"
+     style="stroke:black;stroke-width:2"
+     id="line4404" />
+  <circle
+     cx="197.0"
+     cy="145.0"
+     r="4.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4406" />
+  <line
+     x1="193.0"
+     y1="147.0"
+     x2="191.0"
+     y2="143.0"
+     style="stroke:black;stroke-width:2"
+     id="line4408" />
+  <line
+     x1="210.0"
+     y1="144.0"
+     x2="210.0"
+     y2="136.0"
+     style="stroke:black;stroke-width:2"
+     id="line4410" />
+  <line
+     x1="210.0"
+     y1="144.0"
+     x2="204.0"
+     y2="138.0"
+     style="stroke:black;stroke-width:2"
+     id="line4412" />
+  <line
+     x1="210.0"
+     y1="144.0"
+     x2="210.0"
+     y2="153.0"
+     style="stroke:black;stroke-width:2"
+     id="line4414" />
+  <line
+     x1="224.0"
+     y1="139.0"
+     x2="221.0"
+     y2="131.0"
+     style="stroke:black;stroke-width:2"
+     id="line4416" />
+  <line
+     x1="221.0"
+     y1="131.0"
+     x2="219.0"
+     y2="127.0"
+     style="stroke:black;stroke-width:2"
+     id="line4418" />
+  <line
+     x1="221.0"
+     y1="131.0"
+     x2="217.0"
+     y2="132.0"
+     style="stroke:black;stroke-width:2"
+     id="line4420" />
+  <line
+     x1="221.0"
+     y1="131.0"
+     x2="224.0"
+     y2="129.0"
+     style="stroke:black;stroke-width:2"
+     id="line4422" />
+  <path
+     d="M227.673573801 137.040070209       A2.12132034356 2.12132034356 0 0 1 223.753884907 138.663658509 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4424" />
+  <line
+     x1="232.0"
+     y1="135.0"
+     x2="225.0"
+     y2="120.0"
+     style="stroke:black;stroke-width:2"
+     id="line4426" />
+  <path
+     d="M229.969674396 131.496793014       A4.24264068712 4.24264068712 0 0 1 237.809052185 128.249616413 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4428" />
+  <line
+     x1="238.0"
+     y1="128.0"
+     x2="239.0"
+     y2="132.0"
+     style="stroke:black;stroke-width:2"
+     id="line4430" />
+  <circle
+     cx="244.0"
+     cy="126.0"
+     r="4.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4432" />
+  <line
+     x1="253.0"
+     y1="126.0"
+     x2="250.0"
+     y2="119.0"
+     style="stroke:black;stroke-width:2"
+     id="line4434" />
+  <path
+     d="M251.527963316 122.567057361       A2.12132034356 2.12132034356 0 0 1 255.447652211 120.943469061 "
+     fill="none"
+     stroke="black"
+     stroke-width="2"
+     id="path4436" />
+  <line
+     x1="257.0"
+     y1="125.0"
+     x2="255.0"
+     y2="121.0"
+     style="stroke:black;stroke-width:2"
+     id="line4438" />
+  <circle
+     cx="264.0"
+     cy="120.0"
+     r="1.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4440" />
+  <line
+     x1="263.0"
+     y1="117.0"
+     x2="260.0"
+     y2="109.0"
+     style="stroke:black;stroke-width:2"
+     id="line4442" />
+  <circle
+     cx="132.0"
+     cy="200.0"
+     r="136.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4444" />
+  <circle
+     cx="132.0"
+     cy="200.0"
+     r="3"
+     stroke="black"
+     stroke-width="2"
+     fill="black"
+     id="circle4446" />
+  <circle
+     cx="268.0"
+     cy="200.0"
+     r="3"
+     stroke="black"
+     stroke-width="2"
+     fill="black"
+     id="circle4448" />
+  <circle
+     cx="268"
+     cy="196"
+     r="136"
+     id="circle4450"
+     style="fill:none;stroke:#000000;stroke-width:2" />
+  <circle
+     cx="200.0"
+     cy="318.0"
+     r="3"
+     stroke="black"
+     stroke-width="2"
+     fill="black"
+     id="circle4452" />
+  <circle
+     cx="200.0"
+     cy="318.0"
+     r="136.0"
+     stroke="black"
+     stroke-width="2"
+     fill="none"
+     id="circle4454" />
+</svg>
