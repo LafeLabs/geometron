@@ -1,22 +1,6 @@
-<svg width="400" height="400" viewbox = "0 0 400 400"  xmlns="http://www.w3.org/2000/svg" style = "border:solid;">
-<circle cx="200.0" cy = "100.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-<circle cx="287.0" cy = "150.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-<circle cx="287.0" cy = "250.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-<circle cx="200.0" cy = "300.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-<circle cx="113.0" cy = "250.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-<circle cx="113.0" cy = "150.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
-    <line x1="200.0" y1="100.0" x2="287.0" y2="250.0" style="stroke:black;stroke-width:2" />
-    <line x1="200.0" y1="100.0" x2="113.0" y2="250.0" style="stroke:black;stroke-width:2" />
-    <line x1="113.0" y1="250.0" x2="287.0" y2="150.0" style="stroke:black;stroke-width:2" />
-    <line x1="113.0" y1="150.0" x2="287.0" y2="250.0" style="stroke:black;stroke-width:2" />
-    <line x1="200.0" y1="300.0" x2="287.0" y2="150.0" style="stroke:black;stroke-width:2" />
-    <line x1="200.0" y1="300.0" x2="113.0" y2="150.0" style="stroke:black;stroke-width:2" />
-  <path d="M286.602540378 250.0       A50.0 50.0 0 0 1 200.0 300.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M286.602540378 150.0       A50.0 50.0 0 0 1 286.602540378 250.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M200.0 100.0       A50.0 50.0 0 0 1 286.602540378 150.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M113.397459622 150.0       A50.0 50.0 0 0 1 200.0 100.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M113.397459622 250.0       A50.0 50.0 0 0 1 113.397459622 150.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M200.0 300.0       A50.0 50.0 0 0 1 113.397459622 250.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M243.301270189 325.0       A50.0 50.0 0 0 1 156.698729811 325.0 " fill = "none" stroke = "black" stroke-width = "2" />
-  <path d="M156.698729811 75.0       A50.0 50.0 0 0 1 243.301270189 75.0 " fill = "none" stroke = "black" stroke-width = "2" />
+<svg width= "400" height= "400" viewbox = "0 0 400 400"  xmlns= "http://www.w3.org/2000/svg" style = "border:solid;">
+<circle cx="175.0" cy = "200.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
+    <circle cx="175.0" cy = "200.0" r = "50.0" stroke = "black" stroke-width = "2" fill = "none" />
+    <circle cx="225.0" cy = "200.0" r = "50.0" stroke = "black" stroke-width = "2" fill = "none" />
+<circle cx="225.0" cy = "200.0" r = "3" stroke = "black" stroke-width = "2" fill = "black" />
 </svg>

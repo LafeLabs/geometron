@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js">
+</script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});</script>
+</head>
+<body>
+
+<div class = "atom">
+	Here is a Greek letter: $\beta$ and another $\alpha$
+	
+	Here is a separate equation:
+	<div class = "equation">
+		$$S_I = 2eI\coth{\frac{eV}{2k_BT}}$$
+	</div>
+</div>
+
+<style>
+
+.atom{
+	width: 5in;
+	height: auto;
+	border-style: solid;
+	border-width: 4px;
+	border-color: purple;
+	border-radius: 5px;
+	padding: .5in .5in .5in .5in;
+	margin: 10px 10px 10px 10px;
+	background: #f1e7cd;	
+	font-size: 16px;
+	font-family: "Century Schoolbook";
+	text-align: justify;
+	float:left;
+}
+.equation{
+	width: auto;
+	height: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: orange;
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+	margin: 10px 10px 10px 10px;
+
+}
+
+</style>
+</body>
+</html>

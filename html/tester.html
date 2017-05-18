@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1,#div2 {
+    width: auto;
+    height: 60px;
+    padding: 5px 5px 5px 5px;
+    border: 1px solid #aaaaaa;
+}
+.butt:hover{
+    	border:solid;
+    }
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<p>Drag the W3Schools ige into the rectangle:</p>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<p>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="150" height="69">
+<img id="drag2" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="50" height="69">
+
+<div  class = "butt" id = "drag3" draggable="true" ondragstart="drag(event)" style = "float:left;margin: 5px 5px 5px 5px;width: 50px; height: 50px;">
+	<svg width= "40" height= "40" viewbox = "0 0 40 40"  xmlns= "http://www.w3.org/2000/svg" style = "border:solid;margin: 5px 5px 5px 5px">
+<circle cx="20.0" cy = "20.0" r = "15" stroke = "black" stroke-width = "2" fill = "none" /></svg></div>
+
+<div  class = "butt"  id = "drag4" draggable="true" ondragstart="drag(event)"  style = "float:left;margin: 5px 5px 5px 5px;width: 50px; height: 50px;">
+	<svg width= "40" height= "40" viewbox = "0 0 40 40"  xmlns= "http://www.w3.org/2000/svg" style = "border:solid;margin: 5px 5px 5px 5px">
+<circle cx="20.0" cy = "20.0" r = "15" stroke = "black" stroke-width = "2" fill = "purple" /></svg></div>
+</body>
+</html>
