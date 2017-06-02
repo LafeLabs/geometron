@@ -1,0 +1,113 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js">
+</script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+//    MathJax.Hub.Typeset(); //update mathjax
+</script>
+</head> 
+<body>
+<!-- end html start 0600--><!-- start math 0740-->
+
+<div class = "atom">
+    
+    <div id = "equation0740" class = "equation">
+        <div class = "equation">
+        $$\left(\frac{\mu A}{\mu m^2}\right) = \left(\frac{kA}{cm^2}\right)\left(\frac{1000 A}{1 kA}\right)\left(\frac{10^6 \mu A}{1 A}\right)\left(\frac{1 cm}{10^4 \mu m}\right)^2
+    = 10 \times \left(\frac{kA}{cm^2}\right)
+        $$
+        </div>
+
+        <div class = "equation">
+        $$\left(\frac{\mu A}{\mu m^2}\right) = \left(\frac{A}{cm^2}\right)\left(\frac{10^6 \mu A}{1 A}\right)\left(\frac{1 cm}{10^4 \mu m}\right)^2
+    = \frac{1}{100} \times \left(\frac{kA}{cm^2}\right)
+        $$
+        </div>
+    </div>
+    <p>
+    
+    <div class = "calculator">
+
+$J_c [kA/cm^2]= $<input id = "input0741_kA" onchange = "update0741_kA();" size = "5" value = "0.1"></input><p>
+$J_c [A/cm^2]= $<input id = "input0741_A" onchange = "update0741_A()" size = "5"></input><p>
+$J_c [\mu A/\mu m^2]= $<input id = "input0741_uA" onchange = "update0741_uA()" size = "5"></input><p>
+    
+    </div>
+
+</div>
+
+<script>
+    update0741_kA();
+    function update0741_kA(){
+        var kA = document.getElementById("input0741_kA").value;
+        var A = 1000*kA;
+        var uA = 10*kA;
+        document.getElementById("input0741_A").value = A;
+        document.getElementById("input0741_uA").value = uA;
+    }
+    function update0741_A(){
+        var A = document.getElementById("input0741_A").value;
+        var kA = A/1000;
+        var uA = 10*kA;
+        document.getElementById("input0741_kA").value = kA;
+        document.getElementById("input0741_uA").value = uA;
+    }
+    function update0741_uA(){
+        var uA = document.getElementById("input0741_uA").value;
+        var kA = uA/10;
+        var A = 1000*kA;
+        document.getElementById("input0741_A").value = A;
+        document.getElementById("input0741_kA").value = kA;
+    }
+
+</script>
+
+<!-- end math 0740--><!-- start html end 0601-->
+
+<style>
+html {
+	height: 100%;
+	background: black;
+}
+
+.atom{
+	width: auto;
+	height: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: purple;
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+	background: white;	
+	font-size: 16px;
+	font-family: "Century Schoolbook";
+	text-align: justify;
+	float:left;
+}
+.equation,.calculator{
+	width: auto;
+	height: auto;
+	border-style: solid;
+	border-width: 2px;
+	border-color: red;
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+	background: white;	
+	font-size: 16px;
+	font-family: "Century Schoolbook";
+	text-align: justify;
+}
+
+</style>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 import math
+import urllib2
 
 def string2byteCode(inputstring):
     outbytes = ""
@@ -62,7 +63,26 @@ class geometron:
         for index in range(len(glyphArray)):
             if len(glyphArray[index]) > 0:
                 self.doTheThing(int(glyphArray[index],8))
-    
+
+    def drawWordGlyph(self,localGlyph):
+        wordGlyphArray =  localGlyph.split(",")
+        for index in range(len(wordGlyphArray)):
+            if len(wordGlyphArray[index]) > 0:
+                self.doTheWord(int(wordGlyphArray[index],8))
+
+    def doTheWord(self,localCommand):
+        if localCommand >= 0400 and localCommand <= 0777:
+            self.drawWordGlyph(self.hyperCube[localCommand])
+        if localCommand >= 040 and localCommand <= 0176 or localCommand == 012 or localCommand == 011:
+            self.currentString += chr(localCommand)
+        if localCommand >= 0200 and localCommand <= 0377:
+            self.currentString += "0" + int(localCommand,8) + ","
+
+    def printWord(self,localCommand):
+        self.currentString = ""
+        self.doTheWord(localCommand)
+        print self.currentString
+
     def printGlyph(self,localGlyph):
         self.currentString = ""
         self.drawGlyph(localGlyph)
@@ -280,9 +300,29 @@ class geometron:
 unit = 50
 x0 = 200
 y0 = 200
-g = geometron("hypercube.txt",x0,y0,unit)
-g.makeDoc()
+g = geometron("hypercubeMATH.txt",x0,y0,unit)
+g.printWord(0400)
+
 
 """inkscape -D -z --file=/Users/lafespietz/Desktop/geometron/python/foo.svg --export-pdf=/Users
 /lafespietz/Desktop/geometron/python/foo2.pdf --export-latex
+
+for reading from pastebin use urllib2, docs here:
+    https://docs.python.org/2/howto/urllib2.html
+>> import urllib2
+>> response = urllib2.urlopen('https://pastebin.com/raw/fCABR3RA')
+>> html = response.read()
+>> print html
+
+
+See http://pythonhosted.org/Pastebin/ for documentation on python pastebin API(to save or edit pastes)
+
+>> from pastebin import PastebinAPI
+>> x = PastebinAPI()
+>> api_dev_key = "2f91bd58d372bd03629b0658be4c43be"
+>> username = "lafelabs"
+>> password = ""
+>> my_key = PastebinAPI.generate_user_key(x,api_dev_key, username, password)
+>> print my_key
+
 """
