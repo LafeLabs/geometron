@@ -15,7 +15,7 @@ def byteCode2string(inputcode):
     inputarray = inputcode.split(",")
     outputstring = ""
     for index in range(len(inputarray)):
-        if len(inputarray[index]) > 0:
+        if len(inputarray[index]) > 1:
             #print chr(int(inputarray[index],8))
             outputstring += chr(int(inputarray[index],8))
     return outputstring
@@ -71,9 +71,37 @@ def doTheThing2cube(doTheThingString):
     outputCube =  "0500:" + outputCube.partition("0500:")[2]
     print outputCube
 
+def cube2html(cubeURL):
+    response = urllib2.urlopen(cubeURL)
+    hypercubestring = response.read()
+    inputarray = hypercubestring.split("\n")
+    htmlOut = ""
+    htmlEnd = ""
+    for index in range(len(inputarray)):
+        if len(inputarray[index]) > 0:
+            foo = inputarray[index].split(":")
+            address = oct(int(foo[0],8))
+            bytecode = foo[1]
+            if(address == "0600"):
+                htmlOut += byteCode2string(bytecode)
+                htmlOut += hypercubestring
+                htmlOut += "\n*/\n</script>\n"
+            if(address == "0601"):
+                htmlEnd += byteCode2string(bytecode)
+            if(address == "0602"):
+                functions = byteCode2string(bytecode)
+            
+    htmlOut += "<script>" + functions + "\n</script>\n"
+    htmlOut += htmlEnd
+    return htmlOut
+
+
 #print gCube2jsCube("https://pastebin.com/raw/fCABR3RA")
 #print gCube2jsCube("https://pastebin.com/raw/qD7UUYc5")
 
-foo =  extractDoTheThing("https://lafelabs.github.io/cube3.html")
-doTheThing2cube(foo)
+#foo =  extractDoTheThing("https://lafelabs.github.io/cube3.html")
+#doTheThing2cube(foo)
+
+newcube4 = "https://pastebin.com/raw/Z8ExeRSV"
+print cube2html(newcube4)
 
