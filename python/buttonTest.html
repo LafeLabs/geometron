@@ -1,0 +1,25 @@
+<html>
+<body>
+<button id = "derp" onclick = "action();">PUSH</button>
+<script>
+function action(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "output.txt", true);
+    xhttp.send("0400:0401,0402,");
+}
+
+</script>
+<style>
+#derp{
+    width:200px;
+    height:100px;
+    position:absolute;
+    left:50%;
+    top:20%;
+    font-size:30px;
+    color:blue;
+    font-family:Futura;
+}
+</style>
+</body>
+</html>
