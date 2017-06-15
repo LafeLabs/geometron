@@ -1,0 +1,51 @@
+[{"type":"creator",
+  "data":{
+        "name":"creatorcube",
+        "language":"python",
+        "localfile":"creatorcube.txt",
+        "url":"https://pastebin.com/raw/zhei7ty6",
+        "prevurl":"https://pastebin.com/raw/zhei7ty6",
+        "datecode":"15june2017_1700"
+    }
+},
+{"type":"root",
+  "data":{
+        "name":"rootcube",
+        "language":"javascript",
+        "localfile":"rootcube.txt",
+        "url":"https://pastebin.com/raw/FsqwdUsV",
+        "prevurl":"https://pastebin.com/raw/FsqwdUsV",
+        "datecode":"15june2017_1700"
+    }
+},
+{"type":"geometron",
+  "data":{
+        "name":"geometroncube",
+        "language":"geometron",
+        "localfile":"geometroncube.txt",
+        "url":"https://pastebin.com/raw/K9L5tJ4Y",
+        "prevurl":"https://pastebin.com/raw/K9L5tJ4Y",
+        "datecode":"15june2017_1700"
+    }
+},
+{"type":"shape",
+  "data":{
+        "name":"shapecube",
+        "language":"geometron",
+        "localfile":"shapecube.txt",
+        "url":"https://pastebin.com/raw/1as3DKXu",
+        "prevurl":"https://pastebin.com/raw/1as3DKXu",
+        "datecode":"15june2017_1700"
+    }
+},
+{"type":"doc",
+  "data":{
+        "name":"doccube",
+        "language":"html",
+        "localfile":"doccube.txt",
+        "url":"https://pastebin.com/raw/1DrQTX9f",
+        "prevurl":"https://pastebin.com/raw/1DrQTX9f",
+        "datecode":"15june2017_1700"
+    }
+}
+]
