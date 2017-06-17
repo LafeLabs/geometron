@@ -1,0 +1,23 @@
+<html>
+<body>
+<button id = "derp" onclick="callpy();">BUTT</button>
+
+<style>
+    #derp{
+        font-size:36px;
+    }
+</style>
+
+<script>
+
+function callpy() {
+    var httpc = new XMLHttpRequest();
+    var url = "./touchmybutt.py";
+    httpc.open("GET", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send();
+}
+
+</script>
+</body>
+</html>

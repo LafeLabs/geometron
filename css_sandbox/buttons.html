@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+
+
+</script>
+</head>   
+<body>
+<div class = "panel9">
+    <div class = "indicatorbutton buttonoff" id = "button9"></div>
+    <div class = "indicatorbutton buttonoff" id = "button8"></div>
+    <div class = "indicatorbutton buttonoff" id = "button7"></div>
+    <div class = "indicatorbutton buttonoff" id = "button6"></div>
+    <div class = "indicatorbutton buttonoff" id = "button5"></div>
+    <div class = "indicatorbutton buttonoff" id = "button4"></div>
+    <div class = "indicatorbutton buttonoff" id = "button3"></div>
+    <div class = "indicatorbutton buttonoff" id = "button2"></div>
+    <div class = "indicatorbutton buttonoff" id = "button1"></div>
+</div>
+<div id = "binaryout" class = "out"></div>
+<div id = "decimalout" class = "out"></div>
+<div id = "octalout" class = "out"></div>
+<div id = "hexout" class = "out"></div>
+<div class = "push" onclick = "console.log(outByte);"></div>
+
+<script>
+
+outByte = 0;
+bigByte = [false,false,false,false,false,false,false,false,false];
+
+for(var buttonindex = 1;buttonindex <= 9;buttonindex++){
+    var buttonname = "button" + buttonindex.toString();
+    document.getElementById(buttonname).onclick = function(){
+        var thisid = this.id;
+        var bitnumber = parseInt(thisid.split("button")[1])-1;
+    //    var mask = 1 << (bitnumber-1);
+        if(document.getElementById(thisid).className == "indicatorbutton buttonoff"){
+            document.getElementById(thisid).className = "indicatorbutton buttonon";
+        }
+        else{
+            document.getElementById(thisid).className = "indicatorbutton buttonoff";
+        }
+        bitnumber = 8-bitnumber;
+        bigByte[bitnumber] = !bigByte[bitnumber];
+        var bytestring = bigByte.toString(2);
+        var bytestringarray = bytestring.split(",");
+        var outstring = "";
+        for(var index = 0;index < bytestringarray.length;index++){
+            if(bigByte[index]){
+                outstring += "1";
+            }
+            else{
+                outstring += "0";
+            }
+        }
+        document.getElementById("binaryout").innerHTML = "0b" + outstring;
+        document.getElementById("decimalout").innerHTML = parseInt(outstring,2);
+        document.getElementById("octalout").innerHTML = "0" + parseInt(outstring,2).toString(8);
+        document.getElementById("hexout").innerHTML = "0x" + parseInt(outstring,2).toString(16);
+        outByte = parseInt(outstring,2);
+    }
+}
+
+var bytestring = bigByte.toString(2);
+var bytestringarray = bytestring.split(",");
+var outstring = "";
+for(var index = 0;index < bytestringarray.length;index++){
+    if(bigByte[index]){
+        outstring += "1";
+    }
+    else{
+        outstring += "0";
+    }
+}
+
+document.getElementById("binaryout").innerHTML = "0b" + outstring;
+document.getElementById("decimalout").innerHTML = parseInt(outstring,2);
+document.getElementById("octalout").innerHTML = "0" + parseInt(outstring,2).toString(8);
+document.getElementById("hexout").innerHTML = "0x" + parseInt(outstring,2).toString(16);
+
+</script>
+<style>
+.out{
+    font-family:Courier;
+    font-size:60px;
+    width:8em;
+    float:left;
+}
+
+.panel9{
+    width:380px;
+    height:380px;
+    padding:5px 5px 5px 5px;
+    border:solid;
+    float:left;
+    background-color:#7070ff;
+}
+
+.indicatorbutton{
+    width:100px;
+    height:100px;
+    margin:10px 10px 10px 10px;
+    float:left;
+    border-radius:20px;
+    border:solid;
+}
+.buttonoff{
+    background-color:red;
+}
+.indicatorbutton:active{
+    background-color:yellow;
+}
+.buttonon{
+    background-color:#30ff30;
+}
+.push{
+    width:300px;
+    height:150px;
+    margin:10px 10px 10px 10px;
+    float:right;
+    border-radius:40px;
+    border:solid;
+    background-color:pink;
+}
+.push:hover{
+    background-color:purple;
+}
+.push:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>

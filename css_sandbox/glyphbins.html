@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<div class = "controlpanel bin" id = "panel1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">1<span class = "glyphlabel">061</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">2</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">3</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">4</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">5</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">6</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">7</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">8</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">9</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">*</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">0</div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">#</div>
+
+</div>
+<div class = "cursorcontrolpanel bin">
+    <div class = "glyphdiv" onclick = "doTheThing(021);">&lt</div>
+    <div class = "glyphdiv" onclick = "doTheThing(010);">X</div>
+    <div class = "glyphdiv" onclick = "doTheThing(020);">&gt</div>
+</div>
+<div class = "glyphbin bin" id = "bin1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class = "cursor" draggable="true" ondragstart="drag(event)" id="cursor1"></div>
+</div>
+<script>
+
+function doTheThing(localCommand){
+    if(localCommand == 010){//delete
+        var cursorparent =document.getElementById("cursor1").parentNode;
+        var glyphlist = cursorparent.childNodes;
+        for(var index = 0;index <glyphlist.length;index++){
+            if(glyphlist[index].className == "cursor"){
+                if(index > 0){
+                    cursorparent.removeChild(glyphlist[index-1]);
+                }
+            } 
+        }
+    }
+	if(localCommand == 0020){//cursor forward
+        var cursorparent =document.getElementById("cursor1").parentNode;
+        var glyphlist = cursorparent.childNodes;
+        var cursor = document.getElementById("cursor1");
+        for(var index = 0;index <glyphlist.length;index++){
+            if(glyphlist[index].className == "cursor"){
+                if(index < glyphlist.length - 2){
+                    cursorparent.removeChild(glyphlist[index]);
+                    cursorparent.insertBefore(cursor,glyphlist[index+1]);
+                    break;
+                }
+                else{
+                    cursorparent.removeChild(glyphlist[index]);
+                    cursorparent.insertBefore(cursor,glyphlist[1]);
+                    break;
+                }
+            } 
+        }
+	}
+	if(localCommand == 0021){//cursor back
+        var cursorparent =document.getElementById("cursor1").parentNode;
+        var glyphlist = cursorparent.childNodes;
+        var cursor = document.getElementById("cursor1");
+        for(var index = 0;index <glyphlist.length;index++){
+            if(glyphlist[index].className == "cursor"){
+                if(index > 1){
+                    cursorparent.removeChild(glyphlist[index]);
+                    cursorparent.insertBefore(cursor,glyphlist[index-1]);
+                    break;
+                }
+                else{
+                    cursorparent.removeChild(glyphlist[index]);
+                    cursorparent.insertBefore(cursor,glyphlist[glyphlist.length - 1]);               
+                    break;     
+                }
+            } 
+        }
+	}	
+
+
+}
+
+glyphs = document.getElementsByClassName("glyphbutton");
+for(var index = 0;index < glyphs.length;index++){
+    glyphs[index].onclick = function(){
+        //locate cursor's bin:
+        var cursorbinid = document.getElementById("cursor1").parentNode;
+        //create new div to copy "this" onto
+        var newdiv = document.createElement("DIV");
+        //copy properties
+        newdiv.className = this.className;
+        newdiv.draggable = this.draggable;
+        newdiv.ondragstart = this.ondragstart;
+        newdiv.onclick = this.onclick;    
+        newdiv.innerHTML = this.innerHTML;    
+
+        //append:
+        var cursor = document.getElementById("cursor1");
+        cursorbinid.insertBefore(newdiv, cursor);
+    }
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+
+
+
+</script>
+<style>
+html{
+    background-color:yellow;
+}
+.glyphlabel{
+    display:none;
+}
+.cursor{
+    border:solid;
+    background-color:white;
+    width:3px;
+    height:70px;
+    border-radius:1px;
+    border-width:3px;
+    margin:5px 10px 5px 10px;
+    float:left;
+}
+.glyphdiv:active{
+    background-color:lightblue;
+}
+.glyphdiv{
+    width:60px;
+    height:60px;
+    margin:4px 14px 4px 14px;
+    border:solid;
+    border-color:black;
+    border-width:3px;
+    float:left;
+    font-family:courier;
+    font-size:50px;
+    text-align:center;
+}
+.controlpanel{
+    width:300px;
+    height:330px;
+}
+.cursorcontrolpanel{
+    width:300px;
+    height:100px;
+}
+.bin{
+    float:left;
+    margin:15px 15px 15px 15px;
+    padding: 10px 10px 10px 10px;
+    border:solid;
+    border-color:black;
+    background-color:white;
+    border-radius:10px;
+    overflow:scroll;
+}
+.glyphbin{
+    width:1000px;
+    height:80px;
+}
+
+</style>
+</body>
+</html>
