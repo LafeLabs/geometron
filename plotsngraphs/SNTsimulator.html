@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+</head>
+<body>
+    <table id = "inputs">
+        <tr><td>Vmax:</td><td><input id = "Vmaxin" value = "5.0" onchange = "updateplot();"></input></td></tr> 
+        <tr><td>points per period:</td><td><input id = "pointsin" value = "150" onchange = "updateplot();"></input></td></tr>
+        <tr><td>Vstart:</td><td><input id = "Vstartin" value = "0.0" onchange = "updateplot();"></input></td></tr> 
+        <tr><td>V divide:</td><td><input id = "dividein" value = "1000" onchange = "updateplot();"></input></td></tr>
+        <tr><td>n:</td><td><input id = "nin" value = "600" onchange = "updateplot();"></input></td></tr>
+        <tr><td>T:</td><td><input id = "Tin" value = "4" onchange = "updateplot();"></input></td></tr> 
+        <tr><td>T_N:</td><td><input id = "TNin" value = "20" onchange = "updateplot();"></input></td></tr>
+        <tr><td>G:</td><td><input id = "Gin" value = "0.2" onchange = "updateplot();"></input></td></tr>
+        <tr><td>sigma:</td><td><input id = "sigmain" value = ".4" onchange = "updateplot();"></input></td></tr>
+    </table>
+    <canvas id = "plot1"></canvas>
+    <textarea id = "dataOUT"></textarea>
+<script>
+
+updateplot();
+function updateplot(){
+    Vmax = parseFloat(document.getElementById("Vmaxin").value);
+    points = parseInt(document.getElementById("pointsin").value);
+    Vslope = Vmax/points; //slope of voltage wave in volts at top of fridge per point;
+    n = parseInt(document.getElementById("nin").value);
+    Vstart = parseFloat(document.getElementById("Vstartin").value);
+
+    vwave = [];
+    V = Vstart;
+    for(var index = 0;index < n;index++){
+        V += Vslope;
+        if(V >= Vmax || V <= -Vmax){
+            Vslope *= -1;
+        }
+        vwave.push(V);
+    }
+    plot1 = document.getElementById("plot1");
+    plot1.width = n;
+    h = 400;
+    plot1.height = h;
+    w = n;
+    ctx = plot1.getContext("2d");
+    ctx.strokeStyle="green";
+    ctx.lineWidth = 2;
+    ctx.clearRect(0,0,w,h);
+    ctx.beginPath();
+    y = h - h*(vwave[0] + 1.1*Vmax)/(2.2*Vmax);
+    ctx.moveTo(0,y);
+    for(var index = 1;index < n;index++){
+        y = h - h*(vwave[index] + 1.1*Vmax)/(2.2*Vmax);
+        ctx.lineTo(index,y);
+    }
+    ctx.stroke();
+    ctx.closePath();
+
+    Vbias = [];
+    Vdivide = parseFloat(document.getElementById("dividein").value);
+    for(var index = 0;index < vwave.length;index++){
+        Vbias.push(vwave[index]/Vdivide);
+    }
+
+    TN = parseFloat(document.getElementById("TNin").value);
+    T = parseFloat(document.getElementById("Tin").value);
+    G = parseFloat(document.getElementById("Gin").value);
+    sigma = parseFloat(document.getElementById("sigmain").value);
+
+    q_e = 1.6022e-19;//coulombs
+    k_b = 1.38065e-23;// J/k
+    EK = q_e/(2*k_b);//5802 kelvins per volt
+
+    Pwave = [];
+    for(var index = 0;index < vwave.length;index++){
+        P = G*(gauss(sigma) + TN + T*xcothx(EK*Vbias[index]/T));
+        Pwave.push(P);
+        document.getElementById("dataOUT").value += P.toString() + "\n";
+    }
+    ctx.strokeStyle="green";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    y = h - h*(Pwave[0] - 0)/(10 - 0);
+    ctx.moveTo(0,y); 
+    for(var index = 1;index < n;index++){
+        y = h - h*Pwave[index]/10;
+        ctx.lineTo(index,y);
+    }
+    ctx.stroke();
+    ctx.closePath();
+
+
+}
+
+
+function P(G,TN,T,x0,x){
+    return G*(TN + T*xcothx((x - x0)/T));
+}
+
+function xcothx(xin){
+    if(xin != 0){
+        yout = xin/Math.tanh(xin);
+    }
+    else{
+        yout = 1;
+    }
+    return yout;
+}
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+
+</script>
+<style>
+    html{
+        background-color:black;
+    }
+    #plot1{
+        position:absolute;
+        right:100px;
+        top:100px;
+        background-color:black;
+        border:solid;
+        border-color:green;
+    }
+    #inputs{
+        border:solid;
+        border-radius:15px;
+        padding:15px 15px 15px 15px;
+        background-color:greenyellow;
+        position:absolute;
+        left:50px;
+        top:200px;
+    }
+    #dataOUT{
+        position:absolute;
+        left:100px;
+        bottom:100px;
+    }
+</style>   
+</body>
+</html>

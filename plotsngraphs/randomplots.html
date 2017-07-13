@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <table id = "inputs">
+       <tr><td>sigma:</td><td><input id = "sigmain" value = "30" onchange = "plotcurve();"></input></td></tr> 
+        <tr><td>number of points:</td><td><input id = "numpoints" value = "600" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>deltax:</td><td><input id = "dx" value = "1" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>x0:</td><td><input id = "x0in" value = "0" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>color:</td><td><input id = "colorin" value = "black" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>linewidth:</td><td><input id = "linewidthin" value = "2" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>plot width:</td><td><input id = "win" value = "600" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>plot height:</td><td><input id = "hin" value = "400" onchange = "plotcurve();"></input></td></tr>
+    </table>
+    <canvas id = "plot1"></canvas>
+    <textarea id = "svgIO"></textarea>
+    <input id = "inputsum"></input>
+    <textarea id = "feed"></textarea>
+    <button id = "pushbutton">PUSH TO STACK</button>
+<script>
+plotcurve();
+function plotcurve(){
+    var inputs = document.getElementById("inputs").getElementsByTagName("input");
+    var inputstring = "";
+    for(var index = 0;index < inputs.length;index++){
+        inputstring += inputs[index].value + ",";
+    }
+    document.getElementById("inputsum").value = inputstring;    
+    numpoints =  document.getElementById("numpoints").value;
+    deltax = document.getElementById("dx").value;
+    w = document.getElementById("win").value;
+    h = document.getElementById("hin").value;
+    plotcolor = document.getElementById("colorin").value;
+    plotlinewidth = document.getElementById("linewidthin").value;;
+    sigma =document.getElementById("sigmain").value;
+    plot1 = document.getElementById("plot1");
+    plot1.width = w;
+    plot1.height = h;
+    y0 = h/2;
+    x0 = document.getElementById("x0in").value;
+    x0 /= deltax;
+    ctx = plot1.getContext("2d");
+    ctx.strokeStyle=plotcolor;
+    ctx.lineWidth = plotlinewidth;
+    currentSVG= "<svg width=\"" + w.toString() + "\" height=\"" + h.toString() + "\" viewbox = \"0 0 " + w.toString(0) + " " + h.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\" style = \"border:none;\">\n";		
+    currentSVG += "	<path d = \"M";
+    ctx.clearRect(0,0,w,h);
+    ctx.beginPath();
+    var g = Math.round(gauss(sigma));
+    ctx.moveTo(x0*deltax,y0 + g);
+	currentSVG += (x0*deltax).toString() + " ";
+	currentSVG += (y0 + g).toString() + " ";
+    for(var index = 1;index < numpoints;index++){
+        var g = Math.round(gauss(sigma));
+	    ctx.lineTo(x0*deltax + index*deltax,y0 + g);
+   		currentSVG += "L" + (x0*deltax + index*deltax).toString() + " " + (y0 + g).toString() + " ";
+    }
+    ctx.stroke();
+    ctx.closePath();
+	currentSVG += "\""+ " stroke = \""+ plotcolor +"\" stroke-width = \""+ plotlinewidth.toString() + "\" fill = \"none\" "+"/>";    
+    currentSVG += "</svg>";
+    document.getElementById("svgIO").value = currentSVG;
+}
+document.getElementById("inputsum").onchange = function(){
+    var valueArray = this.value.split(",");
+    var inputs = document.getElementById("inputs").getElementsByTagName("input");
+    for(var index = 0;index < inputs.length;index++){
+        inputs[index].value = valueArray[index];
+    }
+    plotcurve();  
+}
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+
+document.getElementById("pushbutton").onclick = function(){
+    document.getElementById("feed").value += document.getElementById("inputsum").value + "\n";
+}
+</script>
+<style>
+    html{
+        background-color:yellow;
+    }
+    #plot1{
+        position:absolute;
+        right:100px;
+        top:100px;
+        background-color:white;
+    }
+    #svgIO{
+        position:absolute;
+        bottom:10px;
+        left:10px;
+        width:400px;
+        height:100px;
+    }
+    #feed{
+        position:absolute;
+        bottom:10px;
+        right:10px;
+        width:400px;
+        height:100px;
+    }
+    #inputs{
+        border:solid;
+        border-radius:15px;
+        padding:15px 15px 15px 15px;
+        background-color:greenyellow;
+        position:absolute;
+        left:50px;
+        top:200px;
+    }
+    #inputsum{
+        position:absolute;
+        left:50px;
+        top:10px;
+        width:700px;
+        font-size:20px;
+        font-family:courier;
+    }
+    #pushbutton{
+        position:absolute;
+        top:5px;
+        right:105px;
+    }
+</style>   
+</body>
+</html>

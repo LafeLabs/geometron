@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+<div class = "meter">
+    <div class = "needle"></div>
+</div>
+<style>
+@keyframes example {
+    from {transform:rotate(-60deg);}
+    to {transform:rotate(60deg)}
+}
+
+html{
+    background-color:yellow;
+    color:black;
+}
+.meter{
+    position:absolute;
+    top:10%;
+    left:10%;
+    width:500px;
+    height:300px;
+    border:solid;
+    border-color:black;
+    border-width:5px;
+    border-radius:20px;
+    padding:0px 0px 0px 0px;
+}
+.needle{
+    width:8px;
+    height:200px;
+    position:absolute;
+    left:250px;
+    bottom:-5px;
+    background-color:black;
+    transform-origin: 0px 200px;
+    border-radius:3px;
+    animation-name: example;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+</style>
+</body>
+</html>

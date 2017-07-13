@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<img src = "https://i.imgur.com/nboddnZ.png" id = "im1"></img>
+<canvas id = "can1"></canvas>
+<canvas id = "can2"></canvas>
+
+<script>
+var can1 = document.getElementById("can1");
+var can2 = document.getElementById("can2");
+var im1 = document.getElementById("im1");
+ctx = can1.getContext("2d");
+
+im1.onload = function(){
+    can1.width = im1.width;
+    can1.height = im1.height;
+    can2.width = im1.width;
+    can2.height = 256;
+    ctx.drawImage(this,0,0);
+    plotcolor();
+}
+function plotcolor(){
+    var imgData=ctx.getImageData(0,130,can1.width,1);
+    redwave = [];
+    greenwave = [];
+    bluewave = [];
+    for (var index = 0;index < imgData.data.length;index += 4){
+        redwave.push(255-imgData.data[index]);
+        greenwave.push(255-imgData.data[index+1]);
+        bluewave.push(255-imgData.data[index+2]);
+    }
+    ctx = can2.getContext("2d");
+    ctx.strokeStyle="red";
+    ctx.lineWidth = 2;
+    for(var index = 0;index < redwave.length-1;index++){
+        ctx.beginPath();
+    	ctx.moveTo(index,redwave[index]);
+		ctx.lineTo(index + 1,redwave[index+1]);
+		ctx.stroke();		
+   		ctx.closePath();
+    }
+    ctx.strokeStyle="green";
+    for(var index = 0;index < redwave.length-1;index++){
+        ctx.beginPath();
+    	ctx.moveTo(index,greenwave[index]);
+		ctx.lineTo(index + 1,greenwave[index+1]);
+		ctx.stroke();		
+   		ctx.closePath();
+    }
+    ctx.strokeStyle="blue";
+    for(var index = 0;index < redwave.length-1;index++){
+        ctx.beginPath();
+    	ctx.moveTo(index,bluewave[index]);
+		ctx.lineTo(index + 1,bluewave[index+1]);
+		ctx.stroke();		
+   		ctx.closePath();
+    }
+
+}
+</script>
+<style>
+canvas{
+    border:solid;
+}
+
+</style>
+</body>
+</html>

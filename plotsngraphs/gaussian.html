@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+</head>
+<body>
+    <div>
+        sigma:<input id = "sigmain" value = "10" onchange = "plotcurve();"></input><br>
+    </div>
+    <canvas id = "plot1"></canvas>
+    <canvas id = "hist1"></canvas>
+    <textarea id = "svgIO"></textarea>
+    <div id = "chiout"></div>
+<script>
+plot1 = document.getElementById("plot1");
+plot1.width = 600;
+plot1.height = 400;
+hist1 = document.getElementById("hist1");
+hist1.width = 200;
+hist1.height = 400;
+
+plotcurve();
+
+function plotcurve(){
+    ctx = plot1.getContext("2d");
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 2;
+    x0 = 0;
+    y0 = 200;
+
+    sigma = document.getElementById("sigmain").value;
+    currentSVG= "<svg width=\"600\" height=\"400\" viewbox = \"0 0 600 400\"  xmlns=\"http://www.w3.org/2000/svg\" style = \"border:none;\">\n";		
+    currentSVG += "	<path d = \"M";
+    ctx.clearRect(0,0,600,400);
+    ctx.beginPath();
+    ctx.moveTo(0,y0 + gauss(sigma));
+	currentSVG += "0" + " ";
+	currentSVG += (y0 + gauss(sigma)).toString() + " ";
+
+    h = [];
+    for(var index = 1;index < plot1.height;index++){
+        h.push(0);
+    }
+    for(var index = 1;index < plot1.width;index++){
+        var g = Math.round(gauss(sigma));
+	    ctx.lineTo(index,y0 + g);
+
+        g = g + plot1.height/2;
+        if(g > plot1.height){
+            g = plot1.height;
+        }
+        if(g < 0){
+            g = 0;
+        }
+        h[g] +=1;
+        console.log(g);
+   		currentSVG += "L" + index.toString() + " " + (y0 + gauss(sigma)).toString() + " ";
+    }
+    ctx.stroke();
+    ctx.closePath();    
+	currentSVG += "\""+ " stroke = \"black\" stroke-width = \"2\" fill = \"none\" "+"/>";
+    
+    ctx = hist1.getContext("2d");
+    ctx.clearRect(0,0,200,400);
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(h[0],0);
+    for(var index = 1;index < plot1.height;index++){
+	    ctx.lineTo(h[index],index);
+    }
+    ctx.stroke();
+    ctx.closePath();    
+    currentSVG += "</svg>";
+    document.getElementById("svgIO").value = currentSVG;
+
+    ctx.strokeStyle="red";
+
+    ctx.beginPath();
+    sigmafit = sigma*1.1;
+    A = 20;
+    ctx.moveTo(A*Math.exp(-(index-y0)*(index-y0)/sigmafit),0);
+    chisquared = 0;
+    residuals = [];
+
+    for(var index = 1;index < plot1.height-1;index++){
+        var localgauss = A*Math.exp(-(index-y0)*(index-y0)/(sigmafit*sigmafit));
+	    ctx.lineTo(localgauss,index);
+        chisquared += (localgauss - h[index])*(localgauss - h[index]);
+        residuals.push(localgauss - h[index]);
+    }
+    ctx.stroke();
+    ctx.closePath();    
+    chisquared /= sigmafit*sigmafit;
+    chisquared /= (plot1.width - 2);
+    document.getElementById("chiout").innerHTML =  chisquared.toString();
+
+    ctx.beginPath();
+    ctx.moveTo(150,0);
+    ctx.strokeStyle="blue";
+    for(var index = 1;index < plot1.height-1;index++){
+	    ctx.lineTo(150 + residuals[index],index);
+    }
+    ctx.stroke();
+    ctx.closePath();    
+
+
+}
+
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+
+
+</script>
+<style>
+    html{
+        background-color:yellow;
+    }
+    #plot1{
+        position:absolute;
+        left:100px;
+        top:100px;
+        background-color:white;
+    }
+    #hist1{
+        position:absolute;
+        left:800px;
+        top:100px;
+        background-color:white;
+    }
+    #svgIO{
+        position:absolute;
+        bottom:5px;
+        left:100px;
+    }
+    #chiout{
+        position:absolute;
+        right:10px;
+        top:50%;
+    }
+</style>   
+</body>
+</html>

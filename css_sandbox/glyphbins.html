@@ -3,18 +3,17 @@
 <body>
 <div class = "controlpanel bin" id = "panel1" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">1<span class = "glyphlabel">061</span></div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">2</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">3</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">4</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">5</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">6</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">7</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">8</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">9</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">*</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">0</div>
-    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">#</div>
-
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">2<span class = "glyphlabel">062</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">3<span class = "glyphlabel">063</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">4<span class = "glyphlabel">064</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">5<span class = "glyphlabel">065</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">6<span class = "glyphlabel">066</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">7<span class = "glyphlabel">067</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">8<span class = "glyphlabel">070</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">9<span class = "glyphlabel">071</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">*<span class = "glyphlabel">052</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">0<span class = "glyphlabel">060</span></div>
+    <div class = "glyphdiv glyphbutton" draggable="true" ondragstart="drag(event)">#<span class = "glyphlabel">043</span></div>
 </div>
 <div class = "cursorcontrolpanel bin">
     <div class = "glyphdiv" onclick = "doTheThing(021);">&lt</div>
@@ -24,7 +23,9 @@
 <div class = "glyphbin bin" id = "bin1" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class = "cursor" draggable="true" ondragstart="drag(event)" id="cursor1"></div>
 </div>
+<input id = "glyphinput"></input>
 <script>
+
 
 function doTheThing(localCommand){
     if(localCommand == 010){//delete
@@ -37,6 +38,7 @@ function doTheThing(localCommand){
                 }
             } 
         }
+        doTheThing(032);
     }
 	if(localCommand == 0020){//cursor forward
         var cursorparent =document.getElementById("cursor1").parentNode;
@@ -56,6 +58,7 @@ function doTheThing(localCommand){
                 }
             } 
         }
+        doTheThing(032);
 	}
 	if(localCommand == 0021){//cursor back
         var cursorparent =document.getElementById("cursor1").parentNode;
@@ -75,9 +78,22 @@ function doTheThing(localCommand){
                 }
             } 
         }
+        doTheThing(032);
 	}	
-
-
+    if(localCommand == 032){//update glyph output
+        var cursorparent =document.getElementById("cursor1").parentNode;
+        var glyphlist = cursorparent.childNodes;
+        document.getElementById("glyphinput").value = "";
+        for(var index = 0;index <glyphlist.length;index++){
+            if(glyphlist[index].innerHTML != null){
+                if(glyphlist[index].getElementsByClassName("glyphlabel")[0] != undefined){
+                    var derp = glyphlist[index].getElementsByClassName("glyphlabel")[0].innerHTML;
+                    console.log(derp + ",");
+                    document.getElementById("glyphinput").value += derp + ",";
+                }
+            }
+        }
+    }
 }
 
 glyphs = document.getElementsByClassName("glyphbutton");
@@ -97,6 +113,7 @@ for(var index = 0;index < glyphs.length;index++){
         //append:
         var cursor = document.getElementById("cursor1");
         cursorbinid.insertBefore(newdiv, cursor);
+        doTheThing(032);
     }
 }
 
@@ -116,13 +133,25 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 }
 
-
-
-
 </script>
 <style>
+
+div:visited{
+    text-decoration: none;
+}
+div{
+    cursor:pointer;
+}
 html{
     background-color:yellow;
+}
+#glyphinput{
+    width:80%;
+    font-size:22px;
+    font-family:courier;
+    overflow:scroll;
+    float:left;
+    margin: 10px 10px 10px 10px;
 }
 .glyphlabel{
     display:none;

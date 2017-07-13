@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<div class = "scroll">
+<p>
+ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA 
+</p>
+<p>
+BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA BETA 
+</p>
+<p>
+GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA   GAMMA 
+</p>
+<p>
+DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA DELTA 
+</p>
+<p>
+EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON EPSILON 
+</p>
+</div>
+<input id = "pinput" class = "plist"/>
+
+<script>
+paragraphs = document.getElementsByTagName("p");
+pstring = "";
+for(var index = 0;index< paragraphs.length;index++){
+  paragraphs[index].id = "p" + index.toString();
+  pstring += paragraphs[index].id + ",";
+}
+document.getElementById("pinput").value = pstring;
+
+
+</script>
+<style>
+.scroll{
+  position:absolute;
+  top:10px;
+  left:30px;
+  width:400px;
+  height:100px;
+  overflow:scroll;
+  border:solid;
+  padding: 10px 30px 10px 30px;
+  text-align:justify;
+}
+.plist{
+  position:absolute;
+  left:550px;
+  top:30px;
+  border:solid;
+  width:500px;
+  font-size:18px;
+  font-family:courier;
+}
+
+</style>
+</body>
+</html>

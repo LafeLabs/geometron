@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<img src = "https://i.imgur.com/BWPD753.jpg" id = "im1"></img>
+<canvas id = "can1"></canvas>
+<img id = "im2" src = "https://i.imgur.com/M49VKP4.jpg"></img>
+<canvas id = "can2"></canvas>
+<div id = "moon">Hyperbolic tangent fadeout</div>
+<table>
+    <tr>
+        <td>x0=</td><td><input size = "5" value = "35" id = "x0in"></input></td>
+    </tr>
+    <tr>
+        <td>y0=</td><td><input size = "5" value = "95" id = "y0in"></input></td>
+    </tr>
+    <tr>
+        <td>r0=</td><td><input size = "5" value = "270" id = "r0in"></input></td>
+    </tr>
+    <tr>
+        <td>e=</td><td><input size = "5" value = "1.65" id = "ein"></input></td>
+    </tr>
+</table>
+<textarea id = "pngout"></textarea>
+<script>
+var can1 = document.getElementById("can1");
+var can2 = document.getElementById("can2");
+var im1 = document.getElementById("im1");
+ctx = can1.getContext("2d");
+
+im1.onload = function(){
+    can1.width = im1.width/4;
+    can1.height = im1.height/4;
+    can2.width = can1.width;
+    can2.height = can1.height;
+    ctx.drawImage(this,0,0,can1.width,can1.height);
+    plotcircle();
+
+}
+
+var inputs  =document.getElementsByTagName("INPUT");
+for(var index = 0;index<inputs.length;index++){
+    inputs[index].onchange = function(){
+        plotcircle();
+    }
+}
+
+function plotcircle(){
+    ctx = can1.getContext("2d");
+    var imgData=ctx.getImageData(0,0,can2.width,can2.height);
+    x0 = can2.width/2 + parseInt(document.getElementById("x0in").value);
+    y0 = can2.height/2 + parseInt(document.getElementById("y0in").value);
+    r0 = parseInt(document.getElementById("r0in").value);
+    ecc = parseFloat(document.getElementById("ein").value);
+    for (var index = 0;index < imgData.data.length;index += 4){
+        x = (index/4)%can2.width;
+        y = Math.round(((index/4)/can2.height));
+        r = Math.sqrt(ecc*(x-x0)*(x-x0) + (y - y0)*(y-y0));
+        if(r > r0){
+     //       imgData.data[index] = 0;
+       //     imgData.data[index+1] = 0;
+         //   imgData.data[index+2] = 0;
+            imgData.data[index+3] = 0;
+        }
+        T = 50;
+        F = 255*0.5*(Math.tanh((r0-r)/T) + 1);
+        imgData.data[index+3] = F;
+    }
+
+    ctx = can2.getContext("2d");
+    ctx.putImageData(imgData,0,0);
+}
+</script>
+<style>
+html{
+    background-color:black;
+}
+#im1{
+    display:none;
+}
+#can1{
+    display:none;
+}
+#moon{
+    position:absolute;
+    left:20%;
+    top:20%;
+    font-family:Futura;
+    font-size:50px;
+    color:yellow;
+}
+table{
+    color:yellow;
+}
+#can2{
+    position:absolute;
+    left:100px;
+    top:100px;
+}
+#im2{
+    position:absolute;
+    left:110px;
+    top:-20px;
+    width:700px;
+    height:700px;
+    display:none;
+}
+#pngout{
+    position:absolute;
+    right:5%;
+    top:10%;
+    width:20%;
+    height:20%;   
+}
+</style>
+</body>
+</html>

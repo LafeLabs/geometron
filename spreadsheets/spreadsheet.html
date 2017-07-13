@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id = "main" class = "spreadsheet"></div>
+<input id = "editinput"></input>
+<script>
+    editmode = false;
+    numCOLS = 5;
+    numROWS = 5;
+    rowval = 0;
+    colval = 0;
+    var newTA = document.createElement("TABLE");
+    for(var i = 0;i < numROWS;i++){
+        var newROW = document.createElement("TR");
+        for(var j = 0;j < numCOLS;j++){
+            var newD = document.createElement("TD");
+            newD.innerHTML = "DERP DERP DERP DERP";
+            newD.id = "d" + i.toString() + j.toString();
+            newROW.appendChild(newD);
+            if(i == rowval && j == colval){
+                newD.style.backgroundColor = "pink";
+            }
+        }
+        newTA.appendChild(newROW);
+    }
+    document.getElementById("main").appendChild(newTA);
+
+
+document.body.onkeypress = function(event){ 
+    var key = String.fromCharCode(event.keyCode);
+    if(key == "h" && !editmode){
+        var oldid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(oldid).style.backgroundColor = "white";
+        colval--;
+        if(colval < 0){
+            colval = numCOLS - 1;
+        }
+        var newid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(newid).style.backgroundColor = "pink";
+    }
+    if(key == "l" && !editmode){
+        var oldid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(oldid).style.backgroundColor = "white";
+        colval++;
+        if(colval >= numCOLS){
+            colval = 0;
+        }
+        var newid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(newid).style.backgroundColor = "pink";
+    }
+    if(key == "k" && !editmode){
+        var oldid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(oldid).style.backgroundColor = "white";
+        rowval--;
+        if(rowval < 0){
+            rowval = numROWS - 1;
+        }
+        var newid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(newid).style.backgroundColor = "pink";
+    }
+    if(key == "j" && !editmode){
+        var oldid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(oldid).style.backgroundColor = "white";
+        rowval++;
+        if(rowval >= numROWS){
+            rowval = 0;
+        }
+        var newid = "d" + rowval.toString() + colval.toString();
+        document.getElementById(newid).style.backgroundColor = "pink";
+    }
+    if(key == "~"){
+        if(editmode == false){
+            editmode = true;        
+            var oldid = "d" + rowval.toString() + colval.toString();
+            document.getElementById("editinput").value = document.getElementById(oldid).innerHTML;
+        }
+        else{
+            editmode = false;
+        }
+    }
+}
+document.getElementById("editinput").onchange = function(){
+    var oldid = "d" + rowval.toString() + colval.toString();
+    document.getElementById(oldid).innerHTML = this.value;
+}
+
+</script>
+<style>
+html{
+    background-color:yellow;
+}
+.spreadsheet{
+    position:absolute;
+    left:10%;
+    right:10%;
+    top:10%;
+    bottom:20%;
+    background-color:white;
+    overflow:scroll;
+}
+td{
+    border:solid;
+}
+#editinput{
+    position:absolute;
+    bottom:5%;
+    left:30%;
+    font-size:24px;
+}
+</style>
+</body>
+</html>

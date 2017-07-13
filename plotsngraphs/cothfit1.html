@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+</head>
+<body>
+    <table id = "inputs">
+       <tr><td>T:</td><td><input id = "Tin" value = "50" onchange = "plotcurve();"></input></td></tr> 
+        <tr><td>T_N:</td><td><input id = "TNin" value = "100" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>G:</td><td><input id = "Gin" value = "1" onchange = "plotcurve();"></input></td></tr>
+        <tr><td>sigma:</td><td><input id = "sigmain" value = "5" onchange = "plotcurve();"></input></td></tr>
+    </table>
+    <canvas id = "plot1"></canvas>
+    <canvas id = "res1"></canvas>
+    <div id = "chisquaredout">0</div>
+    <textarea id = "dataOUT"></textarea>
+<script>
+
+plotcurve();
+
+function plotcurve(){
+
+    plot1 = document.getElementById("plot1");
+    plot1.width = 500;
+    plot1.height = 500;
+    res1 = document.getElementById("res1");
+    res1.width = 500;
+    res1.height = 100;
+
+    ctx = plot1.getContext("2d");
+    ctx.strokeStyle="black";
+    ctx.lineWidth = 2;
+    x0 = 250;
+    y0 = 500;
+    sigma = document.getElementById("sigmain").value;
+    T = document.getElementById("Tin").value;
+    TN = document.getElementById("TNin").value;
+    G = document.getElementById("Gin").value;
+    ywave = [];
+    for(var index = 0;index < plot1.width + 1;index++){
+        y = y0 - G*TN - G*T*xcothx((index-x0)/T) + G*gauss(sigma);
+        ywave.push(y);
+        document.getElementById("dataOUT").value += y.toString() + "\n";
+    }
+
+    ctx.clearRect(0,0,500,500);
+    ctx.beginPath();
+    ctx.moveTo(0,ywave[0]);
+    for(var index = 0;index < plot1.width;index++){
+        ctx.lineTo(index,ywave[index]);
+    }
+    ctx.stroke();
+    ctx.closePath();
+    ctx.lineWidth = 2;
+
+    ctx.strokeStyle="blue";
+    ctx.beginPath();
+    ctx.moveTo(0,ywave[0]);
+    Tfit = 50;
+    TNfit = 100;
+    Gfit = 1;
+    residuals = [];
+    chisquared = 0;
+    for(var index = 0;index < plot1.width;index++){
+        y = y0 - Gfit*TNfit - Gfit*Tfit*xcothx((index-x0)/Tfit);
+        residuals.push(y - ywave[index]);
+        chisquared += (y - ywave[index])*(y - ywave[index]);
+        ctx.lineTo(index,y);
+    }
+    ctx.stroke();
+    ctx.closePath();
+    chisquared /= sigma*sigma;
+    chisquared /= plot1.width - 2;
+    document.getElementById("chisquaredout").innerHTML = chisquared.toString();
+
+    ctx = res1.getContext("2d");
+    ctx.strokeStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(0,50 - residuals[0]);
+    for(var index = 0;index < plot1.width - 1;index++){
+        ctx.lineTo(index,50 - residuals[index]);
+    }
+    ctx.stroke();
+    ctx.closePath();
+
+}
+
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+
+function xcothx(xin){
+    if(xin != 0){
+        yout = xin/Math.tanh(xin);
+    }
+    else{
+        yout = 1;
+    }
+    return yout;
+}
+
+
+</script>
+<style>
+    html{
+        background-color:yellow;
+    }
+    #plot1{
+        position:absolute;
+        right:50px;
+        top:5px;
+        background-color:white;
+    }
+    #res1{
+        position:absolute;
+        right:50px;
+        bottom:10px;
+        background-color:white;
+    }
+    #svgIO{
+        position:absolute;
+        bottom:5px;
+        left:100px;
+    }
+    #inputs{
+        border:solid;
+        border-radius:15px;
+        padding:15px 15px 15px 15px;
+        background-color:greenyellow;
+        position:absolute;
+        left:50px;
+        top:200px;
+    }
+    #chisquaredout{
+        position:absolute;
+        left:50px;
+        top:5px;
+        background-color:greenyellow;
+        padding: 15px 15px 15px 15px;
+        border-radius:15px;
+    }
+    #chieq{
+        position:absolute;
+        left:400px;
+        top:5px;
+        background-color:greenyellow;
+        padding: 15px 15px 15px 15px;
+        border-radius:15px;
+    }
+    #dataOUT{
+        position:absolute;
+        left:100px;
+        bottom:100px;
+    }
+</style>   
+</body>
+</html>
