@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajaX/libs/mathjaX/2.7.0/MathJaX.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajaX/libs/mathjs/3.12.1/math.js"></script>
+<script>
+MathJaX.Hub.Config({
+  teX2jaX: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script>
+//http://www.mhtl.uwaterloo.ca/old/courses/me3532/js/bessel.html
+function BesselJ0(X) {
+	var aX,Z,XX,Y,ans,ans1,ans2;
+	aX = Math.abs(X)
+	if (aX < 8.0) {
+		Y = X * X;
+		ans1 = 57568490574.0 + Y * (-13362590354.0 + Y * (651619640.7 + Y * (-11214424.18 + Y * (77392.33017 + Y * (-184.9052456)))));
+		ans2 = 57568490411.0 + Y * (1029532985.0 + Y * (9494680.718 + Y * (59272.64853 + Y * (267.8532712 + Y * 1.0))));
+		ans = ans1 / ans2;
+	} else {
+		Z = 8.0 / aX;
+		Y = Z * Z;
+		XX = aX - 0.785398164;
+		ans1 = 1.0 + Y * (-0.1098628627e-2 + Y * (0.2734510407e-4 + Y * (-0.2073370639e-5 + Y * 0.2093887211e-6)));
+		ans2 = -0.1562499995e-1 + Y * (0.1430488765e-3 + Y * (-0.6911147651e-5 + Y * (0.7621095161e-6 - Y * 0.934935152e-7)));
+		ans = Math.sqrt(0.636619772 / aX) * (Math.cos(XX) * ans1 - Z * Math.sin(XX) * ans2);
+	}
+	return ans;
+}
+
+function BesselJ1(X) {
+	var aX,Z,XX,Y,ans,ans1,ans2;
+	aX = Math.abs(X);
+	if (aX < 8.0) {
+		Y=X*X;
+		ans1 = X*(72362614232.0+Y*(-7895059235.0+Y*(242396853.1+Y*(-2972611.439+Y*(15704.48260+Y*(-30.16036606))))));
+		ans2 = 144725228442.0+Y*(2300535178.0+Y*(18583304.74+Y*(99447.43394+Y*(376.9991397+Y*1.0))));
+		ans = ans1/ans2;
+	} else {
+		Z=8.0/aX;
+		Y=Z*Z;
+		XX=aX-2.356194491;
+		ans1=1.0+Y*(0.183105e-2+Y*(-0.3516396496e-4+Y*(0.2457520174e-5+Y*(-0.240337019e-6))));
+		ans2=0.04687499995+Y*(-0.2002690873e-3+Y*(0.8449199096e-5+Y*(-0.88228987e-6+Y*0.105787412e-6)));
+		ans=Math.sqrt(0.636619772/aX)*(Math.cos(XX)*ans1-Z*Math.sin(XX)*ans2);
+		if (X < 0.0) ans = -ans;
+	}
+	return ans;	
+}
+
+function BesselY0(X) {
+	var Z, XX, Y, ans, ans1, ans2;
+	if (X < 8.0)  {
+		Y=X*X;
+		ans1 = -2957821389.0+Y*(7062834065.0+Y*(-512359803.6+Y*(10879881.29+Y*(-86327.92757+Y*228.4622733))));
+		ans2 = 40076544269.0+Y*(745249964.8+Y*(7189466.438+Y*(47447.26470+Y*(226.1030244+Y*1.0))));
+		ans = (ans1/ans2)+0.636619772*BesselJ0(X)*Math.log(X);
+	} else {
+		Z=8.0/X;
+		Y=Z*Z;
+		XX=X-0.785398164;
+		ans1 = 1.0+Y*(-0.1098628627e-2+Y*(0.2734510407e-4+Y*(-0.2073370639e-5+Y*0.2093887211e-6)));
+		ans2 = -0.1562499995e-1+Y*(0.1430488765e-3+Y*(-0.6911147651e-5+Y*(0.7621095161e-6+Y*(-0.934945152e-7))));
+		ans = Math.sqrt(0.636619772/X)*(Math.sin(XX)+ans1+Z*Math.cos(XX)*ans2);
+	}
+	return ans;
+}
+
+function BesselY1(X) {
+	var Z, XX, Y, ans, ans1, ans2;
+	if (X < 8.0) { 
+		Y=X*X
+		ans1 = X*(-0.4900604943e13+Y*(0.1275274390e13+Y*(-0.5153438139e11+Y*(0.7349264551e9+Y*(-0.4237922726e7+Y*0.8511937935e4)))));
+		ans2 = 0.2499580570e14+Y*(0.4244419664e12+Y*(0.3733650367e10+Y*(0.2245904002e8+Y*(0.1020426050e6+Y*(0.3549632885e3+Y)))));
+		ans = (ans1/ans2)+0.636619772*(BesselJ1(X)*Math.log(X)-1.0/X);
+	} else {
+		Z=8.0/X;
+		Y=Z*Z;
+		XX=X-2.356194491;
+		ans1=1.0+Y*(0.183105e-2+Y*(-0.3516396496e-4+Y*(0.2457520174e-5+Y*(-0.240337019e-6))));
+		ans2=0.04687499995+Y*(-0.202690873e-3+Y*(0.8449199096e-5+Y*(-0.88228987e-6+Y*0.10578e-6)));
+		ans=Math.sqrt(0.636619772/X)*(Math.sin(XX)*ans1+Z*Math.cos(XX)*ans2);
+	}
+	return ans;
+}
+
+function BesselI0(X) {
+	var aX,ans,Y;
+	aX=Math.abs(X);
+	if (aX < 3.75) {
+		Y=X/3.75;
+		Y*=Y;
+		ans=1.0+Y*(3.5156229+Y*(3.0899424+Y*(1.2067492+Y*(0.2659732+Y*(0.360768e-1+Y*0.45813e-2)))));
+	} else {
+		Y=3.75/aX;
+		ans=(Math.eXp(aX)/Math.sqrt(aX))*(0.39894228+Y*(0.1328592e-1+Y*(0.225319e-2+Y*(-0.157565e-2+Y*(0.916281e-2+Y*(-0.2057706e-1+Y*(0.2635537e-1+Y*(-0.1647633e-1+Y*0.392377e-2))))))));
+	}
+	return ans;
+}
+
+function BesselI1(X) {
+	var aX,ans,Y;
+	aX=Math.abs(X);
+	if (aX<3.75) {
+		Y=X/3.75;
+		Y*=Y;
+		ans=aX*(0.5+Y*(0.87890594+Y*(0.51498869+Y*(0.15084934+Y*(0.2658733e-1+Y*(0.301532e-2+Y*0.32411e-3))))));
+	} else {
+		Y=3.75/aX;
+		ans=0.2282967e-1+Y*(-0.2895312e-1+Y*(0.1787654e-1-Y*0.420059e-2));
+		ans=0.39894228+Y*(-0.3988024e-1+Y*(-0.362018e-2+Y*(0.163801e-2+Y*(-0.1031555e-1+Y*ans))));
+		ans*=(Math.eXp(aX)/Math.sqrt(aX));
+	}
+	return X < 0.0 ? -ans : ans;
+}
+	
+function BesselK0(X) {
+	var Y,ans;
+	if (X <= 2.0) {
+		Y=X*X/4.0;
+		ans=(-Math.log(X/2.0)*BesselI0(X))-0.57721566+0.42278420*Y+0.23069756*Y*Y+0.03488590*Y*Y*Y+0.00262698*Y*Y*Y*Y+0.00010750*Y*Y*Y*Y*Y+0.00000740*Y*Y*Y*Y*Y*Y;
+	} else {
+		Y=2.0/X;
+		ans=(Math.eXp(-X)/Math.sqrt(X))*(1.25331414+Y*(-0.7832358e-1+Y*(0.2189568e-1+Y*(-0.1062446e-1+Y*(0.587872e-2+Y*(-0.251540e-2+Y*0.53208e-3))))));
+	}
+	return ans;
+}
+
+function BesselK1(X) {
+	var Y,ans;
+	if (X <= 2.0) {
+		Y=X*X/4.0;
+		ans=(Math.log(X/2.0)*BesselI1(X))+(1.0/X)*(1.0+Y*(0.15443144+Y*(-0.67278579+Y*(-0.18156897+Y*(-0.1919402e-1+Y*(-0.110404e-2+Y*(-0.4686e-4)))))));
+	} else {
+		Y=2.0/X
+		ans=(Math.eXp(-X)/Math.sqrt(X))*(1.25331414+Y*(0.23498619+Y*(-0.3655620e-1+Y*(0.1504268e-1+Y*(-0.780353e-2+Y*(0.325614e-2+Y*(-0.68245e-3)))))));
+	}
+	return ans;
+}
+
+function BesselJ(n,X) {
+	if (n == null || n.length == 0) return "n not specified";
+	if (Math.floor(n) != n) return "Error: n not integer";
+	if (n < 2) return "Error: n < 2";
+	var ACC = 40.0;		// Make larger to increase accuracY.
+	var BIGNO = 1.0e10;
+	var BIGNI = 1.0e-10;
+	var j,jsum,m,aX,bj,bjm,bjp,sum,toX,ans;
+	aX=Math.abs(X);
+	if (aX == 0.0) return 0.0;
+	else if (aX > n) {
+		toX = 2.0/aX;
+		bjm=BesselJ0(aX);
+		bj=BesselJ1(aX);
+		for (j=1;j<n;j++) {
+			bjp=j*toX*bj-bjm;
+			bjm=bj;
+			bj=bjp;
+		}
+		ans=bj;
+	} else {
+		toX=2.0/aX;
+		if (Math.sqrt(ACC*n) >= 0)
+			m=2*((n + Math.floor(Math.sqrt(ACC*n))) / 2);
+		else
+			m=2*((n + Math.ceil(Math.sqrt(ACC*n))) / 2);
+		jsum=0;
+		bjp=ans=sum=0.0;
+		bj=1.0;
+		for (j=m;j>0;j--) {
+			bjm=j*toX*bj-bjp;
+			bjp=bj;
+			bj=bjm;
+			if (Math.abs(bj) > BIGNO) {
+				bj *= BIGNI;
+				bjp *= BIGNI;
+				ans *= BIGNI;
+				sum *= BIGNI;
+			}
+			if (jsum) sum += bj;
+			jsum=!jsum;
+			if (j == n) ans=bjp;
+		}
+		sum=2.0*sum-bj;
+		ans /= sum;
+	}
+	return X < 0.0 && (n & 1) ? -ans : ans;
+}
+
+function BesselY(n,X) {
+	if (n == null || n.length == 0) return "n not specified";
+	if (Math.floor(n) != n) return "Error: n not integer";
+	if (n < 2) return "Error: n < 2";
+	var j,bY,bYm,bYp,toX;
+	toX=2.0/X;
+	bY=BesselY1(X);
+	bYm=BesselY0(X);
+	for (j=1;j<n;j++) {
+		bYp=j*toX*bY-bYm;
+		bYm=bY;
+		bY=bYp;
+	}
+	return bY;
+}
+
+function BesselI(n,X) {
+	if (n == null || n.length == 0) return "n not specified";
+	if (Math.floor(n) != n) return "Error: n not integer";
+	if (n < 2) return "Error: n < 2";
+	var ACC = 40.0;		// Make larger to increase accuracY.
+	var BIGNO = 1.0e10;
+	var BIGNI = 1.0e-10;
+	var j,bi,bim,bip,toX,ans;
+	if (X == 0.0) return 0.0;
+	else {
+		toX=2.0/Math.abs(X);
+		bip=ans=0.0;
+		bi=1.0;
+                for (j=2*(n+Math.floor(Math.sqrt(ACC*n)));j>0;j--) {
+			bim=bip+j*toX*bi;
+			bip=bi;
+			bi=bim;
+			if (Math.abs(bi) > BIGNO) {
+				ans *= BIGNI;
+				bi *= BIGNI;
+				bip *= BIGNI;
+			}
+			if (j == n) ans=bip;
+		}
+		ans *= BesselI0(X) / bi;
+		return X < 0.0 && (n & 1) ? -ans : ans;
+	}
+}
+
+function BesselK(n,X) {
+	if (n == null || n.length == 0) return "n not specified";
+	if (Math.floor(n) != n) return "Error: n not integer";
+	if (n < 2) return "Error: n < 2";
+	var j,bk,bkm,bkp,toX;
+	toX=2.0/X;
+	bkm=BesselK0(X);
+	bk=BesselK1(X);
+	for (j=1;j<n;j++) {
+		bkp=bkm+j*toX*bk;
+		bkm=bk;
+		bk=bkp;
+	0}
+	return bk;
+}
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+</script>
+</head>
+<body>
+    <canvas id = "plot1"></canvas>
+
+<script>
+    w = innerWidth;
+    h = innerHeight;
+    plot1 = document.getElementById("plot1");
+    plot1.width = w;
+    plot1.height = h;
+    ctx = plot1.getContext("2d");
+    plotcolor = "#00ff00";
+    ctx.strokeStyle = plotcolor;
+    plotlinewidth = 2;
+    ctx.lineWidth = plotlinewidth;
+    ctx.clearRect(0,0,w,h);
+    x0 = w/2;
+    y0 = h/2;
+    for(y = 0;y < h;y++){
+        for(x = 0;x < w;x++){
+            r = Math.sqrt((x - x0)*(x - x0) + (y - y0)*(y - y0));
+            r /= 10;
+            f = BesselJ0(r/2 + gauss(1)) + gauss(0.05);
+            f1 = BesselJ1(r/2);
+            z = 255*(f + 1)/(2);
+            z = Math.round(z);
+            z = z.toString(16);
+            z1 = 255*(f1 + 1)/(2);
+            z1 = Math.round(z1);
+            z1 = z1.toString(16);
+
+            ctx.strokeStyle="#00" + z + z1;
+            ctx.fillStyle="#00" + z + z1;
+            ctx.fillRect(x,y,1,1);
+        }
+    }
+
+</script>
+
+</body>
+</html>

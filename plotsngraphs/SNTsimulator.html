@@ -22,6 +22,7 @@ MathJax.Hub.Config({
         <tr><td>T:</td><td><input id = "Tin" value = "4" onchange = "updateplot();"></input></td></tr> 
         <tr><td>T_N:</td><td><input id = "TNin" value = "20" onchange = "updateplot();"></input></td></tr>
         <tr><td>G:</td><td><input id = "Gin" value = "0.2" onchange = "updateplot();"></input></td></tr>
+        <tr><td>frequency[pixels]:</td><td><input id = "fin" value = "0" onchange = "updateplot();"></input></td></tr>
         <tr><td>sigma:</td><td><input id = "sigmain" value = ".4" onchange = "updateplot();"></input></td></tr>
     </table>
     <canvas id = "plot1"></canvas>
@@ -75,13 +76,19 @@ function updateplot(){
     G = parseFloat(document.getElementById("Gin").value);
     sigma = parseFloat(document.getElementById("sigmain").value);
 
+    f = parseFloat(document.getElementById("fin").value);
+//    fGHz = parseFloat(document.getElementById("fin").value);
+  //  fHz = 1e9*fGHz;
+    //omega = 2*Math.PI*fHz;
+    hbar = 1.1e-34;
+
     q_e = 1.6022e-19;//coulombs
     k_b = 1.38065e-23;// J/k
     EK = q_e/(2*k_b);//5802 kelvins per volt
 
     Pwave = [];
     for(var index = 0;index < vwave.length;index++){
-        P = G*(gauss(sigma) + TN + T*xcothx(EK*Vbias[index]/T));
+        P = G*(gauss(sigma) + TN + 0.5*T*xcothx( (EK*Vbias[index] + f)/T) + 0.5*T*xcothx( (EK*Vbias[index] - f)/T)  ) ;
         Pwave.push(P);
         document.getElementById("dataOUT").value += P.toString() + "\n";
     }
@@ -98,11 +105,6 @@ function updateplot(){
     ctx.closePath();
 
 
-}
-
-
-function P(G,TN,T,x0,x){
-    return G*(TN + T*xcothx((x - x0)/T));
 }
 
 function xcothx(xin){

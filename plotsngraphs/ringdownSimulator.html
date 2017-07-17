@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.12.1/math.js"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+</head>
+<body>
+    <table id = "inputs">
+        <tr><td>Period[pixels]:</td><td><input id = "Tin" value = "50.0" onchange = "updateplot();"></input></td></tr> 
+        <tr><td>Amplitude[pixels]:</td><td><input id = "Ain" value = "150" onchange = "updateplot();"></input></td></tr>
+        <tr><td>y0[pixels]:</td><td><input id = "y0in" value = "250.0" onchange = "updateplot();"></input></td></tr> 
+        <tr><td>lifetime[pixels]:</td><td><input id = "lifetimein" value = "300" onchange = "updateplot();"></input></td></tr>
+        <tr><td>phase[degrees]:</td><td><input id = "phasein" value = "0" onchange = "updateplot();"></input></td></tr>
+        <tr><td>sigma[pixels]:</td><td><input id = "sigmain" value = "1" onchange = "updateplot();"></input></td></tr>
+    </table>
+    <canvas id = "plot1"></canvas>
+    <textarea id = "dataOUT"></textarea>
+    <textarea id = "svgOUT"></textarea> 
+<script>
+
+updateplot();
+function updateplot(){
+    T = parseFloat(document.getElementById("Tin").value);
+    A = parseFloat(document.getElementById("Ain").value);
+    y0 = parseFloat(document.getElementById("y0in").value);
+    tau = parseFloat(document.getElementById("lifetimein").value);
+    phi = parseFloat(document.getElementById("phasein").value);
+    sigma = parseFloat(document.getElementById("sigmain").value);
+    h = 500;
+    w = 500;
+    plot1 = document.getElementById("plot1");
+    plot1.width = w;
+    plot1.height = h;
+
+    ctx = plot1.getContext("2d");
+    plotcolor = "#00ff00";
+    ctx.strokeStyle = plotcolor;
+    plotlinewidth = 2;
+    ctx.lineWidth = plotlinewidth;
+    ctx.clearRect(0,0,w,h);
+    currentSVG= "<svg width=\"" + w.toString() + "\" height=\"" + h.toString() + "\" viewbox = \"0 0 " + w.toString() + " " + h.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\" style = \"border:solid;background-color:black;border-radius:40px;border-color:#00ff00; \">\n";		
+    currentSVG += "	<path d = \"M";
+    ctx.beginPath();
+    y = y0 + A*Math.sin(2*Math.PI*0/T)*Math.exp(-0/tau);
+    document.getElementById("dataOUT").value = "";
+    document.getElementById("dataOUT").value += y.toString() + "\n";
+    ctx.moveTo(0,y);
+	currentSVG += (0).toString() + " ";
+	currentSVG += (y).toString() + " ";
+    for(var index = 1;index < w;index++){
+        y = y0 + A*Math.sin(phi*Math.PI/180 + 2*Math.PI*index/T)*Math.exp(-index/tau);
+        document.getElementById("dataOUT").value += y.toString() + "\n";
+        ctx.lineTo(index,y);
+       	currentSVG += "L" + (index).toString() + " " + (Math.round(y)).toString() + " ";
+    }
+	currentSVG += "\""+ " stroke = \""+ plotcolor +"\" stroke-width = \""+ plotlinewidth.toString() + "\" fill = \"none\" "+"/>";    
+
+
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.lineWidth = 1;
+    griddivisions = 5;
+    gridlinewidth = "1";
+    for(var index = 1;index < griddivisions+1;index++){
+        x = index*w/(griddivisions + 1);
+        ctx.beginPath();
+        currentSVG += "	<path d = \"M";
+        ctx.moveTo(x,h);
+    	currentSVG += (x).toString() + " ";
+	    currentSVG += (h).toString() + " ";
+        ctx.lineTo(x,0);   
+        currentSVG += "L" + (x).toString() + " " + (Math.round(0)).toString() + " ";
+        ctx.stroke();
+        ctx.closePath();     
+    	currentSVG += "\""+ " stroke = \""+ plotcolor +"\" stroke-width = \""+ plotlinewidth.toString() + "\" fill = \"none\" "+"/>";    
+    }
+
+    for(var index = 1;index < griddivisions+1;index++){
+        y = index*w/(griddivisions + 1);
+        ctx.beginPath();
+        currentSVG += "	<path d = \"M";
+        ctx.moveTo(0,y);
+    	currentSVG += (0).toString() + " ";
+	    currentSVG += (y).toString() + " ";
+        ctx.lineTo(w,y);
+        currentSVG += "L" + (w).toString() + " " + (Math.round(y)).toString() + " ";
+        ctx.stroke();
+        ctx.closePath();     
+    	currentSVG += "\""+ " stroke = \""+ plotcolor +"\" stroke-width = \""+ plotlinewidth.toString() + "\" fill = \"none\" "+"/>";    
+    }
+    
+    currentSVG += "</svg>";
+    document.getElementById("svgOUT").value = currentSVG;
+}
+
+function gauss(sigma){
+/*  https://en.wikipedia.org/wiki/Box–Muller_transform  */
+    u1 = Math.random();
+    u2 = Math.random();
+    z1 = Math.sqrt(-2.0*Math.log(u1))*Math.sin(2*Math.PI*u2);
+    z0 = Math.sqrt(-2.0*Math.log(u1))*Math.cos(2*Math.PI*u2);
+	return z0*sigma;
+}
+
+</script>
+<style>
+    html{
+        background-color:black;
+    }
+    #plot1{
+        position:absolute;
+        right:200px;
+        top:100px;
+        background-color:black;
+        border:solid;
+        border-color:#00FF00;
+        border-radius:40px;
+    }
+    #inputs{
+        border:solid;
+        border-radius:15px;
+        padding:15px 15px 15px 15px;
+        background-color:greenyellow;
+        position:absolute;
+        left:50px;
+        top:200px;
+    }
+    #dataOUT{
+        position:absolute;
+        left:50px;
+        bottom:50px;
+        width:200px;
+        height:100px;
+        color:#00ff00;
+        background-color:black;
+        border:solid;
+        border-color:#00ff00;
+        font-family:courier;
+    }
+    #svgOUT{
+        position:absolute;
+        left:300px;
+        bottom:50px;
+        width:300px;
+        height:100px;
+        color:#00ff00;
+        background-color:black;
+        border:solid;
+        border-color:#00ff00;
+        font-family:courier;
+    }
+</style>   
+</body>
+</html>
