@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});</script>
+</head>
+<body>
+<!-- image layer -->
+    <img id = "mainimage"></img>
+<!-- mask layer-->
+    <div class = "mask"></div>
+    <div class = "mask"></div>
+    <div class = "mask"></div>
+    <div class = "mask"></div>
+<!-- canvas layer -->
+    <canvas id = "maincanvas"></canvas>
+<!-- arrow word box layer-->
+<div id = "arrowwords" style = "display:none;">$\alpha\rightarrow\beta$
+$\gamma\rightarrow\beta$
+</div>
+<div id = "arrowboxes"></div>
+<style id = "arrowhovers"></style>
+
+
+
+<!-- word box layer -->
+<div id = "boxwords" style = "display:none;">$\beta^{\beta}\aleph$
+$\alpha^{\alpha}$
+</div>
+<div id = "wordboxes"></div>
+<style id = "wordhovers"></style>
+    
+<!-- input/output table , plot and buttons layer (standardize this, make button based control panels, also in tables) -->
+<table id = "maintable" class = "IOtable"></table>
+<canvas id = "maingraphcanvas" class = "graphcanvas"></canvas>
+<div id = "maincontrolpanel" class = "controlpanel"></div>
+
+
+<script>
+    /* image layer:  */
+    imageURL = "https://i.imgur.com/xRUULq6.jpg";
+    scaleFactor = .3;//fraction to scale, preserving aspectratio, fractional
+    rightShift = 0.1; //shift in fraction
+    topShift = 0.1;//shift in fraction
+    mainimage = document.getElementById("mainimage");
+    mainimage.src = imageURL;
+    mainimage.onload = function(){
+            console.log("aspect ratio = " + (this.width/this.height).toString())
+            this.width *= scaleFactor;
+            this.style.left = (rightShift*this.width).toString() + "px";
+            this.style.top = (topShift*this.height).toString() + "px";
+            this.style.zIndex = "-2";
+    }
+    /* mask layer:  */
+    
+    topMask = 0.35;
+    bottomMask = 0.35;
+    leftMask = 0.15;
+    rightMask = 0.65;
+  
+    masks = document.getElementsByClassName("mask");
+    masks[0].style.top = "0px";
+    masks[0].style.width = innerWidth.toString() + "px";
+    masks[0].style.height = (innerHeight*topMask).toString() + "px";
+    masks[1].style.width = innerWidth.toString() + "px";
+    masks[1].style.height = (innerHeight*(bottomMask)).toString() + "px";
+    masks[1].style.top = (innerHeight*(1 - bottomMask)).toString() + "px";
+    masks[2].style.height = innerHeight.toString() + "px";
+    masks[2].style.width = (innerWidth*(leftMask)).toString() + "px";
+    masks[2].style.right = (innerWidth*(leftMask)).toString() + "px";
+    masks[2].style.left = "0px";
+    masks[3].style.height = innerHeight.toString() + "px";
+    masks[3].style.width = (innerWidth*(rightMask)).toString() + "px";
+    masks[3].style.left = (innerWidth*(1 - rightMask)).toString() + "px";
+    masks[3].style.right = "0px";
+    /* canvas layer:  */
+
+    maincanvas = document.getElementById("maincanvas");
+    maincanvas.width = innerWidth;
+    maincanvas.height = innerHeight;
+    ctx = maincanvas.getContext("2d");
+    ctx.lineWidth = 2;
+    ctx.strokeStyle="black";
+    ctx.fillStyle="black";
+    x = 400;
+    y = 400;
+    side = 100;
+    ctx.beginPath();
+    ctx.arc(x, y, side, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    /* arrow layer:  */
+
+arrowsmain = document.getElementById("arrowboxes");
+ndivs = 7;
+arrows = [];
+for(var index = 0;index < ndivs;index++){
+    arrows.push(document.createElement("DIV"));
+    arrows[index].id = "div" + index.toString();
+    arrowsmain.appendChild(arrows[index]);
+    var localsubdiv = document.createElement("DIV");
+    localsubdiv.className = "divsubdiv";
+    arrows[index].appendChild(localsubdiv);
+}
+x0 = innerWidth/2;
+y0 = innerHeight/2;
+x = x0;
+y = y0;
+w = y0/2;
+h = w;
+theta0 = 0;
+theta = theta0;
+divindex = 0;
+unit  = .5*w;
+side = unit/2;
+x /= 2;
+y -= 2*side;
+aspectratio = 4;
+divcolor = "#8a8aff";
+drawdiv(0);   
+theta += 45;
+x += 3*side;
+y += 1.5*side;
+drawdiv(1);   
+
+function drawdiv(localdivindex){
+    localdiv = arrows[localdivindex];
+    localdiv.style.position = "absolute";
+    localdiv.style.width = aspectratio*side.toString() + "px";
+    localdiv.style.height = side.toString() + "px";
+    localdiv.style.top = (y - side/2).toString() + "px";
+    localdiv.style.left = (x - aspectratio*side/2).toString() + "px";
+    localdiv.style.transform = "rotate(" + theta.toString() + "deg)";
+    document.getElementById("arrowhovers").innerHTML += "#div" + localdivindex.toString() + "{background-color:" + divcolor + ";}\n #div" + localdivindex.toString() + ":hover{background-color:green;} #div" + localdivindex.toString() + ":active{background-color:#FFFFB0;}";
+}
+
+arrowwords();
+function arrowwords(){
+    arrowwordsstring = document.getElementById("arrowwords").innerHTML;
+    arrowwordarray = arrowwordsstring.split("\n");
+    for(var index = 0;index < arrowwordarray.length;index++){
+        if(index < 2){
+            arrows[index].getElementsByClassName("divsubdiv")[0].innerHTML = arrowwordarray[index];
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.fontSize = (0.5*side).toString() + "px";
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.position = "absolute";
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.top = (0.2*side).toString() + "px";
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.textAlign = "center";
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.width = "100%";
+            arrows[index].getElementsByClassName("divsubdiv")[0].style.color = "black";
+        }
+    }
+}
+    /* box layer:  */
+
+boxContainer = document.getElementById("wordboxes");
+nboxes = 7;
+boxes = [];
+for(var index = 0;index < nboxes;index++){
+    boxes.push(document.createElement("DIV"));
+    boxes[index].id = "box" + index.toString();
+    boxContainer.appendChild(boxes[index]);
+    var localsubdiv = document.createElement("DIV");
+    localsubdiv.className = "divsubdiv";
+    boxes[index].appendChild(localsubdiv);
+}
+
+theta = theta0;
+divcolor = "#FFAFAF";
+aspectratio = 1;
+y -= 1.4*side;
+x -= 1.4*side;
+
+y -= .1*side;
+x += .1*side;
+
+side *= 1.4;
+drawboxdiv(0);   
+x -= 2.5*side;
+drawboxdiv(1);   
+
+function drawboxdiv(localBoxIndex){
+    localdiv = boxes[localBoxIndex];
+    localdiv.style.position = "absolute";
+    localdiv.style.width = aspectratio*side.toString() + "px";
+    localdiv.style.height = side.toString() + "px";
+    localdiv.style.top = (y - side/2).toString() + "px";
+    localdiv.style.left = (x - aspectratio*side/2).toString() + "px";
+    localdiv.style.transform = "rotate(" + theta.toString() + "deg)";
+    localdiv.style.borderRadius = side.toString() + "px";
+    document.getElementById("wordhovers").innerHTML += "#box" + localBoxIndex.toString() + "{background-color:" + divcolor + ";}\n #box" + localBoxIndex.toString() + ":hover{background-color:green;} #box" + localBoxIndex.toString() + ":active{background-color:#FFFFB0;}";
+}
+
+boxwords();
+function boxwords(){
+    boxwordsstring = document.getElementById("boxwords").innerHTML;
+    boxwordarray = boxwordsstring.split("\n");
+    for(var index = 0;index < boxwordarray.length;index++){
+        if(index < 2){
+            boxes[index].getElementsByClassName("divsubdiv")[0].innerHTML = boxwordarray[index];
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.fontSize = (0.5*side).toString() + "px";
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.position = "absolute";
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.top = (0.2*side).toString() + "px";
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.textAlign = "center";
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.width = "100%";
+            boxes[index].getElementsByClassName("divsubdiv")[0].style.color = "black";
+        }
+    }   
+}
+
+</script>
+<style>
+body{
+    position:fixed;
+}
+#mainimage{
+    z-index:-2;
+    position:absolute;
+}
+.mask{
+    position:absolute;
+    z-index:-1;
+    background-color:white;
+}
+#maincanvas{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:0;
+}
+</style>
+</body>
+</html>
