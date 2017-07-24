@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+
+<div class = "keybutt">256</div>
+<div class = "keybutt">512</div>
+<div class = "keybutt">1024</div>
+<div class = "keybutt">2048</div>
+<div class = "keybutt">4096</div>
+
+<style>
+    .keybutt{
+        float:left;
+        font-size:36px;
+        padding:10px 10px 10px 10px;
+        font-family:Futura;
+        margin:40px 40px 40px 40px;
+        background-color:grey;
+        cursor:pointer;
+    }
+    .keybutt:hover{
+        background-color:green;
+    }
+    .keybutt:active{
+        background-color:yellow;
+    }
+
+</style>
+
+<script>
+    var audio = new webkitAudioContext();
+    var osc = audio.createOscillator();
+    osc.typ = "sine";
+    var volume = audio.createGain();
+    volume.gain.value = 0.5;
+    osc.connect(volume);
+    volume.connect(audio.destination);
+
+keybutts = document.getElementsByClassName("keybutt");
+keybutts[0].onclick = function(){
+    osc.frequency.value = 256;
+    osc.start();
+    osc.stop(audio.currentTime + 0.25);
+}
+keybutts[1].onclick = function(){
+    osc.frequency.value = 512;
+    osc.start();
+    osc.stop(audio.currentTime + 0.25);
+}
+keybutts[2].onclick = function(){
+    osc.frequency.value = 1024;
+    osc.start();
+    osc.stop(audio.currentTime + 0.25);
+}
+
+keybutts[3].onclick = function(){
+    osc.frequency.value = 2048;
+    osc.start();
+    osc.stop(audio.currentTime + 0.25);
+}
+keybutts[4].onclick = function(){
+    osc.frequency.value = 4096;
+    osc.start();
+    osc.stop(audio.currentTime + 0.25);
+}
+
+</script>
+</body>
+</html>
+</html>

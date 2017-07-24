@@ -616,8 +616,9 @@ https://i.imgur.com/CCINcXz.jpg
     <img id = "img0600"></img>
 </div>
 <script id = "script0700">
+    imageindex = 5;
     urls = document.getElementById("urls0600").innerHTML.split("\n");
-    imageURL = urls[5];
+    imageURL = urls[imageindex];
 
     mainimage = document.getElementById("img0600");
     mainimage.src = imageURL;
@@ -806,12 +807,10 @@ for(var index = boxwordarray.length;index < boxes.length;index++){
 }
 doTheThing(0300);
 ctx.fillStyle = boxcolor;
-drawGlyph("0332,0332,0332,0332,0332,0347");
-drawBox(0);
 doTheThing(0300);
 ctx.fillStyle = boxcolor;
 drawGlyph("0333,0333,0333,0333,0333,0336,0347");
-drawBox(1);
+drawBox(0);
 
 function drawBox(localdivindex){
     localdiv = boxes[localdivindex];
@@ -839,12 +838,88 @@ function drawBox(localdivindex){
 <!-- Plot Canvas, diagram canvas, Dynamic Table, TextIO and GIS/route/map/CAD viewer Layer: Z = +3-->
 <div id = "div0605">
 </div>
-<!-- Control Panel Button Layer: Z = +4-->
+<!-- Control Panel Button Layer: Z = +4   nope this is the table layer-->
 <div id = "div0606">
+    <table class = "controlpanel">
+        <tr>
+            <td class = "fullcolumn"  colspan="4"><input style = "width:95%;height:90%;font-size:1.3em;" id = "imgurlinput"></input></td>
+        </tr>
+        <tr id = "imagebuttons">
+            <td class = "tdbutt">PREV</td><td class = "tdbutt">NEXT</td><td class = "tdbutt">NEW</td>
+        </tr>
+        <tr>
+            <td class = "tdinput"><input></input></td>            
+            <td class = "tdinput"><input></input></td>
+            <td class = "tdinput"><input></input></td>
+            <td class = "tdinput"><input></input></td>
+        </tr>
+    </table>
 </div>
-<!-- Edit Layer: Z = +5-->
+<script id = "script0706">
+
+    imginput = document.getElementById("imgurlinput");
+    imginput.value = urls[0];
+    imgbutts = document.getElementById("imagebuttons").getElementsByClassName("tdbutt");
+    imgbutts[0].onclick  = function(){
+        imageindex--;
+        if(imageindex < 0){
+            imageindex = urls.length - 1;
+        }
+        document.getElementById("img0600").src = urls[imageindex];
+    }
+    imgbutts[1].onclick  = function(){
+        imageindex++;
+        if(imageindex >= urls.length - 1){
+            imageindex = 0;
+        }
+        document.getElementById("img0600").src = urls[imageindex];
+    }
+    imgbutts[2].onclick  = function(){
+        //create new image
+    }
+    document.getElementById("imgurlinput").onchange = function(){
+        urls[imageindex] = this.value;
+        document.getElementById("img0600").src = urls[imageindex];
+    }
+
+
+</script>
+<style id = "style0506">
+    .controlpanel{
+        position:absolute;
+        left:10px;
+        top:10px;
+        width:300px;
+        height:100px;
+        background-color:blue;
+    }
+    .fullcolumn{
+        width:100%;
+        border:solid;
+    }
+    .tdbutt{
+        width:33%;
+        text-align:center;
+        border:solid;
+        cursor:pointer;
+        font-family:Futura;
+    }
+    .tdbutt:hover{
+        background-color:green;
+    }
+    .tdbutt:active{
+        background-color:yellow;
+    }
+    .tdinput{
+        width:25%;
+    }
+</style>
+<!-- button layer: Z = +5-->
 <div id = "div0607">
 </div>
-
+<script id = "script0707">
+</script>
+<style id = "style0507">
+</style>
 </body>
 </html>
