@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script> 
+</head>
+<body>
+<div id = "topfunk" style = "display:none;">f = Math.exp(-x/10)*Math.cos(1.5*x);,-1.5,1.5,0,50,400,400,3,3,
+f = Math.exp(-x*x/10)*Math.cos(1.5*x);,-1.5,1.5,-10,10,400,400,3,3,
+f = x*Math.exp(-x*x/1);,-.6,.6,-4,4,400,400,3,3,
+f = Math.sin(Math.sin(1/x))/x;,-100,100,-.1,.1,400,400,3,3,
+f = 0.1*x/Math.tanh(x/.8);,-2,2,-10,10,400,400,3,3,</div>
+
+    <button id = "BACK">&#x25C0</button>
+    <button id = "FWD">&#x25B6</button>
+    <canvas id = "plot1"></canvas>
+    <div id = "bottomlabel"><span id = "xlabel1" sytle = "float:left;width:50px">0</span><span id = "xlabel2" style = "float:right;width:50px;">50</span></div>
+
+    <div id = "leftlabel"><span id = "ylabel1" sytle = "float:left;width:50px">-1.5</span><span id = "ylabel2" style = "float:right;width:50px;">1.5</span></div>
+
+    <textarea id = "dataout"></textarea>
+    <table id = "mainIO">
+        <tr>
+            <td>
+                f(x) = 
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                fmin =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                fmax =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                xmin =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                xmax =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                width = 
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                height = 
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                xgrids =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ygrids =
+            </td>
+            <td>
+                <input></input>
+            </td>
+        </tr>
+    </table>
+    <textarea id = "funkstack"></textarea>
+    <button id = "savebutt">SAVE</button>
+
+    <textarea id = "svgout"></textarea>
+
+<script>
+//http://cars9.uchicago.edu/software/python/lmfit/intro.html
+
+
+    w = 400;
+    h = 400;
+    functionstring = "f = Math.exp(-x/10)*Math.cos(1.5*x);";
+    xmin = 0;
+    xmax = 50;
+    fmin = -1.5;
+    fmax = 1.5;
+    xgrids = 3;
+    ygrids = 3;
+
+    inputs = document.getElementById("mainIO").getElementsByTagName("INPUT");
+    inputs[0].value = functionstring;
+    inputs[1].value = fmin;
+    inputs[2].value = fmax;
+    inputs[3].value = xmin;
+    inputs[4].value = xmax;
+    inputs[5].value = w;
+    inputs[6].value = h;
+    inputs[7].value = xgrids;
+    inputs[8].value = ygrids;
+
+    farray = [];
+    foo = document.getElementById("topfunk").innerHTML;
+    document.getElementById("funkstack").value = foo;
+    bar = foo.split("\n");
+    for(var index = 0;index < bar.length;index++){
+       farray.push(bar[index]); 
+    }
+
+function getvalues(){
+    functionstring = inputs[0].value;
+    fmin = parseFloat(inputs[1].value);
+    fmax = parseFloat(inputs[2].value);
+    xmin = parseFloat(inputs[3].value);
+    xmax = parseFloat(inputs[4].value);
+    w = parseInt(inputs[5].value);
+    h = parseInt(inputs[6].value);
+    xgrids = parseInt(inputs[7].value);
+    ygrids = parseInt(inputs[8].value);
+}
+
+    function funksave(){
+        fstr = "\n";
+        for(var index = 0;index < inputs.length;index++){
+            fstr += inputs[index].value + ",";
+        }
+        farray.push(fstr);
+        document.getElementById("funkstack").value += fstr;
+    }
+
+    document.getElementById("savebutt").onclick = function(){
+        funksave();
+    }
+
+    inputs[0].onchange= function(){
+        functionstring = this.value;
+        redraw();
+    }
+    inputs[1].onchange= function(){
+        fmin = parseFloat(this.value);
+        redraw();
+    }
+    inputs[2].onchange= function(){
+        fmax = parseFloat(this.value);
+        redraw();
+    }
+    inputs[3].onchange= function(){
+        xmin = parseFloat(this.value);
+        redraw();
+    }
+    inputs[4].onchange= function(){
+        xmax = parseFloat(this.value);
+        redraw();
+    }
+    inputs[5].onchange= function(){
+        w = parseInt(this.value);
+        redraw();
+    }
+    inputs[6].onchange= function(){
+        h = parseInt(this.value);
+        redraw();
+    }
+    inputs[7].onchange= function(){
+        xgrids = parseInt(this.value);
+        redraw();
+    }
+    inputs[8].onchange= function(){
+        ygrids = parseInt(this.value);
+        redraw();
+    }
+
+
+redraw();
+function redraw(){
+
+    currentSVG = "<svg width=\""+ w.toString() + "\" height=\""+ h.toString() + "\" viewbox = \"0 0 "+ w.toString() + " "+ h.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\" style = \"border:solid;\">\n";		
+
+    f = 0;
+    plot1 = document.getElementById("plot1");
+    plot1.width = w;
+    plot1.height = h;
+    ctx = plot1.getContext("2d");
+    ctx.lineWidth = 2;
+    ctx.strokeStyle="#00ff00";
+    ctx.clearRect(0,0,w,h);
+    fwave = [];
+    xwave = [];
+    document.getElementById("dataout").value = "";
+    for(var index = 0;index < w;index++){
+        x = xmin + (index/w)*(xmax - xmin);
+        eval(functionstring);
+        fwave.push(f);
+        xwave.push(x);
+    }    
+    ywave = [];
+    for(var index = 0;index < w;index++){
+        y = h*(fmax - fwave[index])/(fmax - fmin);
+        ywave.push(y);
+    }
+    ctx.beginPath();
+    ctx.moveTo(0,ywave[index]);
+    for(var index = 0;index < w;index++){
+        ctx.lineTo(index,ywave[index]);   
+    }
+    ctx.stroke();
+    ctx.closePath();     
+
+    for(var index = 0;index<w-1;index++){
+        currentSVG += "    <line x1=\""+Math.round(index).toString()+"\" y1=\""+Math.round(ywave[index]).toString()+"\" x2=\"" + (index+1).toString()+"\" y2=\""+(ywave[index+1]).toString()+"\" style=\"stroke:black;stroke-width:2\" />\n";
+    }
+    currentSVG += "</svg>";
+    document.getElementById("svgout").value = currentSVG;
+
+    var derp = "";
+    for(var index = 0;index < w;index++){
+         derp += xwave[index].toString() + "," + fwave[index].toString() + "\n";
+    }
+    document.getElementById("dataout").value = derp;
+    //x grid
+    ctx.lineWidth = 1;
+    for(var index = 1;index <= xgrids;index++){
+        ctx.beginPath();
+        x = index*w/(xgrids + 1);
+        ctx.moveTo(x,0);
+        ctx.lineTo(x,h);
+        ctx.stroke();
+        ctx.closePath();   
+    }
+    //y grid
+    ctx.lineWidth = 1;
+    for(var index = 1;index <= ygrids;index++){
+        ctx.beginPath();
+        y = index*h/(ygrids +1);
+        ctx.moveTo(0,y);
+        ctx.lineTo(w,y);
+        ctx.stroke();
+        ctx.closePath();   
+    }
+
+    document.getElementById("xlabel1").innerHTML = xmin; 
+    document.getElementById("xlabel2").innerHTML = xmax; 
+    document.getElementById("ylabel1").innerHTML = fmax; 
+    document.getElementById("ylabel2").innerHTML = fmin; 
+
+}
+
+funkindex = 0;
+
+document.getElementById("BACK").onclick = function(){
+    funkindex--;
+    if(funkindex < 0){
+        funkindex = farray.length-1;
+    }
+    var fvalues = farray[funkindex].split(",");
+    for(var index = 0;index < fvalues.length-1;index++){
+        inputs[index].value = fvalues[index];
+    }
+    getvalues();
+    redraw();
+}
+
+document.getElementById("FWD").onclick = function(){
+    funkindex++;
+    if(funkindex >= farray.length){
+        funkindex = 0;
+    }
+    var fvalues = farray[funkindex].split(",");
+    for(var index = 0;index < fvalues.length-1;index++){
+        inputs[index].value = fvalues[index];
+    }
+    getvalues();
+    redraw();    
+}
+
+
+</script>
+<style>
+
+    html{
+        background-color:black;
+        color:#00ff00;
+        font-size:18px;
+        font-family:courier;
+    }
+    input,textarea{
+        background-color:black;
+        color:#00ff00;
+        border-color:#00ff00;
+        width:400px;
+        font-size:18px;
+        font-family:courier;
+
+    }
+    #plot1{
+        position:absolute;
+        right:50px;
+        top:50px;
+        background-color:black;
+        border:solid;
+        border-color:#00ff00;
+        border-radius:5px;
+        margin:0px 0px 0px 0px;
+
+    }
+    #bottomlabel{
+        position:absolute;
+        width:430px;
+        height:25px;
+        font-size:22px;
+        right:25px;
+        top:460px;
+        font-family:courier;
+
+    }
+    #leftlabel{
+        position:absolute;
+        width:430px;
+        height:25px;
+        font-size:22px;
+        right:25px;
+        top:460px;
+        transform:translateY(-215px) translateX(-230px) rotate(90deg);
+        font-family:courier;
+
+    }
+
+    #dataout{
+        position:absolute;
+        right:50px;
+        bottom:50px;
+        background-color:black;
+        border:solid;
+        border-color:#00ff00;
+        border-radius:15px;
+        color:#00ff00;
+        padding:15px 15px 15px 15px;
+        
+    } 
+    #mainIO{
+        position:absolute;
+        left:50px;
+        top:50px;        
+    }
+    button{
+        background-color:black;
+        color:#00ff00;
+        border-color:#00ff00;
+        position:absolute;
+        cursor:pointer;
+        font-size:30px;
+    }
+    button:hover{
+        background-color:#004000;
+    }
+     button:active{
+        background-color:#6f6f00;
+    }
+    #BACK{
+        left:5px;
+        top:5px;
+    }
+    #FWD{
+        right:5px;
+        top:5px;
+    }
+    #funkstack{
+        position:absolute;
+        bottom:5px;
+        left:5px;
+        width:300px;
+        height:40px;
+    }
+    #savebutt{
+        left:350px;
+        bottom:5px;
+    }
+    #svgout{
+        position:absolute;
+        bottom:5px;
+        left:40%;
+        width:300px;
+    }
+</style>   
+</body>
+</html>

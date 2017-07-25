@@ -1619,11 +1619,9 @@ MathJax.Hub.Config({
 <body>
     <canvas id = "plot1"></canvas>
     <canvas id = "plot2"></canvas>
-    <div id = "dataout">
-
-    </div>
+    <textarea id = "dataout"></textarea>
 <script>
-
+//http://cars9.uchicago.edu/software/python/lmfit/intro.html
 
     rawdata = document.getElementById("sample").innerHTML;
     dataArray = rawdata.split("\n");
@@ -1733,64 +1731,57 @@ MathJax.Hub.Config({
         ctx.closePath();     
     }
 
-    f0x = 68;
-    Gx = 0.046;
-    TNx = 129;
-    Tx = 16;//start value, first guess for T.
-    deltaTx = 0.001;//initial deltaT
-
-
     chiwave = [];
     Twave = [];
     Gwave = [];
     TNwave = [];
     fwave = [];
-    G = Gx;
-    T = Tx;
-    TN = TNx;
-    f0 = f0x;
+    G = 0.04622;
+    T = 16;
+    TN = 124.68;
+    f0 = 68;
 
     deltaf0 = 0.1;
     deltaT = 0.01;
-    deltaTN = 1;
-    deltaG = 0.00001;
+    deltaTN = -.005;
+    deltaG = -0.00005;
 
-    mass = 100;
-    gamma = 30;
-    spring = 10;
-
-chi = getChiSquared(f0x,G,TN,T);
-deltachiT = getChiSquared(f0,G,TN,T + deltaT) - chi;
-deltachiG = getChiSquared(f0,G + deltaG,TN,T) - chi;
-deltachiTN = getChiSquared(f0,G,TN + deltaTN,T) - chi;
-deltachif0 = getChiSquared(f0 + deltaf0,G,TN,T) - chi;
+    mass = 50;
+    gamma = 90;
+    spring = 20;
 
 dataout = document.getElementById("dataout");
-dataout.innerHTML += "chi = " + chi + "<br>";
-dataout.innerHTML += "delta chi T = " + deltachiT + "<br>";
-dataout.innerHTML += "delta chi G = " + deltachiG + "<br>";
-dataout.innerHTML += "delta chi TN = " + deltachiTN + "<br>";
-dataout.innerHTML += "delta chi f0 = " + deltachif0 + "<br>";
 
-
-    for(var index =0;index < w;index++){
-        chi = getChiSquared(f0x,G,TNx,T);
+    for(var index =0;index < 100;index++){
+        chi = getChiSquared(f0,G,TN,T);
         chiwave.push(chi);
         Twave.push(T);
-        deltachiT = getChiSquared(f0x,G,TNx,T + deltaT) - chi;
+        deltachiT = getChiSquared(f0,G,TN,T + deltaT) - chi;
         deltadeltaT = (-1/mass)*((spring*deltachiT/deltaT) + gamma*deltaT);
-        T = T + deltaT;
         deltaT = deltaT + deltadeltaT;
-
-        deltachiG = getChiSquared(f0x,G + deltaG,TNx,T) - chi;
-        deltadeltaG = (-1/mass)*((spring*deltachiG/deltaG) + gamma*deltaG);
-        if(deltadeltaG < 0){
-            deltadeltaG = 0;
-        }
-        G = G + deltaG;
-        deltaG = deltaG + deltadeltaG;
-
+        T = T + deltaT;
+        dataout.value += chi.toString() + "\n";
     }
+    for(var index = 100;index < 200;index++){
+        chi = getChiSquared(f0,G,TN,T);
+        chiwave.push(chi);
+        deltachiG = getChiSquared(f0,G + deltaG,TN,T) - chi;
+        deltadeltaG = (-0.0000001)*((.1*deltachiG/deltaG) + 10*deltaG);
+        deltaG = deltaG + deltadeltaG;
+        G = G + deltaG;
+        dataout.value += chi.toString() + "\n";
+    }
+
+    for(var index = 200;index < 300;index++){
+        chi = getChiSquared(f0,G,TN,T);
+        chiwave.push(chi);
+        deltachiTN = getChiSquared(f0,G,TN + deltaTN,T) - chi;
+        deltadeltaTN = (-0.0001)*((.001*deltachiTN/deltaTN) + 100*deltaTN);
+        deltaTN = deltaTN + deltadeltaTN;
+        TN = TN + deltaTN;
+        dataout.value += chi.toString() + "\n";
+    }
+
 
 
     chiinit = chiwave[0];
