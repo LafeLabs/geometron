@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+        <h1 id = "arrows">&#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 &#8594 </h1>
+        
+    <div id = "topmask"></div>
+<div id = "rightdiv">
+    <div id = "cursor"></div>
+</div>
+<style>
+    html{
+        background-color:black;
+        color:#00ff00;
+    }
+    #arrows{
+        position:absolute;
+        z-index:10;
+        font-size:4em;
+    }
+    canvas{
+        z-index:0;
+    }
+    #rightdiv{
+        position:absolute;
+        bottom:0%;
+        top:0%;
+        left:0%;
+        right:0%;        
+        color:#00ff00;
+    }
+   
+    #cursor{        
+        width:25%;
+        background-color:white;
+        position:absolute;
+        animation-name: example;
+        animation-duration: 0.75s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        top:30%;
+        bottom:30%;
+        z-index:0;
+    }
+    #topmask{
+        position:absolute;
+        z-index:5;
+        left:0%;
+        top:0%;
+        width:100%;
+        height:70%;
+        background-color:black;
+        cursor:pointer;
+    }
+    #topmask:hover{
+        display:none;
+    }
+    @keyframes example {
+    from {left:-25%;}
+    to {left:100%;}
+    }
+</style>
+</body>
+</html>
